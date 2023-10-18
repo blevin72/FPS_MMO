@@ -26560,6 +26560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 9776c2c565280054689a67587800f1d9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 92d9c4b5ab07fb54782fc9d1b6ad4049, type: 2}
     - target: {fileID: 13700000, guid: 9776c2c565280054689a67587800f1d9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -37659,7 +37663,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
