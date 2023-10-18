@@ -10,6 +10,12 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     string remoteLayerName = "RemoteLayer";
 
+    [SerializeField]
+    string dontDrawLayerName = "DontDraw";
+
+    [SerializeField]
+    GameObject playerGraphics;
+
     Camera sceneCamera;
 
     private void Start()
@@ -26,9 +32,23 @@ public class PlayerSetup : NetworkBehaviour
             {
                 sceneCamera.gameObject.SetActive(false);
             }
+
+            //Disable player graphics for local player
+            /*Since the camera is FPS if the player is wearing a helmet (example) you dont want to see the helmet over the player's head, but
+             still want the other players to be able to see the helmet */
+            SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
         }
 
         GetComponent<Player>().Setup();
+    }
+
+    void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach(Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
     }
 
     public override void OnStartClient()
