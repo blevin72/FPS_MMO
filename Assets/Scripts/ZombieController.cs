@@ -13,7 +13,7 @@ public class ZombieController : MonoBehaviour
     private Animator anim = null;
 
     [SerializeField]
-    private Transform player;
+    public Transform player;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class ZombieController : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        agent.SetDestination(player.position);
+        agent.destination = player.position;
         anim.SetFloat("Speed", 1f, 0.3f, Time.deltaTime);
         RotateToPlayer();
 
