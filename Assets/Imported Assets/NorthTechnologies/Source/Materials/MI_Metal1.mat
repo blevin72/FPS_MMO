@@ -28,7 +28,6 @@ Material:
   - _GLOSSYREFLECTIONS_OFF
   - _NORMALMAP
   m_InvalidKeywords:
-  - _METALLICGLOSSMAP
   - _METALLICSPECGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
