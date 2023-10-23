@@ -60,9 +60,20 @@ public class PlayerSetup : NetworkBehaviour
         GameManager.RegisterPlayer(_netID, _player);
     }
 
+    //made adjustment here
     private void AssignRemoteLayer()
     {
-        gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
+        int layerNumber = LayerMask.NameToLayer(remoteLayerName);
+
+        // Check if the layer number is within the valid range (0 to 31)
+        if (layerNumber >= 0 && layerNumber <= 31)
+        {
+            gameObject.layer = layerNumber;
+        }
+        else
+        {
+            Debug.LogError("Invalid layer number for remote layer: " + remoteLayerName);
+        }
     }
 
     private void DisableComponents()
