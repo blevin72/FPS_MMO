@@ -14,8 +14,8 @@ TagManager:
   - LocalPlayer
   - RemotePlayer
   - DontDraw
-  - 
-  - 
+  - Target
+  - Obstruction
   - 
   - 
   - 
