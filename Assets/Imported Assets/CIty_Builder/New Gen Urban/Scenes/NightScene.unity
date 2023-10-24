@@ -5828,7 +5828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &186787745
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7968,7 +7968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &269501801
 Transform:
   m_ObjectHideFlags: 0
@@ -17343,7 +17343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3509103683353609571, guid: eb69238791681439a924f5a85601db89, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36866,7 +36866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1235644024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38386,13 +38386,14 @@ GameObject:
   - component: {fileID: 1283092273}
   - component: {fileID: 1283092272}
   - component: {fileID: 1283092275}
+  - component: {fileID: 1283092276}
   m_Layer: 0
   m_Name: Z_Walker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1283092271
 Transform:
   m_ObjectHideFlags: 0
@@ -38495,6 +38496,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stoppingDistance: 3
   player: {fileID: 2035148410}
+--- !u!114 &1283092276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283092270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4ef9e0c7c184e438dd6703d27586f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 20
+  angle: 100
+  playerRef: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  canSeePlayer: 0
 --- !u!1001 &1283433517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63903,7 +63926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676557895895237860, guid: 710a06a288d99a04c9c3f1c60e2267f0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8440262828440119320, guid: 710a06a288d99a04c9c3f1c60e2267f0, type: 3}
       propertyPath: m_RootOrder
