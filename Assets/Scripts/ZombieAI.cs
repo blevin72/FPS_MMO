@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityStandardAssets.Characters.FirstPerson;
+//using UnityStandardAssets.Characters.FirstPerson;
 
 public class ZombieAI : MonoBehaviour
 {
     public enum WanderType { Random, Waypoint};
 
-    public FirstPersonController fpsc;
+    public PlayerController fpsc;
     public WanderType wanderType = WanderType.Random;
     public float wanderSpeed = 4f;
     public float chaseSpeed = 7f;
@@ -58,8 +58,8 @@ public class ZombieAI : MonoBehaviour
         {
             if (Vector3.Distance(fpsc.transform.position, transform.position) < viewDistance)
             {
-                RayCastHit hit;
-                if (Physics.Linecast(transform.position, fpsc.transfomr.position, out hit, -1))
+                RaycastHit hit;
+                if (Physics.Linecast(transform.position, fpsc.transform.position, out hit, -1))
                 {
                     if (hit.transform.CompareTag("Player"))
                     {
@@ -89,7 +89,7 @@ public class ZombieAI : MonoBehaviour
 
     public Vector3 RandomWanderPoint()
     {
-        Vector3 randomPoint = (RandomWanderPoint().InsideUnitSphere * wanderRadius) + transform.position;
+        Vector3 randomPoint = (Random.insideUnitSphere * wanderRadius) + transform.position;
         NavMeshHit navHit;
         NavMesh.SamplePosition(randomPoint, out navHit, wanderRadius, -1);
         return new Vector3(navHit.position.x, transform.position.y, navHit.position.z);
