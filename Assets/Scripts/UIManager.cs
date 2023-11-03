@@ -10,11 +10,14 @@ public class UIManager : MonoBehaviour
     public GameObject visualPanel;
     public GameObject gameplayPanel;
     public GameObject preferencesPanel;
+ 
     public GameObject socialPanel;
     public GameObject accountPanel;
     public GameObject accessPanel;
     public GameObject privacyPanel;
     public GameObject worldPanel;
+
+
 
     void Start()
     {
@@ -26,11 +29,14 @@ public class UIManager : MonoBehaviour
         visualPanel.active = false;
         gameplayPanel.active = false;
         preferencesPanel.active = false;
+
         socialPanel.active = false;
         accountPanel.active = false;
         accessPanel.active = false;
         privacyPanel.active = false;
         worldPanel.active = false;
+
+
     }
 
 //Main Menu
@@ -60,11 +66,13 @@ public class UIManager : MonoBehaviour
         audioPanel.active = false;
         gameplayPanel.active = false;
         preferencesPanel.active = false;
+
         socialPanel.active = false;
         accountPanel.active = false;
         accessPanel.active = false;
         privacyPanel.active = false;
         worldPanel.active = false;
+
     }
 
     public void OnAudioButtonClick()
@@ -74,11 +82,13 @@ public class UIManager : MonoBehaviour
         visualPanel.active = false;
         gameplayPanel.active = false;
         preferencesPanel.active = false;
+
         socialPanel.active = false;
         accountPanel.active = false;
         accessPanel.active = false;
         privacyPanel.active = false;
         worldPanel.active = false;
+
     }
 
     public void OnVisualButtonClick()
@@ -88,11 +98,13 @@ public class UIManager : MonoBehaviour
         audioPanel.active = false;
         gameplayPanel.active = false;
         preferencesPanel.active = false;
+
         socialPanel.active = false;
         accountPanel.active = false;
         accessPanel.active = false;
         privacyPanel.active = false;
         worldPanel.active = false;
+
     }
 
     public void OnGameplayButtonClick()
@@ -102,11 +114,13 @@ public class UIManager : MonoBehaviour
         audioPanel.active = false;
         visualPanel.active = false;
         preferencesPanel.active = false;
+
         socialPanel.active = false;
         accountPanel.active = false;
         accessPanel.active = false;
         privacyPanel.active = false;
         worldPanel.active = false;
+
     }
 
     public void OnPreferencesButtonClick()
@@ -115,6 +129,7 @@ public class UIManager : MonoBehaviour
         audioPanel.active = false;
         visualPanel.active = false;
         gameplayPanel.active = false;
+
         socialPanel.active = false;
         accountPanel.active = false;
         accessPanel.active = false;
@@ -184,6 +199,7 @@ public class UIManager : MonoBehaviour
         visualPanel.active = false;
         gameplayPanel.active = false;
         preferencesPanel.active = false;
+
     }
 }
 #endregion
