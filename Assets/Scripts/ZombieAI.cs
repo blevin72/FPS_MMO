@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-//using UnityStandardAssets.Characters.FirstPerson;
 
 public class ZombieAI : MonoBehaviour
 {
-    public enum WanderType { Random, Waypoint};
+    public enum WanderType { Random, Waypoint };
 
-    public PlayerController fpsc;
+    public GameObject fpsc;
     public WanderType wanderType = WanderType.Random;
     public float wanderSpeed = 4f;
     public float chaseSpeed = 7f;
     public float fov = 120f;
     public float viewDistance = 10f;
     public float wanderRadius = 7f;
-    public Transform[] waypoints; 
+    public Transform[] waypoints;
 
     private bool isAware = false;
     private Vector3 wanderPoint;
@@ -28,6 +27,7 @@ public class ZombieAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fpsc = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         renderer = GetComponent<Renderer>();
         animator = GetComponentInChildren<Animator>();
@@ -37,7 +37,7 @@ public class ZombieAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAware)
+        if (isAware == true)
         {
             agent.SetDestination(fpsc.transform.position);
             animator.SetBool("Aware", true);
@@ -95,4 +95,3 @@ public class ZombieAI : MonoBehaviour
         return new Vector3(navHit.position.x, transform.position.y, navHit.position.z);
     }
 }
- 
