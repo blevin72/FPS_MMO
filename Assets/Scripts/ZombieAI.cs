@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Mirror;
 
 public class ZombieAI : MonoBehaviour
 {
     public enum WanderType { Random, Waypoint };
-
     public GameObject fpsc;
     public WanderType wanderType = WanderType.Random;
     public float wanderSpeed = 4f;
@@ -16,6 +16,7 @@ public class ZombieAI : MonoBehaviour
     public float wanderRadius = 7f;
     public Transform[] waypoints;
 
+    private GameObject spawnedPlayer;
     private bool isAware = false;
     private Vector3 wanderPoint;
     private NavMeshAgent agent;
@@ -23,10 +24,10 @@ public class ZombieAI : MonoBehaviour
     private int wayPointIndex = 0;
     private Animator animator;
 
-
     // Start is called before the first frame update
     void Start()
     {
+        AssignPlayer();
         fpsc = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         renderer = GetComponent<Renderer>();
@@ -36,6 +37,11 @@ public class ZombieAI : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Detect();
+    }
+
+    public void Detect()
     {
         if (isAware == true)
         {
@@ -49,6 +55,19 @@ public class ZombieAI : MonoBehaviour
             Wander();
             animator.SetBool("Aware", false);
             agent.speed = wanderSpeed;
+        }
+    }
+
+    public void AssignPlayer()
+    {
+        if (fpsc != null)
+        {
+            spawnedPlayer = Instantiate(fpsc, transform.position, transform.rotation);
+            NetworkServer.Spawn(spawnedPlayer);
+        }
+        else
+        {
+            Debug.LogError("Player prefab is not assigned!");
         }
     }
 
