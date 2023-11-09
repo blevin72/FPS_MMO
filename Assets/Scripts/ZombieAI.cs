@@ -9,6 +9,7 @@ public class ZombieAI : MonoBehaviour
     public enum WanderType { Random, Waypoint };
     public GameObject fpsc;
     public WanderType wanderType = WanderType.Random;
+    public int health = 100;
     public float wanderSpeed = 4f;
     public float chaseSpeed = 7f;
     public float fov = 120f;
@@ -41,6 +42,13 @@ public class ZombieAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            agent.speed = 0;
+            animator.enabled = false;
+            return;
+        }
+
         Detect();
         SearchForPlayer();
     }
@@ -126,14 +134,47 @@ public class ZombieAI : MonoBehaviour
 
     public void Wander()
     {
-        if (Vector3.Distance(transform.position, wanderPoint) < 0.5f)
+        if (wanderType == WanderType.Random)
         {
-            wanderPoint = RandomWanderPoint();
+            if (Vector3.Distance(transform.position, wanderPoint) < 2f)
+            {
+                wanderPoint = RandomWanderPoint();
+            }
+            else
+            {
+                agent.SetDestination(wanderPoint);
+            }
         }
         else
         {
-            agent.SetDestination(wanderPoint);
+            if (waypoints.Length >= 2)
+            {
+                if (Vector3.Distance(waypoints[wayPointIndex].position, transform.position) < 2f)
+                {
+                    if (wayPointIndex == waypoints.Length -1)
+                    {
+                        wayPointIndex = 0;
+                    }
+                    else
+                    {
+                        wayPointIndex++;
+                    }
+                }
+                else
+                {
+                    agent.SetDestination(waypoints[wayPointIndex].position);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Please Assign more than 1 waypoint to Enemy.");
+            }
         }
+    }
+
+    public void OnHit(int damage)
+    {
+        health -= damage;
     }
 
     public Vector3 RandomWanderPoint()
