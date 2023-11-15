@@ -212,10 +212,16 @@ MonoBehaviour:
     name: Pistol
     damage: 10
     range: 100
+  attackDamage: 30
+  soundIntensity: 5
+  spherecastSpawn: {fileID: 0}
+  zombieLayer:
+    serializedVersion: 2
+    m_Bits: 0
   cam: {fileID: 3912447959983304099}
   mask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 179
 --- !u!114 &349940774956824275
 MonoBehaviour:
   m_ObjectHideFlags: 0
