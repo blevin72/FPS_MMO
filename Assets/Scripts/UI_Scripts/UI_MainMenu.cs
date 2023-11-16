@@ -6,7 +6,7 @@ public class UIMainMenu : MonoBehaviour
     public Canvas settingsCanvas;
     public Canvas outpostCanvas;
     public Canvas tradeCanvas;
-
+    public Canvas radioCanvas;
 
 //Panels
 #region
@@ -25,6 +25,9 @@ public class UIMainMenu : MonoBehaviour
     public GameObject territoryPanel;
     public GameObject requestsPanel;
     public GameObject alliancesPanel;
+    public GameObject supportPanel;
+    public GameObject merchantPanel;
+    public GameObject inventoryPanel;
 #endregion
 
     void Start()
@@ -34,6 +37,7 @@ public class UIMainMenu : MonoBehaviour
         settingsCanvas.enabled = false;
         outpostCanvas.enabled = false;
         tradeCanvas.enabled = false;
+        radioCanvas.enabled = false;
         audioPanel.active = false;
         visualPanel.active = false;
         gameplayPanel.active = false;
@@ -72,20 +76,30 @@ public class UIMainMenu : MonoBehaviour
 #region
     public void OnReturnToMainButtonClick()
     {
-        //add for each Panel
-        settingsCanvas.enabled = false;
+        //title menu enabled, all other canvas' diable
         titleMenuCanvas.enabled = true;
+        settingsCanvas.enabled = false;
+        outpostCanvas.enabled = false;
+        radioCanvas.enabled = false;
+        tradeCanvas.enabled = false;
+        //Settings Canvas - disable panels
         visualPanel.active = false;
         audioPanel.active = false;
         gameplayPanel.active = false;
         preferencesPanel.active = false;
-
         socialPanel.active = false;
         accountPanel.active = false;
         accessPanel.active = false;
         privacyPanel.active = false;
         worldPanel.active = false;
-
+        //Outpost Canvas - disable panels
+        storagePanel.active = false;
+        votePanel.active = false;
+        conversePanel.active = false;
+        territoryPanel.active = false;
+        //Trade Outpost - disable panels
+        merchantPanel.active = false;
+        inventoryPanel.active = false;
     }
 
     public void OnAudioButtonClick()
@@ -257,36 +271,56 @@ public class UIMainMenu : MonoBehaviour
         alliancesPanel.active = false;
     }
 
+    public void OnRadioButtonClick()
+    {
+        radioCanvas.enabled = true;
+        outpostCanvas.enabled = false;
+        alliancesPanel.active = true;
+        requestsPanel.active = false;
+        supportPanel.active = false;
+    }
+
     public void OnTradeButtonClick()
     {
         tradeCanvas.enabled = true;
+        merchantPanel.active = true;
+        inventoryPanel.active = true;
         outpostCanvas.enabled = false;
-    }
-
-    public void OnRequestsButtonClick()
-    {
-        requestsPanel.active = true;
-        territoryPanel.active = false;
-        conversePanel.active = false;
-        votePanel.active = false;
-        storagePanel.active = false;
-        alliancesPanel.active = false;
-    }
-
-    public void OnAlliancesButtonClick()
-    {
-        alliancesPanel.active = true;
-        requestsPanel.active = false;
-        territoryPanel.active = false;
-        conversePanel.active = false;
-        votePanel.active = false;
-        storagePanel.active = false;
     }
     #endregion
 
 //Trade Canvas
 #region
+public void OnTradeToOutpostButtonClick() //back button on trade canvas sending you back to the outpost canvas
+    {
+        outpostCanvas.enabled = true;
+        tradeCanvas.enabled = false;
+        merchantPanel.active = false;
+        inventoryPanel.active = false;
+    }
+    #endregion
 
+//Radio Canvas
+#region
+    public void OnAllianceButtonClick()
+    {
+        alliancesPanel.active = true;
+        supportPanel.active = false;
+    }
+
+    public void OnSupportButtonClick()
+    {
+        supportPanel.active = true;
+        alliancesPanel.active = false;
+    }
+
+    public void OnRadioToOutpostButtonClick()
+    {
+        outpostCanvas.enabled = true;
+        radioCanvas.enabled = false;
+        supportPanel.active = false;
+        alliancesPanel.active = false;
+    }
 #endregion
 }
 
