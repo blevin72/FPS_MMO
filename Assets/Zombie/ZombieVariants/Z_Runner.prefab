@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -40.5, y: 0.06, z: -273.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5621713517321343883}
@@ -162,8 +162,8 @@ MonoBehaviour:
   wanderType: 0
   fpsc: {fileID: 3509103683353609571, guid: eb69238791681439a924f5a85601db89, type: 3}
   health: 100
-  wanderSpeed: 0.1
-  chaseSpeed: 1
+  wanderSpeed: 0.01
+  chaseSpeed: 0.1
   fov: 120
   viewDistance: 10
   wanderRadius: 7
