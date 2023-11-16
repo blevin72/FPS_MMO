@@ -6,9 +6,9 @@ using Mirror;
 
 public class ZombieAI : MonoBehaviour
 {
-    public enum WanderType { Random, Waypoint };
-    public GameObject fpsc;
+    public enum WanderType { Random, Waypoint }; 
     public WanderType wanderType = WanderType.Random;
+    public GameObject fpsc;
     public int health = 100;
     public float wanderSpeed = 4f;
     public float chaseSpeed = 7f;
@@ -23,10 +23,12 @@ public class ZombieAI : MonoBehaviour
     private bool isDetecting = false;
     private Vector3 wanderPoint;
     private NavMeshAgent agent;
-    private Renderer renderer;
     private int wayPointIndex = 0;
     private Animator animator;
     private float loseTimer = 0;
+
+    private Collider[] ragdollColliders;
+    private Rigidbody[] ragdollRigidbodies;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +36,21 @@ public class ZombieAI : MonoBehaviour
         AssignPlayer();
         fpsc = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-        renderer = GetComponent<Renderer>();
         animator = GetComponentInChildren<Animator>();
         wanderPoint = RandomWanderPoint();
+        ragdollColliders = GetComponentsInChildren<Collider>();
+        ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Collider col in ragdollColliders)
+        {
+            if (!col.CompareTag("Zombie"))
+            {
+                col.enabled = false;
+            }   
+        }
+        foreach (Rigidbody rb in ragdollRigidbodies)
+        {
+            rb.isKinematic = true;
+        }
     }
 
     // Update is called once per frame
@@ -44,11 +58,9 @@ public class ZombieAI : MonoBehaviour
     {
         if (health <= 0)
         {
-            agent.speed = 0;
-            animator.enabled = false;
+            Death();
             return;
         }
-
         Detect();
         SearchForPlayer();
     }
@@ -175,6 +187,29 @@ public class ZombieAI : MonoBehaviour
     public void OnHit(int damage)
     {
         health -= damage;
+    }
+
+    public void Death()
+    {
+        if (health <= 0)
+        {
+            RagDoll();
+            return;
+        }
+    }
+
+    public void RagDoll()
+    {
+        agent.speed = 0;
+        animator.enabled = false;
+        foreach (Collider col in ragdollColliders)
+        {
+            col.enabled = true;
+        }
+        foreach (Rigidbody rb in ragdollRigidbodies)
+        {
+            rb.isKinematic = false;
+        }
     }
 
     public Vector3 RandomWanderPoint()
