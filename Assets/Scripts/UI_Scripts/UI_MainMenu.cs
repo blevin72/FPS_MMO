@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UIMainMenu : MonoBehaviour
 {
+//Canvas'
     public Canvas titleMenuCanvas;
     public Canvas settingsCanvas;
     public Canvas outpostCanvas;
@@ -26,8 +27,12 @@ public class UIMainMenu : MonoBehaviour
     public GameObject requestsPanel;
     public GameObject alliancesPanel;
     public GameObject supportPanel;
-    public GameObject merchantPanel;
+    public GameObject requestPanel;
+    public GameObject buyPanel;
+    public GameObject sellPanel;
+    public GameObject barterPanel;
     public GameObject inventoryPanel;
+    public GameObject merchantPanel; //unused but unity wont let me delete without being an error?
 #endregion
 
     void Start()
@@ -53,6 +58,12 @@ public class UIMainMenu : MonoBehaviour
         territoryPanel.active = false;
         requestsPanel.active = false;
         alliancesPanel.active = false;
+        supportPanel.active = false;
+        requestPanel.active = false;
+        buyPanel.active = false;
+        sellPanel.active = false;
+        barterPanel.active = false;
+        inventoryPanel.active = false;
     }
 
 //Main Menu Canvas
@@ -283,7 +294,7 @@ public class UIMainMenu : MonoBehaviour
     public void OnTradeButtonClick()
     {
         tradeCanvas.enabled = true;
-        merchantPanel.active = true;
+        buyPanel.active = true;
         inventoryPanel.active = true;
         outpostCanvas.enabled = false;
     }
@@ -291,11 +302,32 @@ public class UIMainMenu : MonoBehaviour
 
 //Trade Canvas
 #region
-public void OnTradeToOutpostButtonClick() //back button on trade canvas sending you back to the outpost canvas
+    public void OnBuyButtonClick()
+    {
+        buyPanel.active = true;
+        sellPanel.active = false;
+        barterPanel.active = false;
+    }
+
+    public void OnSellButtonClick()
+    {
+        sellPanel.active = true;
+        buyPanel.active = false;
+        barterPanel.active = false;
+    }
+
+    public void OnBarterButtonClick()
+    {
+        barterPanel.active = true;
+        buyPanel.active = false;
+        sellPanel.active = false;
+    }
+
+    public void OnTradeToOutpostButtonClick() //back button on trade canvas sending you back to the outpost canvas
     {
         outpostCanvas.enabled = true;
         tradeCanvas.enabled = false;
-        merchantPanel.active = false;
+        buyPanel.active = false;
         inventoryPanel.active = false;
     }
     #endregion
@@ -312,6 +344,16 @@ public void OnTradeToOutpostButtonClick() //back button on trade canvas sending 
     {
         supportPanel.active = true;
         alliancesPanel.active = false;
+    }
+
+    public void OnRequestButtonClick()
+    {
+        requestPanel.active = true;
+    }
+
+    public void OnRequestToRadioButtonClick()
+    {
+        requestPanel.active = false;
     }
 
     public void OnRadioToOutpostButtonClick()
