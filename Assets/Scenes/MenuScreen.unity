@@ -29732,7 +29732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.49803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32563,7 +32563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0056404f3f20f456cbc0021adbab8854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedItemGrid: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 139a8a56ec21e48f08651635811a6339, type: 2}
   - {fileID: 11400000, guid: 4d764e58ccffb4600a000acb3071aa9d, type: 2}
@@ -86856,7 +86855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0056404f3f20f456cbc0021adbab8854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedItemGrid: {fileID: 0}
   items: []
   itemPrefab: {fileID: 0}
   panelTransform: {fileID: 0}

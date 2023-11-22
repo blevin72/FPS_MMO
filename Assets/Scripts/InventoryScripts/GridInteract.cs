@@ -15,13 +15,13 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        inventoryController.selectedItemGrid = itemGrid;
+        inventoryController.SelectedItemGrid = itemGrid;
         Debug.Log("Pointer enter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        inventoryController.selectedItemGrid = null;
+        inventoryController.SelectedItemGrid = null;
         Debug.Log("Pointer exit");
     }
 }

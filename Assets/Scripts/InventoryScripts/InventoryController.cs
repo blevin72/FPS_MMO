@@ -5,7 +5,16 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     [HideInInspector]
-    public ItemGrid selectedItemGrid;
+    private ItemGrid selectedItemGrid;
+
+    public ItemGrid SelectedItemGrid
+    {
+        get => selectedItemGrid;
+        set {
+            selectedItemGrid = value;
+            inventoryHighlight.SetParent(value);
+        }
+    }
 
     InventoryItem selectedItem;
     InventoryItem overlapItem;
@@ -45,11 +54,15 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    Vector2Int oldPosition;
     InventoryItem itemToHighlight;
 
     private void HandleHighlight()
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
+
+        if(oldPosition == positionOnGrid) { return; }
+        oldPosition = positionOnGrid;
 
         if (selectedItem == null)
         {
@@ -68,7 +81,9 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-            
+            inventoryHighlight.Show(selectedItemGrid.BoundaryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.itemData.width, selectedItem.itemData.height));
+            inventoryHighlight.SetSize(selectedItem);
+            inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
         }
     }
 
