@@ -176,17 +176,26 @@ public class ZombieAI : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void CmdOnHit(int damage)
+    {
+        OnHit(damage);
+    }
+
+    [Server]
     public void OnHit(int damage)
     {
         health -= damage;
+
+        if (health <= 0)
+        {
+            Death();
+        }
     }
 
     void Death()
     {
-        if (health <= 0)
-        {
-            RagDoll();
-        }
+        RagDoll();
     }
 
     void RagDoll()
@@ -213,12 +222,6 @@ public class ZombieAI : NetworkBehaviour
         return new Vector3(navHit.position.x, transform.position.y, navHit.position.z);
     }
 }
-
-
-
-
-
-
 
 
 //using System.Collections;
