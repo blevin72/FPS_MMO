@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edad9ece6804943aea5f606f39c3f636, type: 3}
-  m_Name: Water_Bottle
+  m_Name: BulletproofVest
   m_EditorClassIdentifier: 
-  width: 1
+  itemImage: {fileID: 21300000, guid: 5c738abb95d4442c8878b147ef978d25, type: 3}
+  itemName: Bulletproof Vest
+  width: 2
   height: 2
-  itemIcon: {fileID: 21300000, guid: 7e77ec4d5a6224745894be711d321e33, type: 3}
+  itemID: 6

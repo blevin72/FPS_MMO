@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edad9ece6804943aea5f606f39c3f636, type: 3}
-  m_Name: Lock-Pick
+  m_Name: MedKit
   m_EditorClassIdentifier: 
-  width: 1
-  height: 1
-  itemIcon: {fileID: 21300000, guid: 33933d1c184374fe59244073b90aaeb0, type: 3}
+  itemImage: {fileID: 21300000, guid: ba2ae8cf058cf45c1ba94d577cee09ab, type: 3}
+  itemName: MedKit
+  width: 2
+  height: 2
+  itemID: 1

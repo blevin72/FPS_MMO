@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
 {
-    //setting the size of the item icon
+    public Sprite itemImage;
+    public string itemName;
     public int width = 1;
     public int height = 1;
-
-    public Sprite itemIcon;
+    public int itemID;
 }
