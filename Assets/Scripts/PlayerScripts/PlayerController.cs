@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
     public float crouchHeight = 0.5f;
     public float standingHeight = 2f;
 
+    // Stamina related variables
+    public float maxStamina = 100f;
+    public float staminaRegenRate = 10f;
+    private float currentStamina;
+
     private bool isSprinting = false;
     private bool isCrouching = false;
 
@@ -34,6 +39,9 @@ public class PlayerController : MonoBehaviour
         // Disable rigidbody gravity and rotation as we're handling it manually
         rb.freezeRotation = true;
         rb.useGravity = false;
+
+        // Initialize stamina
+        currentStamina = maxStamina;
     }
 
     void Update()
@@ -71,8 +79,22 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
 
-        isSprinting = Input.GetKey(KeyCode.LeftShift);
+        // Check for sprint input and available stamina
+        isSprinting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0;
         float currentSpeed = isSprinting ? sprintSpeed : isCrouching ? crouchSpeed : speed;
+
+        if (isSprinting)
+        {
+            // Deplete stamina while sprinting
+            currentStamina -= Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
+        else
+        {
+            // Regenerate stamina
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -109,7 +131,6 @@ public class PlayerController : MonoBehaviour
         return Physics.Raycast(transform.position, Vector3.down, 0.1f);
     }
 }
-
 
 
 
