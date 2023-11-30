@@ -131,8 +131,8 @@ MonoBehaviour:
   staminaRegenRate: 10
   concreteSurface: []
   metalSurface: []
-  jumpSound: {fileID: 0}
-  crouchSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: e59b3046a33cd104b83738810f9240fc, type: 3}
+  crouchSound: {fileID: 8300000, guid: 626c672a4ccb4c84bbe6a5e7c1e6490b, type: 3}
   isCrouching: 0
   isJumping: 0
   isZooming: 0
