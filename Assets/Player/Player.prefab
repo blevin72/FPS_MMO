@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 6712725402407725354}
   - component: {fileID: 7681263626952823849}
   - component: {fileID: 8242645237603241772}
+  - component: {fileID: -5850682673753755535}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -121,14 +122,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb06307ff59f545ea819671f33e2be30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 8
   sprintSpeed: 10
   crouchSpeed: 2.5
-  jumpForce: 8
-  gravity: 30
-  crouchHeight: 0.5
-  standingHeight: 2
-  speed: 7.5
-  lookSensitivity: 3
+  lookSpeed: 2
+  jumpHeight: 5
+  maxStamina: 100
+  staminaRegenRate: 10
+  concreteSurface: []
+  metalSurface: []
+  jumpSound: {fileID: 0}
+  crouchSound: {fileID: 0}
+  isCrouching: 0
+  isJumping: 0
+  isZooming: 0
 --- !u!114 &-1457655932916554774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +422,32 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   playerPrefab: {fileID: 3509103683353609571}
+--- !u!143 &-5850682673753755535
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3509103683353609571}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4945530396071002122
 GameObject:
   m_ObjectHideFlags: 0
