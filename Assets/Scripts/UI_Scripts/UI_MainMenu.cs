@@ -63,7 +63,6 @@ public class UIMainMenu : MonoBehaviour
         buyPanel.active = false;
         sellPanel.active = false;
         barterPanel.active = false;
-        inventoryPanel.active = false;
     }
 
 //Main Menu Canvas
