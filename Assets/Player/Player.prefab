@@ -133,6 +133,7 @@ MonoBehaviour:
   metalSurface: []
   jumpSound: {fileID: 8300000, guid: e59b3046a33cd104b83738810f9240fc, type: 3}
   crouchSound: {fileID: 8300000, guid: 626c672a4ccb4c84bbe6a5e7c1e6490b, type: 3}
+  walkSound: {fileID: 8300000, guid: e3cfcb32689b274419ac73380ea96888, type: 3}
   isCrouching: 0
   isJumping: 0
   isZooming: 0
@@ -308,9 +309,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e3cfcb32689b274419ac73380ea96888, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -401,7 +402,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509103683353609571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15c829cef6d0446dd92bd84fc0d51b76, type: 3}
   m_Name: 
@@ -871,6 +872,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6651375370146536571, guid: 70c1261c57f10db46b5d932e42fa9bb0, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6511260363007098217, guid: 70c1261c57f10db46b5d932e42fa9bb0, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6419058957645630859, guid: 70c1261c57f10db46b5d932e42fa9bb0, type: 3}
