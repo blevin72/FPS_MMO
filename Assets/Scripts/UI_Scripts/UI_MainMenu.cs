@@ -20,10 +20,16 @@ public class UIMainMenu : MonoBehaviour
     public GameObject accessPanel;
     public GameObject privacyPanel;
     public GameObject worldPanel;
+    public GameObject outpostRankingPanel;
     public GameObject storagePanel;
     public GameObject votePanel;
     public GameObject conversePanel;
+    public GameObject generalChatSV;
+    public GameObject missionsChatSV;
+    public GameObject eventsChatSV;
+    public GameObject tradeChatSV;
     public GameObject territoryPanel;
+    public GameObject mapPanel;
     public GameObject requestsPanel;
     public GameObject alliancesPanel;
     public GameObject supportPanel;
@@ -31,8 +37,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject buyPanel;
     public GameObject sellPanel;
     public GameObject barterPanel;
-    public GameObject inventoryPanel;
-    public GameObject merchantPanel; //unused but unity wont let me delete without being an error?
+    
 #endregion
 
     void Start()
@@ -52,10 +57,16 @@ public class UIMainMenu : MonoBehaviour
         accessPanel.active = false;
         privacyPanel.active = false;
         worldPanel.active = false;
+        outpostRankingPanel.active = false;
         storagePanel.active = false;
         votePanel.active = false;
         conversePanel.active = false;
+        generalChatSV.active = false;
+        missionsChatSV.active = false;
+        eventsChatSV.active = false;
+        tradeChatSV.active = false;
         territoryPanel.active = false;
+        mapPanel.active = false;
         requestsPanel.active = false;
         alliancesPanel.active = false;
         supportPanel.active = false;
@@ -63,6 +74,7 @@ public class UIMainMenu : MonoBehaviour
         buyPanel.active = false;
         sellPanel.active = false;
         barterPanel.active = false;
+
     }
 
 //Main Menu Canvas
@@ -79,6 +91,7 @@ public class UIMainMenu : MonoBehaviour
         titleMenuCanvas.enabled = false;
         outpostCanvas.enabled = true;
         storagePanel.active = true;
+        outpostRankingPanel.active = true;
     }
     #endregion
 
@@ -103,13 +116,15 @@ public class UIMainMenu : MonoBehaviour
         privacyPanel.active = false;
         worldPanel.active = false;
         //Outpost Canvas - disable panels
+        outpostRankingPanel.active = false;
         storagePanel.active = false;
         votePanel.active = false;
         conversePanel.active = false;
         territoryPanel.active = false;
         //Trade Outpost - disable panels
-        merchantPanel.active = false;
-        inventoryPanel.active = false;
+        buyPanel.active = false;
+        sellPanel.active = false;
+        barterPanel.active = false;
     }
 
     public void OnAudioButtonClick()
@@ -247,6 +262,7 @@ public class UIMainMenu : MonoBehaviour
         votePanel.active = false;
         conversePanel.active = false;
         territoryPanel.active = false;
+        mapPanel.active = false;
         requestsPanel.active = false;
         alliancesPanel.active = false;
     }
@@ -257,6 +273,7 @@ public class UIMainMenu : MonoBehaviour
         storagePanel.active = false;
         conversePanel.active = false;
         territoryPanel.active = false;
+        mapPanel.active = false;
         requestsPanel.active = false;
         alliancesPanel.active = false;
     }
@@ -264,9 +281,16 @@ public class UIMainMenu : MonoBehaviour
     public void OnConverseButtonClick()
     {
         conversePanel.active = true;
+        //panels within the converse panel
+        generalChatSV.active = true;
+        missionsChatSV.active = false;
+        eventsChatSV.active = false;
+        tradeChatSV.active = false;
+
         votePanel.active = false;
         storagePanel.active = false;
         territoryPanel.active = false;
+        mapPanel.active = false;
         requestsPanel.active = false;
         alliancesPanel.active = false;
     }
@@ -274,6 +298,7 @@ public class UIMainMenu : MonoBehaviour
     public void OnTerritoryButtonClick()
     {
         territoryPanel.active = true;
+        mapPanel.active = true;
         conversePanel.active = false;
         votePanel.active = false;
         storagePanel.active = false;
@@ -294,7 +319,8 @@ public class UIMainMenu : MonoBehaviour
     {
         tradeCanvas.enabled = true;
         buyPanel.active = true;
-        inventoryPanel.active = true;
+        sellPanel.active = false;
+        barterPanel.active = false;
         outpostCanvas.enabled = false;
     }
     #endregion
@@ -327,7 +353,44 @@ public class UIMainMenu : MonoBehaviour
         outpostCanvas.enabled = true;
         tradeCanvas.enabled = false;
         buyPanel.active = false;
-        inventoryPanel.active = false;
+        sellPanel.active = false;
+        barterPanel.active = false;
+    }
+    #endregion
+
+//Converse Panel
+#region
+    public void OnGeneralChatButtonClick()
+    {
+        generalChatSV.active = true;
+        missionsChatSV.active = false;
+        eventsChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnMissionsChatButtonClick()
+    {
+        missionsChatSV.active = true;
+        generalChatSV.active = false;
+        eventsChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnEventsChatButtonClick()
+    {
+        eventsChatSV.active = true;
+        missionsChatSV.active = false;
+        generalChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnTradeChatButtonClick()
+    {
+        tradeChatSV.active = true;
+        generalChatSV.active = true;
+        missionsChatSV.active = true;
+        eventsChatSV.active = true;
+
     }
     #endregion
 
