@@ -40,98 +40,44 @@ public class SurvivorStats : MonoBehaviour
         SetAdvStealthStats();
     }
 
-    //toggle between Stats & Adv Stats methods
-    #region
-    //toggle strength stats
+//toggle between main stats & advanced stats
+#region
+    public void ToggleStatsVisibility(GameObject stats, GameObject advStats)
+    {
+        stats.SetActive(!stats.activeSelf);
+        advStats.SetActive(!advStats.activeSelf);
+    }
+
     public void StrengthIconClick()
     {
-        if (strengthStats.active == true)
-        {
-            strengthStats.active = false;
-            strengthAdvStats.active = true;
-        }
-        else
-        {
-            strengthStats.active = true;
-            strengthAdvStats.active = false;
-        }
+        ToggleStatsVisibility(strengthStats, strengthAdvStats);
     }
 
-    //toggle dexterity stats
     public void DexterityIconClick()
     {
-        if (dexterityStats.active == true)
-        {
-            dexterityStats.active = false;
-            dexterityAdvStats.active = true;
-        }
-        else
-        {
-            dexterityStats.active = true;
-            dexterityAdvStats.active = false;
-        }
+        ToggleStatsVisibility(dexterityStats, dexterityAdvStats);
     }
 
-    //toggle intelect stats
-    public void IntelectIconClick()
+    public void IntellectIconClick()
     {
-        if (intelectStats.active == true)
-        {
-            intelectStats.active = false;
-            intelectAdvStats.active = true;
-        }
-        else
-        {
-            intelectStats.active = true;
-            intelectAdvStats.active = false;
-        }
+        ToggleStatsVisibility(intelectStats, intelectAdvStats);
     }
 
-    //toggle endurance stats
     public void EnduranceIconClick()
     {
-        if (enduranceStats.active == true)
-        {
-            enduranceStats.active = false;
-            enduranceAdvStats.active = true;
-        }
-        else
-        {
-            enduranceStats.active = true;
-            enduranceAdvStats.active = false;
-        }
+        ToggleStatsVisibility(enduranceStats, enduranceAdvStats);
     }
 
-    //toggle charm stats
     public void CharmIconClick()
     {
-        if (charmStats.active == true)
-        {
-            charmStats.active = false;
-            charmAdvStats.active = true;
-        }
-        else
-        {
-            charmStats.active = true;
-            charmAdvStats.active = false;
-        }
+        ToggleStatsVisibility(charmStats, charmAdvStats);
     }
 
-    //toggle stealth stats
     public void StealthIconClick()
     {
-        if (stealthStats.active == true)
-        {
-            stealthStats.active = false;
-            stealthAdvStats.active = true;
-        }
-        else
-        {
-            stealthStats.active = true;
-            stealthAdvStats.active = false;
-        }
+        ToggleStatsVisibility(stealthStats, stealthAdvStats);
     }
-    #endregion
+#endregion
 
 //add & subtract stat points when leveling up
 #region
@@ -181,19 +127,7 @@ public class SurvivorStats : MonoBehaviour
                             break;
                     }
                 }
-                else
-                {
-                    Debug.LogWarning("No available stat points.");
-                }
             }
-            else
-            {
-                Debug.LogError("Failed to parse the value in TextMeshPro as an integer.");
-            }
-        }
-        else
-        {
-            Debug.LogError("TextMeshPro reference is missing or invalid stat index.");
         }
     }
 
@@ -237,20 +171,8 @@ public class SurvivorStats : MonoBehaviour
                             break;
                     }
                 }
-                else
-                {
-                    Debug.LogError("Failed to parse the value in TextMeshPro as an integer.");
-                }
             }
-            else
-            {
-                Debug.LogWarning("Stat value is already at its minimum.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Invalid stat index.");
-        }
+        }   
     }
 
     //confirm point distribution when player hits Confirm Button
@@ -258,7 +180,10 @@ public class SurvivorStats : MonoBehaviour
     {
         pointsLocked = true;
     }
+    #endregion
 
+//adjust main stats UI and sync between main/stats panel
+#region
     //change the stat TMP UI when distributing points
     public void UpdateStatUI(int statIndex)
     {
@@ -268,27 +193,17 @@ public class SurvivorStats : MonoBehaviour
             {
                 statValuesTextStatsPanel[statIndex].text = characterStats[statIndex].ToString(); // Update the stat UI display
             }
-            else
-            {
-                Debug.LogError("Stat TextMeshPro reference is missing.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Invalid stat index.");
         }
     }
 
     //method for making sure that when the stats on the Survivor Stats Panel change due to point distribution, the stats on the Stats Main Panel change as well
     public void SynchronizeStatValues()
     {
-        // Ensure that both arrays have the same length
-        if (statValuesTextMainPanel.Length != statValuesTextStatsPanel.Length)
-        {
-            Debug.LogError("Array lengths don't match.");
-            return;
-        }
+        SynchronizeMainStatValues();
+    }
 
+    private void SynchronizeMainStatValues()
+    {
         // Synchronize values between the two arrays
         for (int i = 0; i < statValuesTextMainPanel.Length; i++)
         {
@@ -296,13 +211,9 @@ public class SurvivorStats : MonoBehaviour
             {
                 statValuesTextMainPanel[i].text = statValuesTextStatsPanel[i].text;
             }
-            else
-            {
-                Debug.LogError("One or more TextMeshPro references is missing.");
-            }
         }
     }
-    #endregion
+#endregion
 
 //adjust advanced statistics based off main stats
 #region
@@ -313,6 +224,23 @@ public class SurvivorStats : MonoBehaviour
     public TextMeshProUGUI[] advCharmStats;
     public TextMeshProUGUI[] advStealthStats;
 
+    public TextMeshProUGUI meleePointsMain;
+    public TextMeshProUGUI capacityPointsMain;
+    public TextMeshProUGUI criticalPointsMain;
+    public TextMeshProUGUI escapePointsMain;
+    public TextMeshProUGUI speedPointsMain;
+    public TextMeshProUGUI lockpickPointsMain;
+    public TextMeshProUGUI craftPointsMain;
+    public TextMeshProUGUI healthPointsMain;
+    public TextMeshProUGUI staminaPointsMain;
+    public TextMeshProUGUI immunityPointsMain;
+    public TextMeshProUGUI hagglePointsMain;
+    public TextMeshProUGUI reputationPointsMain;
+    public TextMeshProUGUI agroPointsMain;
+    public TextMeshProUGUI stealthKillPointsMain;
+
+
+
     public void SetAdvStrengthStats()
     {
         int strengthMain = characterStats[0]; //taking the index from the characterStats[] for the strength stat, which has an idex of 0
@@ -322,6 +250,9 @@ public class SurvivorStats : MonoBehaviour
         {
             advStrengthStats[i].text = bonus.ToString(); // Update the TextMeshPro field with the new value
         }
+
+        meleePointsMain.text = advStrengthStats[0].text;
+        Debug.Log("meleePointsMain.text: " + meleePointsMain.text); // Check the value after assignment
     }
 
     public void SetAdvDexterityStats()
@@ -379,5 +310,5 @@ public class SurvivorStats : MonoBehaviour
         }
     }
 
-    #endregion
+#endregion
 }

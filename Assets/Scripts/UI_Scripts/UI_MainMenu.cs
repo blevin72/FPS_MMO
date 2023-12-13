@@ -8,6 +8,7 @@ public class UIMainMenu : MonoBehaviour
     public Canvas outpostCanvas;
     public Canvas tradeCanvas;
     public Canvas radioCanvas;
+    public Canvas survivorCanvas;
 
 //Panels
 #region
@@ -37,6 +38,10 @@ public class UIMainMenu : MonoBehaviour
     public GameObject buyPanel;
     public GameObject sellPanel;
     public GameObject barterPanel;
+    public GameObject survivorMainPanel;
+    public GameObject survivorStatsPanel;
+    public GameObject tabsPanel;
+    public GameObject survivorRankingPanel;
     
 #endregion
 
@@ -74,6 +79,10 @@ public class UIMainMenu : MonoBehaviour
         buyPanel.active = false;
         sellPanel.active = false;
         barterPanel.active = false;
+        survivorMainPanel.active = false;
+        survivorStatsPanel.active = false;
+        tabsPanel.active = false;
+        survivorRankingPanel.active = false;
 
     }
 
@@ -93,7 +102,31 @@ public class UIMainMenu : MonoBehaviour
         storagePanel.active = true;
         outpostRankingPanel.active = true;
     }
+
+    public void OnSurvivorButtonClick()
+    {
+        titleMenuCanvas.enabled = false;
+        survivorCanvas.enabled = true;
+        tabsPanel.active = true;
+        survivorRankingPanel.active = true;
+        survivorMainPanel.active = true;
+    }
     #endregion
+
+//Survivor Canvas
+#region
+    public void OnMainButtonClick()
+    {
+        survivorMainPanel.active = true;
+        survivorStatsPanel.active = false;
+    }
+
+    public void OnStatsButtonClick()
+    {
+        survivorStatsPanel.active = true;
+        survivorMainPanel.active = false;
+    }
+#endregion
 
 //Settings Canvas
 #region
