@@ -7,6 +7,9 @@ public class Stamina_HP_Exp : MonoBehaviour
     public TextMeshProUGUI maximumStamina;
     public TextMeshProUGUI experienceBoost;
 
+    public TextMeshProUGUI[] attributesMainPanel;
+    public TextMeshProUGUI[] attributesStatsPanel;
+
     private int previousHealthBonusValue = 0;
     private int previousStaminaBonusValue = 0;
     private int previousExpBoostBonusValue = 0;
@@ -17,6 +20,14 @@ public class Stamina_HP_Exp : MonoBehaviour
         UpdateStatFromBonus(advEnduranceStats[0], ref previousHealthBonusValue, maximumHealth);
         UpdateStatFromBonus(advEnduranceStats[1], ref previousStaminaBonusValue, maximumStamina);
         UpdateStatFromBonus(advIntellectStats[2], ref previousExpBoostBonusValue, experienceBoost);
+    }
+
+    public void SynchronizeAttributes()
+    {
+        for (int i = 0; i < attributesMainPanel.Length; i++)
+        {
+            attributesMainPanel[i].text = attributesStatsPanel[i].text;
+        }
     }
 
     private void UpdateStatFromBonus(TextMeshProUGUI bonusText, ref int previousBonusValue, TextMeshProUGUI statText)

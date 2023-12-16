@@ -38,9 +38,11 @@ public class SurvivorStats : MonoBehaviour
 
         stamina_HP_Exp = GetComponent<Stamina_HP_Exp>();
         stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
+        stamina_HP_Exp.SynchronizeAttributes();
 
         syncMainStats = GetComponent<SyncMainStats>();
-        syncAdvStats = GetComponent<SyncAdvStats>();        
+        syncAdvStats = GetComponent<SyncAdvStats>();
+
     }
 
 //toggle between main stats & advanced stats
@@ -101,9 +103,8 @@ public class SurvivorStats : MonoBehaviour
                     statPointsValue--; // Decrease available stat points
                     availablePoints.text = statPointsValue.ToString(); // Update UI
                     syncMainStats.UpdateStatUI(statIndex); //Update UI display for the chosen stat
-                    //UpdateStatUI(statIndex); // Update UI display for the chosen stat
                     syncMainStats.SynchronizeMainStatValues(); //Sync stats btwn main panel and stats panel
-                    //SynchronizeMainStatValues();
+                    stamina_HP_Exp.SynchronizeAttributes();
 
                     //running the Advance Stat method for the corresponding characterStats index
                     switch (statIndex)
@@ -116,11 +117,11 @@ public class SurvivorStats : MonoBehaviour
                             break;
                         case 2:
                             syncAdvStats.SetAdvIntellectStats();
-                            stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
+                            //stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
                             break;
                         case 3:
                             syncAdvStats.SetAdvEnduranceStats();
-                            stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
+                            //stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
                             break;
                         case 4:
                             syncAdvStats.SetAdvCharmStats();
@@ -150,6 +151,7 @@ public class SurvivorStats : MonoBehaviour
                     availablePoints.text = statPointsValue.ToString(); // Update UI for available points
                     syncMainStats.UpdateStatUI(statIndex); // Update UI display for the chosen stat
                     syncMainStats.SynchronizeMainStatValues(); //Update UI dispaly (matching the stats btwn the Stats Panel & Main Panel)
+                    stamina_HP_Exp.SynchronizeAttributes();
 
                     //running the Advance Stat method for the corresponding characterStats index
                     switch (statIndex)
@@ -162,11 +164,11 @@ public class SurvivorStats : MonoBehaviour
                             break;
                         case 2:
                             syncAdvStats.SetAdvIntellectStats();
-                            stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
+                            //stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
                             break;
                         case 3:
                             syncAdvStats.SetAdvEnduranceStats();
-                            stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
+                            //stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
                             break;
                         case 4:
                             syncAdvStats.SetAdvCharmStats();

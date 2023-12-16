@@ -5,6 +5,7 @@ public class SyncAdvStats : MonoBehaviour
 {
     private SurvivorStats survivorStats;
     private SyncMainStats syncMainStats;
+    private Stamina_HP_Exp stamina_HP_Exp;
 
     public TextMeshProUGUI[] advStrengthStats;
     public TextMeshProUGUI[] advDexterityStats;
@@ -16,7 +17,8 @@ public class SyncAdvStats : MonoBehaviour
     public void Start()
     {
         survivorStats = GameObject.FindObjectOfType<SurvivorStats>();
-        syncMainStats = GetComponent<SyncMainStats>();    
+        syncMainStats = GetComponent<SyncMainStats>();
+        stamina_HP_Exp = GetComponent<Stamina_HP_Exp>();
         int[] stats = survivorStats.characterStats;
 
         SetAdvStrengthStats();
@@ -25,7 +27,6 @@ public class SyncAdvStats : MonoBehaviour
         SetAdvEnduranceStats();
         SetAdvCharmStats();
         SetAdvStealthStats();
-        
     }
 
     public void SetAdvStrengthStats()
@@ -38,7 +39,7 @@ public class SyncAdvStats : MonoBehaviour
             advStrengthStats[i].text = bonus.ToString(); // Update the TextMeshPro field with the new value
         }
 
-        syncMainStats.SynchronizeAdvStatValues();
+        syncMainStats.SynchronizeAdvStatValues(); //calling SynchronizeAdvStatValues() from SyncMainStats script
     }
 
     public void SetAdvDexterityStats()
@@ -64,7 +65,9 @@ public class SyncAdvStats : MonoBehaviour
             advIntellectStats[i].text = bonus.ToString();
         }
 
-        syncMainStats.SynchronizeAdvStatValues();
+        syncMainStats.SynchronizeAdvStatValues(); //Sync Adv Stat btwn Stats & Main Panel, then...
+        stamina_HP_Exp.SetHealthStaminaExp(advEnduranceStats, advIntellectStats); //Set the Exp Boost attribute based off the intellect adv stat[2] = experience, then...
+        stamina_HP_Exp.SynchronizeAttributes(); //Sync the updated attributes btwn the Stats & Main panel
     }
 
     public void SetAdvEnduranceStats()
@@ -77,7 +80,9 @@ public class SyncAdvStats : MonoBehaviour
             advEnduranceStats[i].text = bonus.ToString();
         }
 
-        syncMainStats.SynchronizeAdvStatValues();
+        syncMainStats.SynchronizeAdvStatValues(); //Sync Adv Stat btwn Stats & Main Panel, then...
+        stamina_HP_Exp.SetHealthStaminaExp(advEnduranceStats, advIntellectStats); //Set the Max Health/Stamina attributes based off the endurance adv stat[0] = health & adv stat[1] = stamina, then...
+        stamina_HP_Exp.SynchronizeAttributes(); //Sync the updated attributes btwen the Stats & Main panel
     }
 
     public void SetAdvCharmStats()
