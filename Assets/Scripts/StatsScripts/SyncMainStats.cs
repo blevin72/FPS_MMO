@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class SyncMainStats : MonoBehaviour
 {
-    private SurvivorStats survivorStats;
+    private StatsManager survivorStats;
+    private DistributePoints distributePoints;
     public TextMeshProUGUI[] statValuesTextStatsPanel; // Array of text fields for displaying stats (Stats Panel)
     public TextMeshProUGUI[] statValuesTextMainPanel;  // Array of text fields for dispalying stats (Main Panel)
     public TextMeshProUGUI[] advStatValuesMainPanel;   // Array of text fields for dispalying the adv stats (Main Panel)
@@ -11,10 +12,12 @@ public class SyncMainStats : MonoBehaviour
 
     public void Start()
     {
-        survivorStats = GameObject.FindObjectOfType<SurvivorStats>();
-        if (survivorStats != null)
+        survivorStats = GameObject.FindObjectOfType<StatsManager>();
+        distributePoints = GetComponent<DistributePoints>();
+
+        if (survivorStats != null && distributePoints != null)
         {
-            int[] stats = survivorStats.characterStats;
+            int[] stats = distributePoints.characterStats;
             // Access the characterStats array here
         }
     }
@@ -26,7 +29,7 @@ public class SyncMainStats : MonoBehaviour
         {
             if (statValuesTextStatsPanel[statIndex] != null)
             {
-                statValuesTextStatsPanel[statIndex].text = survivorStats.characterStats[statIndex].ToString(); // Update the stat UI display
+                statValuesTextStatsPanel[statIndex].text = distributePoints.characterStats[statIndex].ToString(); // Update the stat UI display
             }
         }
     }

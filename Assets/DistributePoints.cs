@@ -1,95 +1,29 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class SurvivorStats : MonoBehaviour
+public class DistributePoints : MonoBehaviour
 {
-    public GameObject strengthStats;
-    public GameObject strengthAdvStats;
-    public GameObject dexterityStats;
-    public GameObject dexterityAdvStats;
-    public GameObject intelectStats;
-    public GameObject intelectAdvStats;
-    public GameObject enduranceStats;
-    public GameObject enduranceAdvStats;
-    public GameObject charmStats;
-    public GameObject charmAdvStats;
-    public GameObject stealthStats;
-    public GameObject stealthAdvStats;
+    private SyncMainStats syncMainStats;
+    private Stamina_HP_Exp stamina_HP_Exp;
+    private SyncAdvStats syncAdvStats;
 
-    public Stamina_HP_Exp stamina_HP_Exp;
-    public SyncMainStats syncMainStats;
-    public SyncAdvStats syncAdvStats;
-
-    //set all stats to active and all advanced stats to inactive
-    void Start()
-    {
-        strengthStats.active = true;
-        strengthAdvStats.active = false;
-        dexterityStats.active = true;
-        dexterityAdvStats.active = false;
-        intelectStats.active = true;
-        intelectAdvStats.active = false;
-        enduranceStats.active = true;
-        enduranceAdvStats.active = false;
-        charmStats.active = true;
-        charmAdvStats.active = false;
-        stealthStats.active = true;
-        stealthAdvStats.active = false;
-
-        stamina_HP_Exp = GetComponent<Stamina_HP_Exp>();
-        stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
-        stamina_HP_Exp.SynchronizeAttributes();
-
-        syncMainStats = GetComponent<SyncMainStats>();
-        syncAdvStats = GetComponent<SyncAdvStats>();
-    }
-
-//toggle between main stats & advanced stats
-#region
-    public void ToggleStatsVisibility(GameObject stats, GameObject advStats)
-    {
-        stats.SetActive(!stats.activeSelf);
-        advStats.SetActive(!advStats.activeSelf);
-    }
-
-    public void StrengthIconClick()
-    {
-        ToggleStatsVisibility(strengthStats, strengthAdvStats);
-    }
-
-    public void DexterityIconClick()
-    {
-        ToggleStatsVisibility(dexterityStats, dexterityAdvStats);
-    }
-
-    public void IntellectIconClick()
-    {
-        ToggleStatsVisibility(intelectStats, intelectAdvStats);
-    }
-
-    public void EnduranceIconClick()
-    {
-        ToggleStatsVisibility(enduranceStats, enduranceAdvStats);
-    }
-
-    public void CharmIconClick()
-    {
-        ToggleStatsVisibility(charmStats, charmAdvStats);
-    }
-
-    public void StealthIconClick()
-    {
-        ToggleStatsVisibility(stealthStats, stealthAdvStats);
-    }
-#endregion
-
-//add & subtract stat points
-#region
     public TextMeshProUGUI availablePoints;
     public int[] characterStats = new int[6];
     private bool pointsLocked = false;
 
-    public void DistributeStatPoints(int statIndex)
+    public void Start()
+    {
+        GetComponents();
+    }
+
+    public void GetComponents()
+    {
+        syncMainStats = GetComponent<SyncMainStats>();
+        stamina_HP_Exp = GetComponent<Stamina_HP_Exp>();
+        syncAdvStats = GetComponent<SyncAdvStats>();
+    }
+
+    public void AddStatPoints(int statIndex)
     {
         if (!pointsLocked && availablePoints != null && statIndex >= 0 && statIndex < characterStats.Length)
         {
@@ -176,7 +110,7 @@ public class SurvivorStats : MonoBehaviour
                     }
                 }
             }
-        }   
+        }
     }
 
     //confirm point distribution when player hits Confirm Button
@@ -184,5 +118,4 @@ public class SurvivorStats : MonoBehaviour
     {
         pointsLocked = true;
     }
-    #endregion
 }
