@@ -42,7 +42,6 @@ public class SurvivorStats : MonoBehaviour
 
         syncMainStats = GetComponent<SyncMainStats>();
         syncAdvStats = GetComponent<SyncAdvStats>();
-
     }
 
 //toggle between main stats & advanced stats
@@ -117,11 +116,9 @@ public class SurvivorStats : MonoBehaviour
                             break;
                         case 2:
                             syncAdvStats.SetAdvIntellectStats();
-                            //stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
                             break;
                         case 3:
                             syncAdvStats.SetAdvEnduranceStats();
-                            //stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
                             break;
                         case 4:
                             syncAdvStats.SetAdvCharmStats();
@@ -164,11 +161,9 @@ public class SurvivorStats : MonoBehaviour
                             break;
                         case 2:
                             syncAdvStats.SetAdvIntellectStats();
-                            //stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
                             break;
                         case 3:
                             syncAdvStats.SetAdvEnduranceStats();
-                            //stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
                             break;
                         case 4:
                             syncAdvStats.SetAdvCharmStats();
