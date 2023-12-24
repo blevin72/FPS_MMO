@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class SyncAdvStats : MonoBehaviour
 {
-    private SurvivorStats survivorStats;
+    //private SurvivorStats survivorStats;
     private SyncMainStats syncMainStats;
     private Stamina_HP_Exp stamina_HP_Exp;
+    private DistributePoints distributePoints;
 
     public TextMeshProUGUI[] advStrengthStats;
     public TextMeshProUGUI[] advDexterityStats;
@@ -16,11 +17,12 @@ public class SyncAdvStats : MonoBehaviour
 
     public void Start()
     {
-        survivorStats = GameObject.FindObjectOfType<SurvivorStats>();
-        syncMainStats = GetComponent<SyncMainStats>();
-        stamina_HP_Exp = GetComponent<Stamina_HP_Exp>();
-        int[] stats = survivorStats.characterStats;
+        GetComponents();
+        SetStats();
+    }
 
+    public void SetStats()
+    {
         SetAdvStrengthStats();
         SetAdvDexterityStats();
         SetAdvIntellectStats();
@@ -29,9 +31,19 @@ public class SyncAdvStats : MonoBehaviour
         SetAdvStealthStats();
     }
 
+    public void GetComponents()
+    {
+        distributePoints = GameObject.FindObjectOfType<DistributePoints>();
+        syncMainStats = GetComponent<SyncMainStats>();
+        stamina_HP_Exp = GetComponent<Stamina_HP_Exp>();
+        //int[] stats = distributePoints.characterStats;
+    }
+
+    //Set stats methods
+    #region
     public void SetAdvStrengthStats()
     {
-        int strengthMain = survivorStats.characterStats[0]; //taking the index from the characterStats[] for the strength stat, which has an idex of 0
+        int strengthMain = distributePoints.characterStats[0]; //taking the index from the characterStats[] for the strength stat, which has an idex of 0
         int bonus = strengthMain / 2; // Calculate the bonus based on strength
 
         for (int i = 0; i < advStrengthStats.Length; i++)
@@ -44,7 +56,7 @@ public class SyncAdvStats : MonoBehaviour
 
     public void SetAdvDexterityStats()
     {
-        int dexterityMain = survivorStats.characterStats[1];
+        int dexterityMain = distributePoints.characterStats[1];
         int bonus = dexterityMain / 2;
 
         for (int i = 0; i < advDexterityStats.Length; i++)
@@ -57,7 +69,7 @@ public class SyncAdvStats : MonoBehaviour
 
     public void SetAdvIntellectStats()
     {
-        int intellectMain = survivorStats.characterStats[2];
+        int intellectMain = distributePoints.characterStats[2];
         int bonus = intellectMain / 2;
 
         for (int i = 0; i < advIntellectStats.Length; i++)
@@ -72,7 +84,7 @@ public class SyncAdvStats : MonoBehaviour
 
     public void SetAdvEnduranceStats()
     {
-        int enduranceMain = survivorStats.characterStats[3];
+        int enduranceMain = distributePoints.characterStats[3];
         int bonus = enduranceMain / 2;
 
         for (int i = 0; i < advEnduranceStats.Length; i++)
@@ -87,7 +99,7 @@ public class SyncAdvStats : MonoBehaviour
 
     public void SetAdvCharmStats()
     {
-        int charmMain = survivorStats.characterStats[4];
+        int charmMain = distributePoints.characterStats[4];
         int bonus = charmMain / 2;
 
         for (int i = 0; i < advCharmStats.Length; i++)
@@ -100,7 +112,7 @@ public class SyncAdvStats : MonoBehaviour
 
     public void SetAdvStealthStats()
     {
-        int stealthMain = survivorStats.characterStats[5];
+        int stealthMain = distributePoints.characterStats[5];
         int bonus = stealthMain / 2;
 
         for (int i = 0; i < advStealthStats.Length; i++)
@@ -110,4 +122,5 @@ public class SyncAdvStats : MonoBehaviour
 
         syncMainStats.SynchronizeAdvStatValues();
     }
+    #endregion
 }
