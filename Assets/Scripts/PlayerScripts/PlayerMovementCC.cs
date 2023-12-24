@@ -50,7 +50,9 @@ public class PlayerMovementCC : MonoBehaviour
     {
         if (velocity != Vector3.zero)
         {
-            characterController.Move(velocity * Time.deltaTime);
+            Vector3 worldVelocity = transform.TransformDirection(velocity);
+
+            characterController.Move(worldVelocity * Time.deltaTime);
         }
     }
 

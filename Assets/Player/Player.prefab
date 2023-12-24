@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 502067394419449916}
   - component: {fileID: 1703386478212178361}
   - component: {fileID: 3027648982797752076}
+  - component: {fileID: -7686227530646488664}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -653,6 +654,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   cameraRotationLimit: 85
+--- !u!114 &-7686227530646488664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3509103683353609571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6535a78242c2241aad9a428332b0c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakePower: 0
+  shakeDuration: 0
+  mainCamera: {fileID: 0}
+  slowdownAmount: 0
+  canShake: 0
 --- !u!1 &4945530396071002122
 GameObject:
   m_ObjectHideFlags: 0
