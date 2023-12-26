@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 5255911310103930363}
   - component: {fileID: 5593595281151924512}
   - component: {fileID: 8806622084083800374}
+  - component: {fileID: 1087473642973233115}
   m_Layer: 6
   m_Name: Player 1
   m_TagString: Player
@@ -412,6 +413,23 @@ MonoBehaviour:
   SlideSound: {fileID: 0}
   RemovingSafetyPin: {fileID: 0}
   Throw: {fileID: 0}
+--- !u!114 &1087473642973233115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044760112145843790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d71e3daf0ccc02438d96faa5faa6905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 0.02
+  maxAmount: 0.03
+  Smooth: 3
+  SmoothRotation: 2
+  tiltAngle: 2
 --- !u!1 &2070260460292538059
 GameObject:
   m_ObjectHideFlags: 0
