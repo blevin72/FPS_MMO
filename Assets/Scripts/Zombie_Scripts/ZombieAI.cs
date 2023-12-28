@@ -66,6 +66,29 @@ public class ZombieAI : NetworkBehaviour
         SearchForPlayer();
     }
 
+    public void CmdTakeDamage(int damage)
+    {
+        if (!isServer)
+            return;
+
+        // Apply damage to the zombie
+        health -= damage;
+
+        // Check if the zombie should die
+        if (health <= 0)
+        {
+            RpcDie(); // Inform all clients that the zombie has died
+            // You may want to add other logic for handling death, such as scoring or respawning.
+        }
+    }
+
+    [ClientRpc]
+    private void RpcDie()
+    {
+        // Perform death-related actions on all clients, e.g., play death animation, disable the zombie, etc.
+        gameObject.SetActive(false);
+    }
+
     void SearchForPlayer()
     {
         if (!isServer)
