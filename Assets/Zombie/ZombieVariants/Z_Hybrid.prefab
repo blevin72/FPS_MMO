@@ -164,7 +164,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   wanderType: 0
-  health: 100
+  health: 150
   wanderSpeed: 0.05
   chaseSpeed: 2
   fov: 120

@@ -241,7 +241,7 @@ MonoBehaviour:
     range: 100
   attackDamage: 30
   soundIntensity: 5
-  spherecastSpawn: {fileID: 8546707201667580814}
+  spherecastSpawn: {fileID: 4171703540192385250}
   zombieLayer:
     serializedVersion: 2
     m_Bits: 1

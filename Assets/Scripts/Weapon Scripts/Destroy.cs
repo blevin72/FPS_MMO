@@ -9,6 +9,5 @@ private void Update () {
 	
 		transform.Rotate(Random.Range(0, 10),Random.Range(0, 15),Random.Range (0, 22));	
         Destroy(gameObject,lifetime);
-	
 }
 }
