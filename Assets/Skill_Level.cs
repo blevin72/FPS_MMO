@@ -1,46 +1,33 @@
 using UnityEngine;
 using TMPro;
 
-
 public class Skill_Level : MonoBehaviour
 {
     public SkillTree_Manager skillTree_Manager; //reference SkillTree_Manager script
+    public Unlock_Skills unlock_Skills; //reference Unlock_Skills script
 
-    //Referencing GameObjects/arrays from SkillTree_Manager script
-    //public void Start()
-    //{
-    //    //GetGameObjects();
-    //    //AccessTMPObjects();
-    //}
-
-    public void EnableSkillDescriptionPanel()
+    public void EnableSkillDescriptionPanel() //EnableSkillDescriptionPanel when player selects a skill icon
     {
         skillTree_Manager.skillDescriptionPanel.active = true;
-
-       // skillTree_Manager.skillDescriptionPanel.GetComponentInChildren<TextMeshProUGUI>().text = partySkillTMP.text;
     }
 
-    public enum SkillType
+
+
+
+    public TextMeshProUGUI availablePoints; //how many skill points does the player have available from leveling up
+    int skillPointsAvailable; //variable for when TMP object is parsed into an integer
+
+    public TextMeshProUGUI currentLevel; //what is the current level shown in the skill description panel (Left Side)
+    int currentLevelInteger; // "       "       "       "       "       "       "
+
+    public TextMeshProUGUI nextLevel; //what is the next level if the player levels up that skill (Right Side)
+    int nextLevelInteger;//     "       "       "       "       "       "       "
+
+    public void LevelUpDescription()
     {
-        PartySkill
-    }
-
-    //Level Up Method
-    #region
-    public TextMeshProUGUI availablePoints;
-    public TextMeshProUGUI currentLevel;
-    public TextMeshProUGUI nextLevel;
-    public TextMeshProUGUI[] skillLevelTMP;
-
-    int skillPointsAvailable;
-    int currentLevelInteger;
-    int nextLevelInteger;
-
-    public void LevelUp()
-    {
-        if(int.TryParse(availablePoints.text, out skillPointsAvailable)) //convert TMP string to an integer
+        if (int.TryParse(availablePoints.text, out skillPointsAvailable)) //convert TMP string to an integer
         {
-            if(skillPointsAvailable > 0)
+            if (skillPointsAvailable > 0)
             {
                 skillPointsAvailable--; //decrease points available
                 availablePoints.text = skillPointsAvailable.ToString(); //convert integer back to TMP string
@@ -53,74 +40,39 @@ public class Skill_Level : MonoBehaviour
                 nextLevelInteger++;
                 nextLevel.text = nextLevelInteger.ToString();
 
-                foreach(var skillLevelTMP in skillLevelTMP)
-                {
-                    int.TryParse(skillLevelTMP.text, out int skillLevel);
-
-                    switch (GetSkillType(skillLevelTMP.gameObject.name))
-                    {
-                        case SkillType.PartySkill:
-                            skillLevel++;
-                            skillLevelTMP.text = skillLevel.ToString();
-                            break;
-                    }
-                }
+                LevelUpSkillTree(); //call the LevelUpSkillTree method
             }
         }
     }
-    #endregion
 
-    private SkillType GetSkillType(string skillName)
+
+
+
+    TextMeshProUGUI chosenSkill = null;
+    int chosenSkillInteger;
+
+    public void ChosenSkill(TextMeshProUGUI selectedSkill) //Assigned as a OnClick() to each SkillIcon Button (parameter is the TMP Child Object)
     {
-        switch (skillName)
+        chosenSkill = selectedSkill; //assign TMP GameObject as the new value of chosenSkill variable (replacing null)
+    }
+
+    private void LevelUpSkillTree()
+    {
+        if (int.TryParse(chosenSkill.text, out chosenSkillInteger))//convert TMP string to an integer
         {
-            case "PartySkillTMP":
-                return SkillType.PartySkill;
-            // Add cases for other skill types if needed
-            default:
-                return default; // Handle default case or return other enum value
+            chosenSkillInteger++;//increase skill points
+            chosenSkill.text = chosenSkillInteger.ToString();//convert integer back to string
         }
     }
+
+
+
 
     public void AcceptButton()
     {
         skillTree_Manager.skillDescriptionPanel.active = false;
+        unlock_Skills.UnlockSkills(); //run the UnlockGreyLevelOne() from the unlock_skills script
     }
 
-    //public void AccessTMPObjects() //accessing the TMP component inside the child GameObjects of the Skill Icons Game Objects
-    //{
-    //    TextMeshProUGUI partySkillTMP = skillTree_Manager.partySkillIcon.GetComponentInChildren<TextMeshProUGUI>();
-    //    TextMeshProUGUI inventorySkillTMP = skillTree_Manager.inventorySkillIcon.GetComponentInChildren<TextMeshProUGUI>();
-    //    TextMeshProUGUI fightingSkillTMP = skillTree_Manager.fightingSkillIcon.GetComponentInChildren<TextMeshProUGUI>();
-    //}
 
-    //private void GetGameObjects()
-    //{
-    //    GameObject skillDescriptionPanel = skillTree_Manager.skillDescriptionPanel;
-
-    //    GameObject partySkillIcon = skillTree_Manager.partySkillIcon;
-    //    GameObject inventorySkillIcon = skillTree_Manager.inventorySkillIcon;
-    //    GameObject fightingSkillIcon = skillTree_Manager.fightingSkillIcon;
-
-    //    GameObject[] greySkillsLevelOne = skillTree_Manager.greySkillsLevelOne;
-    //    GameObject[] greySkillsLevelTwo = skillTree_Manager.greySkillLevelTwo;
-    //    GameObject[] blueSkillsLevelOne = skillTree_Manager.blueSkillLevelOne;
-    //    GameObject[] blueSkillsLevelTwo = skillTree_Manager.blueSkillLevelTwo;
-    //    GameObject[] blueSkillsLevelThree = skillTree_Manager.blueSkillLevelThree;
-    //    GameObject[] blueSkillsLevelFour = skillTree_Manager.blueSkillLevelFour;
-    //    GameObject[] greenSkillsLevelOne = skillTree_Manager.greenSkillLevelOne;
-    //    GameObject[] greenSkillsLevelTwo = skillTree_Manager.greenSkillLevelTwo;
-    //    GameObject[] greenSkillsLevelThree = skillTree_Manager.greenSkillLevelThree;
-    //    GameObject[] greenSkillsLevelFour = skillTree_Manager.greenSkillLevelFour;
-    //    GameObject[] redSkillsLevelOne = skillTree_Manager.redSkillLevelOne;
-    //    GameObject[] redSkillsLevelTwo = skillTree_Manager.redSkillLevelTwo;
-    //    GameObject[] redSkillsLevelThree = skillTree_Manager.redSkillLevelThree;
-    //    GameObject[] redSkillsLevelFour = skillTree_Manager.redSkillLevelFour;
-    //    GameObject[] pupleSkillsLevelOne = skillTree_Manager.purpleSkillLevelOne;
-    //    GameObject[] purpleSkillsLevelTwo = skillTree_Manager.purpleSkillLevelTwo;
-    //    GameObject[] purpleSkillsLevelThree = skillTree_Manager.purpleSkillLevelThree;
-    //    GameObject[] tealSkillsLevelOne = skillTree_Manager.tealSkillLevelOne;
-    //    GameObject[] tealSkillsLevelTwo = skillTree_Manager.tealSkillLevelTwo;
-    //    GameObject[] tealSkillsLevelThree = skillTree_Manager.tealSkillLevelThree;
-    //}
 }
