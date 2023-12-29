@@ -524,6 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  Weapon: {fileID: 1608375274614282, guid: 6aea3822cd275e44b8a6e12a9e6e2bf4, type: 3}
   AmmoQuantity: 0
   AmmoReserve: 0
   damage: 10
