@@ -71,7 +71,7 @@ public class Skill_Level : MonoBehaviour
     public void AcceptButton()
     {
         skillTree_Manager.skillDescriptionPanel.active = false;
-        unlock_Skills.UnlockSkills(); //run the UnlockGreyLevelOne() from the unlock_skills script
+        unlock_Skills.UnlockSkills(); //run the UnlockSkills() from the unlock_skills script
     }
 
 

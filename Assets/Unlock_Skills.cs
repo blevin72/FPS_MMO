@@ -15,14 +15,38 @@ public class Unlock_Skills : MonoBehaviour
     public TextMeshProUGUI fightingSkillPoints;
     int fightingSkillPointsInteger;
 
+    public TextMeshProUGUI[] greyLevelOnePoints;
+    public TextMeshProUGUI[] greyLevelTwoPoints;
+    public TextMeshProUGUI[] blueLevelOnePoints;
+    public TextMeshProUGUI[] blueLevelTwoPoints;
+    public TextMeshProUGUI[] blueLevelThreePoints;
+    public TextMeshProUGUI[] greenLevelOnePoints;
+    public TextMeshProUGUI[] greenLevelTwoPoints;
+    public TextMeshProUGUI[] greenLevelThreePoints;
+    public TextMeshProUGUI[] redLevelOnePoints;
+    public TextMeshProUGUI[] redLevelTwoPoints;
+    public TextMeshProUGUI[] redLevelThreePoints;
+
     public void UnlockSkills()
     {
         UnlockGreyLevelOne();
+        UnlockGreyLevelTwo();
         UnlockBlueLevelOne();
+        UnlockBlueLevelTwo();
+        UnlockBlueLevelThree();
+        UnlockBlueLevelFour();
         UnlockGreenLevelOne();
+        UnlockGreenLevelTwo();
+        UnlockGreenLevelThree();
+        UnlockGreenLevelFour();
         UnlockRedLevelOne();
+        UnlockRedLevelTwo();
+        UnlockRedLevelThree();
+        UnlockRedLevelFour();
+        UnlockPurpleAndTealLevelOne();
     }
-
+    //unlock grey skills methods
+    #region
     private void UnlockGreyLevelOne()
     {
         int.TryParse(inventorySkillPoints.text, out inventorySkillPointsInteger);
@@ -37,6 +61,52 @@ public class Unlock_Skills : MonoBehaviour
         }
     }
 
+    private void UnlockGreyLevelTwo()
+    {
+        int totalGreyPoints = 0;
+
+        foreach (TextMeshProUGUI skill in greyLevelOnePoints)
+        {
+            int greySkillPoints;
+            if (int.TryParse(skill.text, out greySkillPoints))
+            {
+                totalGreyPoints += greySkillPoints;
+            }
+        }
+            if(totalGreyPoints >= 3)
+            {
+                foreach (GameObject skillIcon in skillTree_Manager.greySkillLevelTwo)
+                {
+                    Button button = skillIcon.GetComponent<Button>();
+                    button.interactable = true;
+                }
+            }
+        
+    }
+    #endregion
+
+    private void UnlockPurpleAndTealLevelOne()
+    {
+        int.TryParse(inventorySkillPoints.text, out inventorySkillPointsInteger);
+
+        if (inventorySkillPointsInteger >= 5)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.purpleSkillLevelOne)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+
+            foreach (GameObject skillIcon in skillTree_Manager.tealSkillLevelOne)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    //unlock blue skills methods
+    #region
     private void UnlockBlueLevelOne()
     {
         int.TryParse(partySkillPoints.text, out partySkillPointsInteger);
@@ -51,11 +121,83 @@ public class Unlock_Skills : MonoBehaviour
         }
     }
 
+    private void UnlockBlueLevelTwo()
+    {
+        int totalLevelOneBluePoints = 0;
+
+        foreach(TextMeshProUGUI skill in blueLevelOnePoints)
+        {
+            int blueLevelOnePoints;
+            if(int.TryParse(skill.text, out blueLevelOnePoints))
+            {
+                totalLevelOneBluePoints += blueLevelOnePoints;
+            }
+        }
+
+        if(totalLevelOneBluePoints >= 5)
+        {
+            foreach(GameObject skillIcon in skillTree_Manager.blueSkillLevelTwo)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockBlueLevelThree()
+    {
+        int totalLevelTwoBluePoints = 0;
+
+        foreach (TextMeshProUGUI skill in blueLevelTwoPoints)
+        {
+            int blueLevelTwoPoints;
+            if (int.TryParse(skill.text, out blueLevelTwoPoints))
+            {
+                totalLevelTwoBluePoints += blueLevelTwoPoints;
+            }
+        }
+
+        if (totalLevelTwoBluePoints >= 5)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.blueSkillLevelThree)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockBlueLevelFour()
+    {
+        int totalLevelThreeBluePoints = 0;
+
+        foreach (TextMeshProUGUI skill in blueLevelThreePoints)
+        {
+            int blueLevelThreePoints;
+            if (int.TryParse(skill.text, out blueLevelThreePoints))
+            {
+                totalLevelThreeBluePoints += blueLevelThreePoints;
+            }
+        }
+
+        if (totalLevelThreeBluePoints >= 5)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.blueSkillLevelFour)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+    #endregion
+
+    //unlock green skills methods
+    #region
     private void UnlockGreenLevelOne()
     {
         int.TryParse(partySkillPoints.text, out partySkillPointsInteger);
 
-        if (partySkillPointsInteger >= 5)
+        if (partySkillPointsInteger >= 3)
         {
             foreach (GameObject skillIcon in skillTree_Manager.greenSkillLevelOne)
             {
@@ -65,6 +207,78 @@ public class Unlock_Skills : MonoBehaviour
         }
     }
 
+    private void UnlockGreenLevelTwo()
+    {
+        int totalLevelOneGreenPoints = 0;
+
+        foreach (TextMeshProUGUI skill in greenLevelOnePoints)
+        {
+            int greenLevelOnePoints;
+            if (int.TryParse(skill.text, out greenLevelOnePoints))
+            {
+                totalLevelOneGreenPoints += greenLevelOnePoints;
+            }
+        }
+
+        if (totalLevelOneGreenPoints >= 5)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.greenSkillLevelTwo)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockGreenLevelThree()
+    {
+        int totalLevelTwoGreenPoints = 0;
+
+        foreach (TextMeshProUGUI skill in greenLevelTwoPoints)
+        {
+            int greenLevelTwoPoints;
+            if (int.TryParse(skill.text, out greenLevelTwoPoints))
+            {
+                totalLevelTwoGreenPoints += greenLevelTwoPoints;
+            }
+        }
+
+        if (totalLevelTwoGreenPoints >= 3)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.greenSkillLevelThree)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockGreenLevelFour()
+    {
+        int totalLevelThreeGreenPoints = 0;
+
+        foreach (TextMeshProUGUI skill in greenLevelThreePoints)
+        {
+            int greenLevelThreePoints;
+            if (int.TryParse(skill.text, out greenLevelThreePoints))
+            {
+                totalLevelThreeGreenPoints += greenLevelThreePoints;
+            }
+        }
+
+        if (totalLevelThreeGreenPoints >= 5)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.greenSkillLevelFour)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+    #endregion
+
+    //unlock red skills methods
+    #region
     private void UnlockRedLevelOne()
     {
         int.TryParse(fightingSkillPoints.text, out fightingSkillPointsInteger);
@@ -78,4 +292,76 @@ public class Unlock_Skills : MonoBehaviour
             }
         }
     }
+
+    private void UnlockRedLevelTwo()
+    {
+        int totalLevelOneRedPoints = 0;
+
+        foreach (TextMeshProUGUI skill in redLevelOnePoints)
+        {
+            int redLevelOnePoints;
+            if (int.TryParse(skill.text, out redLevelOnePoints))
+            {
+                totalLevelOneRedPoints += redLevelOnePoints;
+            }
+        }
+
+        if (totalLevelOneRedPoints >= 5)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.redSkillLevelTwo)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockRedLevelThree()
+    {
+        int totalLevelTwoRedPoints = 0;
+
+        foreach (TextMeshProUGUI skill in redLevelTwoPoints)
+        {
+            int redLevelTwoPoints;
+            if (int.TryParse(skill.text, out redLevelTwoPoints))
+            {
+                totalLevelTwoRedPoints += redLevelTwoPoints;
+            }
+        }
+
+        if (totalLevelTwoRedPoints >= 7)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.redSkillLevelThree)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockRedLevelFour()
+    {
+        int totalLevelThreeRedPoints = 0;
+
+        foreach (TextMeshProUGUI skill in redLevelThreePoints)
+        {
+            int redLevelThreePoints;
+            if (int.TryParse(skill.text, out redLevelThreePoints))
+            {
+                totalLevelThreeRedPoints += redLevelThreePoints;
+            }
+        }
+
+        if (totalLevelThreeRedPoints >= 3)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.redSkillLevelFour)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+    #endregion
+
+
 }
