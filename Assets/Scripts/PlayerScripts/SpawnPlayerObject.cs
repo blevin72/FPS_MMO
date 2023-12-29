@@ -33,36 +33,3 @@ public class SpawnPlayerObject : NetworkBehaviour
         }
     }
 }
-
-
-//public class SpawnPlayerObject : MonoBehaviour
-//{
-//    public GameObject playerPrefab;
-//    public GameObject connectionToClient;
-
-//    void Start()
-//    {
-//        if (playerPrefab)
-//        {
-//            // Spawn the local player on the server
-//            CmdSpawnPlayer(); 
-//        }
-//        else
-//        {
-//            Debug.LogError("Player prefab is not assigned!");
-//        }
-//    }
-
-//    [Command]
-//    void CmdSpawnPlayer()
-//    {
-//        // Instantiate and spawn the player prefab on the server
-//        GameObject spawnedPlayer = Instantiate(playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-
-//        // Get the NetworkConnectionToClient of the local player
-//        NetworkConnectionToClient conn = connectionToClient;
-
-//        // Attach the player object to the local player
-//        NetworkServer.AddPlayerForConnection(conn, spawnedPlayer);
-//    }
-//}

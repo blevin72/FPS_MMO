@@ -63,7 +63,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3212036698249175948}
   - component: {fileID: 4793038725576371197}
-  - component: {fileID: 8131423053224692937}
   - component: {fileID: -1457655932916554774}
   - component: {fileID: 8026730508062676317}
   - component: {fileID: 4728540661541047518}
@@ -77,6 +76,7 @@ GameObject:
   - component: {fileID: 502067394419449916}
   - component: {fileID: 1703386478212178361}
   - component: {fileID: 3027648982797752076}
+  - component: {fileID: 2082754995751144169}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -124,32 +124,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8131423053224692937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3509103683353609571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb06307ff59f545ea819671f33e2be30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 8
-  sprintSpeed: 10
-  crouchSpeed: 2.5
-  lookSpeed: 2
-  jumpHeight: 5
-  maxStamina: 100
-  staminaRegenRate: 10
-  concreteSurface: []
-  metalSurface: []
-  jumpSound: {fileID: 8300000, guid: e59b3046a33cd104b83738810f9240fc, type: 3}
-  crouchSound: {fileID: 8300000, guid: 626c672a4ccb4c84bbe6a5e7c1e6490b, type: 3}
-  isCrouching: 0
-  isJumping: 0
-  isZooming: 0
 --- !u!114 &-1457655932916554774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +237,7 @@ MonoBehaviour:
   syncInterval: 0
   maxHealth: 100
   disableOnDeath:
-  - {fileID: 8131423053224692937}
+  - {fileID: 0}
   - {fileID: -986536182514996120}
 --- !u!23 &5634269166317185836
 MeshRenderer:
@@ -558,7 +532,7 @@ MonoBehaviour:
   normalFOV: 0
   zoomSmooth: 0
   animatedCamera: {fileID: 3912447959983304099}
-  Player: {fileID: 8131423053224692937}
+  Player: {fileID: 2082754995751144169}
   mainCamera: {fileID: 0}
   Impact: {fileID: 0}
   bulletHoles: []
@@ -687,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedWeapon: -1
-  numberOfSlots: 0
+  numberOfSlots: 3
 --- !u!114 &3027648982797752076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,8 +674,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c6549a3dc4d48cea7bf2a819d8411b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 3912447959983304099}
   cameraRotationLimit: 85
+--- !u!114 &2082754995751144169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3509103683353609571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7dca9012683f346822190ac764bd6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 8
+  sprintSpeed: 15
+  crouchSpeed: 3
+  lookSpeed: 2
+  jumpHeight: 5
+  maxStamina: 100
+  staminaRegenRate: 10
+  concreteSurface: []
+  metalSurface: []
+  jumpSound: {fileID: 8300000, guid: e59b3046a33cd104b83738810f9240fc, type: 3}
+  crouchSound: {fileID: 8300000, guid: 626c672a4ccb4c84bbe6a5e7c1e6490b, type: 3}
+  isCrouching: 0
+  isJumping: 0
+  isZooming: 0
 --- !u!1 &4945530396071002122
 GameObject:
   m_ObjectHideFlags: 0
