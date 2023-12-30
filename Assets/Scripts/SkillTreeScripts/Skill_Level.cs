@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 
+
 public class Skill_Level : MonoBehaviour
 {
     public SkillTree_Manager skillTree_Manager; //reference SkillTree_Manager script
@@ -28,6 +29,7 @@ public class Skill_Level : MonoBehaviour
         if (int.TryParse(availablePoints.text, out skillPointsAvailable)) //convert TMP string to an integer
         {
             if (skillPointsAvailable > 0)
+
             {
                 skillPointsAvailable--; //decrease points available
                 availablePoints.text = skillPointsAvailable.ToString(); //convert integer back to TMP string
@@ -39,6 +41,7 @@ public class Skill_Level : MonoBehaviour
                 int.TryParse(nextLevel.text, out nextLevelInteger);
                 nextLevelInteger++;
                 nextLevel.text = nextLevelInteger.ToString();
+
 
                 LevelUpSkillTree(); //call the LevelUpSkillTree method
             }
@@ -73,6 +76,7 @@ public class Skill_Level : MonoBehaviour
         skillTree_Manager.skillDescriptionPanel.active = false;
         unlock_Skills.UnlockSkills(); //run the UnlockSkills() from the unlock_skills script
     }
+
 
 
 }
