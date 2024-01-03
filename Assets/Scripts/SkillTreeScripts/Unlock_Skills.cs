@@ -26,6 +26,10 @@ public class Unlock_Skills : MonoBehaviour
     public TextMeshProUGUI[] redLevelOnePoints;
     public TextMeshProUGUI[] redLevelTwoPoints;
     public TextMeshProUGUI[] redLevelThreePoints;
+    public TextMeshProUGUI[] purpleLevelOnePoints;
+    public TextMeshProUGUI[] purpleLevelTwoPoints;
+    public TextMeshProUGUI[] tealLevelOnePoints;
+    public TextMeshProUGUI[] tealLevelTwoPoints;
 
     public void UnlockSkills()
     {
@@ -44,6 +48,10 @@ public class Unlock_Skills : MonoBehaviour
         UnlockRedLevelThree();
         UnlockRedLevelFour();
         UnlockPurpleAndTealLevelOne();
+        UnlockPurpleLevelTwo();
+        UnlockPurpleLevelThree();
+        UnlockTealLevelTwo();
+        UnlockTealLevelThree();
     }
     //unlock grey skills methods
     #region
@@ -85,6 +93,8 @@ public class Unlock_Skills : MonoBehaviour
     }
     #endregion
 
+    //unlock purple skills methods
+    #region
     private void UnlockPurpleAndTealLevelOne()
     {
         int.TryParse(inventorySkillPoints.text, out inventorySkillPointsInteger);
@@ -98,6 +108,99 @@ public class Unlock_Skills : MonoBehaviour
             }
 
             foreach (GameObject skillIcon in skillTree_Manager.tealSkillLevelOne)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockPurpleLevelTwo()
+    {
+        int totalLevelOnePurplePoints = 0;
+
+        foreach (TextMeshProUGUI skill in purpleLevelOnePoints)
+        {
+            int purpleLevelOnePoints;
+            if (int.TryParse(skill.text, out purpleLevelOnePoints))
+            {
+                totalLevelOnePurplePoints += purpleLevelOnePoints;
+            }
+        }
+
+        if (totalLevelOnePurplePoints >= 5)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.purpleSkillLevelTwo)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockPurpleLevelThree()
+    {
+        int totalLevelTwoPurplePoints = 0;
+
+        foreach (TextMeshProUGUI skill in purpleLevelTwoPoints)
+        {
+            int purpleLevelTwoPoints;
+            if (int.TryParse(skill.text, out purpleLevelTwoPoints))
+            {
+                totalLevelTwoPurplePoints += purpleLevelTwoPoints;
+            }
+        }
+
+        if (totalLevelTwoPurplePoints >= 3)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.purpleSkillLevelThree)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+    #endregion
+
+    private void UnlockTealLevelTwo()
+    {
+        int totalLevelOneTealPoints = 0;
+
+        foreach (TextMeshProUGUI skill in tealLevelOnePoints)
+        {
+            int tealLevelOnePoints;
+            if (int.TryParse(skill.text, out tealLevelOnePoints))
+            {
+                totalLevelOneTealPoints += tealLevelOnePoints;
+            }
+        }
+
+        if (totalLevelOneTealPoints >= 5)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.tealSkillLevelTwo)
+            {
+                Button button = skillIcon.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }
+    }
+
+    private void UnlockTealLevelThree()
+    {
+        int totalLevelTwoTealPoints = 0;
+
+        foreach (TextMeshProUGUI skill in tealLevelTwoPoints)
+        {
+            int tealLevelTwoPoints;
+            if (int.TryParse(skill.text, out tealLevelTwoPoints))
+            {
+                totalLevelTwoTealPoints += tealLevelTwoPoints;
+            }
+        }
+
+        if (totalLevelTwoTealPoints >= 3)
+        {
+            foreach (GameObject skillIcon in skillTree_Manager.tealSkillLevelThree)
             {
                 Button button = skillIcon.GetComponent<Button>();
                 button.interactable = true;
