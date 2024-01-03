@@ -37,7 +37,7 @@ private int clip;
 private float CounterSpeed = 2;
 private float currentLerpTime1;
 private float currentLerpTime2;
-[SerializeField] private GameObject Weapon;
+private GameObject Weapon;
 [SerializeField] private int AmmoQuantity;
 [SerializeField] private int AmmoReserve;
 [SerializeField] private float damage = 10f;
