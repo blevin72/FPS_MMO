@@ -40,6 +40,8 @@ public class UIMainMenu : MonoBehaviour
     public GameObject barterPanel;
     public GameObject survivorMainPanel;
     public GameObject survivorStatsPanel;
+    public GameObject survivorSkillPanel;
+    public GameObject missionAbilitiesPanel;
     public GameObject tabsPanel;
     public GameObject survivorRankingPanel;
     
@@ -81,6 +83,8 @@ public class UIMainMenu : MonoBehaviour
         barterPanel.active = false;
         survivorMainPanel.active = false;
         survivorStatsPanel.active = false;
+        survivorSkillPanel.active = false;
+        missionAbilitiesPanel.active = false;
         tabsPanel.active = false;
         survivorRankingPanel.active = false;
 
@@ -119,12 +123,31 @@ public class UIMainMenu : MonoBehaviour
     {
         survivorMainPanel.active = true;
         survivorStatsPanel.active = false;
+        survivorSkillPanel.active = false;
     }
 
     public void OnStatsButtonClick()
     {
         survivorStatsPanel.active = true;
         survivorMainPanel.active = false;
+        survivorSkillPanel.active = false;
+    }
+
+    public void OnSkillTreeButtonClick()
+    {
+        survivorSkillPanel.active = true;
+        survivorStatsPanel.active = false;
+        survivorMainPanel.active = false;
+    }
+
+    public void OnMissionAbilityButtonClick()
+    {
+        missionAbilitiesPanel.active = true;
+    }
+
+    public void OnCancelMissionAbilityButtonClick()
+    {
+        missionAbilitiesPanel.active = false;
     }
 #endregion
 
