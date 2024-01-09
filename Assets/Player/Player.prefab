@@ -425,7 +425,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 80fcb1a77cae6c0498a4ab521473acb6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  AmmoQuantity: 0
+  AmmoQuantity: 16
   AmmoReserve: 0
   damage: 10
   range: 100
@@ -625,7 +625,7 @@ MonoBehaviour:
   Projectile: {fileID: 0}
   AmmoIcon1: {fileID: 0}
   AmmoIcon2: {fileID: 0}
-  FireSound: {fileID: 0}
+  FireSound: {fileID: -2594933082296127147}
   DryFireSound: {fileID: 0}
   ReloadPart1Sound: {fileID: 0}
   ReloadPart2Sound: {fileID: 0}
