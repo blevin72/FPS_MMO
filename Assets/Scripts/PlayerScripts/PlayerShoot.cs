@@ -31,11 +31,18 @@ public class PlayerShoot : NetworkBehaviour
 
     private void Update()
     {
+
+    }
+
+    void ShootGun()
+    {
         if (isLocalPlayer && Input.GetMouseButtonDown(0))
         {
             CmdShoot();
         }
+
     }
+
 
     [Command]
     private void CmdShoot()
