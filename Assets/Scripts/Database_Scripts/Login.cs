@@ -45,7 +45,6 @@ public class Login : MonoBehaviour
             if (responseText[0] == '0')
             {
                 DB_Manager.email = emailField.text;
-                DB_Manager.experience = int.Parse(responseText.Split('\t')[1]);
                 UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                 Debug.Log("User logged in. Email: " + DB_Manager.email);
             }
