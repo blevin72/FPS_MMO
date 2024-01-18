@@ -23,7 +23,6 @@ public class SavaData : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("email", DB_Manager.email);
-        form.AddField("experience", DB_Manager.experience);
 
         UnityWebRequest www = UnityWebRequest.Post(saveDataURL, form);
         yield return www.SendWebRequest();
@@ -42,8 +41,4 @@ public class SavaData : MonoBehaviour
     /*temporary increase expereince method for testing
      * will need to create new methods for players earning experience by completing
      * missions, killing enemies, etc.*/
-    public void IncreaseExperience()
-    {
-        DB_Manager.experience++;
-    }
 }

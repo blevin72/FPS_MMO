@@ -5,7 +5,6 @@ using UnityEngine;
 public static class DB_Manager
 {
     public static string email;
-    public static int experience;
 
     public static bool LoggedIn { get { return email != null; } }
 
