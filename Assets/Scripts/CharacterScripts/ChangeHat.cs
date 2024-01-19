@@ -11,7 +11,7 @@ public class ChangeHat : MonoBehaviour
                                    which hat the player chooses
                                    i.e long hair --> long hair for hats meshes*/
 
-    public void Start()
+    private void Start()
     {
         baseballCap.enabled = false;
         beanie.enabled = false;
