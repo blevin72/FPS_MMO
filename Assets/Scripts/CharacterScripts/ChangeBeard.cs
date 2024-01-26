@@ -24,7 +24,7 @@ public class ChangeBeard : MonoBehaviour
                 mustache.enabled = false;
                 goatee.enabled = false;
                 beard.enabled = false;
-                blendHead.ChangeJawWidth(); //re-check the jaw width and chin length values
+                blendHead.ChangeJawWidth(); //re-check the jaw width and chin length values upon enabling/disabling facial hair meshes
                 blendHead.ChangeChinLength();
                 break;
             case 1:
