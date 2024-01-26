@@ -7,6 +7,8 @@ public class ChangeBeard : MonoBehaviour
     public Renderer goatee;
     public Renderer beard;
 
+    public BlendHead blendHead;
+
     public void Start()
     {
         mustache.enabled = false;
@@ -22,21 +24,29 @@ public class ChangeBeard : MonoBehaviour
                 mustache.enabled = false;
                 goatee.enabled = false;
                 beard.enabled = false;
+                blendHead.ChangeJawWidth(); //re-check the jaw width and chin length values
+                blendHead.ChangeChinLength();
                 break;
             case 1:
                 mustache.enabled = true;
                 goatee.enabled = false;
                 beard.enabled = false;
+                blendHead.ChangeJawWidth();
+                blendHead.ChangeChinLength();
                 break;
             case 2:
                 mustache.enabled = false;
                 goatee.enabled = true;
                 beard.enabled = false;
+                blendHead.ChangeJawWidth();
+                blendHead.ChangeChinLength();
                 break;
             case 3:
                 mustache.enabled = false;
                 goatee.enabled = false;
                 beard.enabled = true;
+                blendHead.ChangeJawWidth();
+                blendHead.ChangeChinLength();
                 break;
             default:
                 Debug.Log("Invalid Dropdown option");

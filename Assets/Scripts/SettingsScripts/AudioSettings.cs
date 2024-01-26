@@ -1,7 +1,9 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+
 
 public class AudioSettings : MonoBehaviour
 {
@@ -17,7 +19,9 @@ public class AudioSettings : MonoBehaviour
     public Button saveSettings;
     public Button resetDefault;
 
+
     void Start()
+
     {
         SetAudioSettingsDefault();
     }
@@ -33,7 +37,12 @@ public class AudioSettings : MonoBehaviour
         uiSoundFX.isOn = true;
     }
 
-    private string settingsURL = "http://localhost:8888/sqlconnect/settings.php";
+
+    private string settingsURL = "http://localhost:8888/sqlconnect/settings.php"; // Replace with your actual registration URL.
+                                                                                  // Pathway to the settings.php file
+
+
+
 
     public void SaveSettingsButton()
     {
@@ -43,18 +52,26 @@ public class AudioSettings : MonoBehaviour
         dialogVoice.value = dialogVoice.value;
         proximityChat.isOn = proximityChat.isOn;
         subtitles.isOn = subtitles.isOn;
-        uiSoundFX.isOn = uiSoundFX.isOn;
-        
+        uiSoundFX.isOn = subtitles.isOn;
+
+        Debug.Log("Saved all audio settings");
+
+
         StartCoroutine(SavePlayerSettings());
     }
 
     private IEnumerator SavePlayerSettings()
     {
+
+        Debug.Log("SavePlayerSettings() was called");
+
+
         // Create a WWWForm to send data to the PHP script
         WWWForm form = new WWWForm();
 
         // Add player settings to the form
-        form.AddField("accountID", DB_Manager.accountID); 
+
+        form.AddField("accountID", DB_Manager.accountID);
         form.AddField("masterVolume", (int)masterVolume.value);
         form.AddField("musicVolume", (int)musicVolume.value);
         form.AddField("soundEffects", (int)soundEffects.value);
@@ -92,3 +109,4 @@ public class AudioSettings : MonoBehaviour
         }
     }
 }
+
