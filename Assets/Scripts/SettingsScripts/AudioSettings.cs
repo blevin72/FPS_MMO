@@ -1,7 +1,9 @@
-using System.Collections;
+
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.Networking;
+using System.Collections;
+
 
 public class AudioSettings : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class AudioSettings : MonoBehaviour
     public Slider musicVolume;
     public Slider soundEffects;
     public Slider dialogVoice;
+
     public Toggle proximityChat;
     public Toggle subtitles;
     public Toggle uiSoundFX;
@@ -16,7 +19,9 @@ public class AudioSettings : MonoBehaviour
     public Button saveSettings;
     public Button resetDefault;
 
-    private void Start()
+
+    void Start()
+
     {
         SetAudioSettingsDefault();
     }
@@ -32,8 +37,10 @@ public class AudioSettings : MonoBehaviour
         uiSoundFX.isOn = true;
     }
 
+
     private string settingsURL = "http://localhost:8888/sqlconnect/settings.php"; // Replace with your actual registration URL.
                                                                                   // Pathway to the settings.php file
+
 
 
 
@@ -49,17 +56,21 @@ public class AudioSettings : MonoBehaviour
 
         Debug.Log("Saved all audio settings");
 
+
         StartCoroutine(SavePlayerSettings());
     }
 
     private IEnumerator SavePlayerSettings()
     {
+
         Debug.Log("SavePlayerSettings() was called");
+
 
         // Create a WWWForm to send data to the PHP script
         WWWForm form = new WWWForm();
 
         // Add player settings to the form
+
         form.AddField("accountID", DB_Manager.accountID);
         form.AddField("masterVolume", (int)masterVolume.value);
         form.AddField("musicVolume", (int)musicVolume.value);
@@ -98,3 +109,4 @@ public class AudioSettings : MonoBehaviour
         }
     }
 }
+

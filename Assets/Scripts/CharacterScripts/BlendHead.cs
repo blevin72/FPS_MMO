@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class BlendHead : MonoBehaviour
 {
     public SkinnedMeshRenderer head;
+
     public SkinnedMeshRenderer beard;
     public SkinnedMeshRenderer goatee;
     public SkinnedMeshRenderer mustache;
@@ -63,11 +64,13 @@ public class BlendHead : MonoBehaviour
     private string goateeSmileIndex;
     private string mustacheSmileIndex;
 
+
     private void Start()
     {
         head = GetComponent<SkinnedMeshRenderer>();
 
         jawLengthIndex = head.sharedMesh.GetBlendShapeName(18);
+
         jawWidthIndex = head.sharedMesh.GetBlendShapeName(54);
         cheeksWideIndex = head.sharedMesh.GetBlendShapeName(63);
         cheeksNarrowIndex = head.sharedMesh.GetBlendShapeName(65);
@@ -97,6 +100,7 @@ public class BlendHead : MonoBehaviour
         beardSmileIndex = beard.sharedMesh.GetBlendShapeName(2);
         goateeSmileIndex = goatee.sharedMesh.GetBlendShapeName(1);
         mustacheSmileIndex = mustache.sharedMesh.GetBlendShapeName(3);
+
     }
 
     public void ChangeJawLength()
@@ -104,6 +108,7 @@ public class BlendHead : MonoBehaviour
         float jawLengthValue = jawLength.value;
         head.SetBlendShapeWeight(head.sharedMesh.GetBlendShapeIndex(jawLengthIndex), jawLengthValue);
     }
+
 
     public void ChangeJawWidth()
     {
@@ -274,4 +279,5 @@ public class BlendHead : MonoBehaviour
         float noseNarrowValue = noseNarrow.value/2;
         head.SetBlendShapeWeight(head.sharedMesh.GetBlendShapeIndex(noseNarrowIndex), noseNarrowValue);
     }
+
 }
