@@ -38,25 +38,15 @@ public class AudioSettings : MonoBehaviour
     }
 
 
-    private string settingsURL = "http://localhost:8888/sqlconnect/settings.php"; // Replace with your actual registration URL.
-                                                                                  // Pathway to the settings.php file
+    private string settingsURL = "http://localhost:8888/sqlconnect/settings.php?action=update"; // Replace with your actual registration URL.
+                                                                                                // Pathway to the settings.php file
 
 
 
 
     public void SaveSettingsButton()
     {
-        masterVolume.value = masterVolume.value;
-        musicVolume.value = musicVolume.value;
-        soundEffects.value = soundEffects.value;
-        dialogVoice.value = dialogVoice.value;
-        proximityChat.isOn = proximityChat.isOn;
-        subtitles.isOn = subtitles.isOn;
-        uiSoundFX.isOn = subtitles.isOn;
-
         Debug.Log("Saved all audio settings");
-
-
         StartCoroutine(SavePlayerSettings());
     }
 
@@ -70,15 +60,15 @@ public class AudioSettings : MonoBehaviour
         WWWForm form = new WWWForm();
 
         // Add player settings to the form
-
+        // String values match column names in database
         form.AddField("accountID", DB_Manager.accountID);
-        form.AddField("masterVolume", (int)masterVolume.value);
-        form.AddField("musicVolume", (int)musicVolume.value);
-        form.AddField("soundEffects", (int)soundEffects.value);
-        form.AddField("dialogVoice", (int)dialogVoice.value);
-        form.AddField("proximityChat", proximityChat.isOn ? "1" : "0"); // Convert boolean to 1 or 0
+        form.AddField("master_volume", (int)masterVolume.value);
+        form.AddField("music_volume", (int)musicVolume.value);
+        form.AddField("sound_effects", (int)soundEffects.value);
+        form.AddField("dialog_voice", (int)dialogVoice.value);
+        form.AddField("proximity_chat", proximityChat.isOn ? "1" : "0"); // Convert boolean to 1 or 0
         form.AddField("subtitles", subtitles.isOn ? "1" : "0");
-        form.AddField("uiSoundFX", uiSoundFX.isOn ? "1" : "0");
+        form.AddField("ui_sound_fx", uiSoundFX.isOn ? "1" : "0");
 
         // Create a UnityWebRequest to send the form data to the PHP script
         UnityWebRequest www = UnityWebRequest.Post(settingsURL, form);
