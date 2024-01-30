@@ -42,9 +42,14 @@ public class Login : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            if (responseText[0] == '0')
+            if (responseText.StartsWith("0:"))
             {
-                DB_Manager.email = emailField.text;
+                string[] responseData = responseText.Split(':');
+                if (responseData.Length == 2 && int.TryParse(responseData[1], out int accountID))
+                {
+                    DB_Manager.email = emailField.text;
+                }
+
 
                 UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                 Debug.Log("User logged in. Email: " + DB_Manager.email);
