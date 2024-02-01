@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class AudioSettings : MonoBehaviour
@@ -18,11 +19,9 @@ public class AudioSettings : MonoBehaviour
     public Button saveSettings;
     public Button resetDefault;
 
-
-    void Start()
-
+    private void Start()
     {
-        SetAudioSettingsDefault();
+        StartCoroutine(GetPlayerSettings());
     }
 
     public void SetAudioSettingsDefault()
@@ -36,11 +35,10 @@ public class AudioSettings : MonoBehaviour
         uiSoundFX.isOn = true;
     }
 
-
     private string settingsURL = "http://localhost:8888/sqlconnect/settings.php?action=update"; // Replace with your actual registration URL.
                                                                                                 // Pathway to the settings.php file
 
-
+    private string getSettingsURL = "http://localhost:8888/sqlconnect/settings.php?action=get_settings"; // URL for retrieving current values in settings
 
 
     public void SaveSettingsButton()
@@ -59,7 +57,7 @@ public class AudioSettings : MonoBehaviour
         WWWForm form = new WWWForm();
 
         // Add player settings to the form
-        // String values match column names in database
+        // String values match columns name in database
         form.AddField("accountID", DB_Manager.accountID);
         form.AddField("master_volume", (int)masterVolume.value);
         form.AddField("music_volume", (int)musicVolume.value);
@@ -85,7 +83,7 @@ public class AudioSettings : MonoBehaviour
 
             if (response.StartsWith("0"))
             {
-                Debug.Log("Update successful");
+                Debug.Log(response);
             }
             else
             {
@@ -138,6 +136,7 @@ public class AudioSettings : MonoBehaviour
             if (settingsDictionary.TryGetValue("ui_sound_fx", out string uiSoundFxStr))
                 settingsData.ui_sound_fx = uiSoundFxStr;
 
+
             // Now you can use the settingsData instance as before
             masterVolume.value = settingsData.master_volume;
             musicVolume.value = settingsData.music_volume;
@@ -155,4 +154,3 @@ public class AudioSettings : MonoBehaviour
         }
     }
 }
-
