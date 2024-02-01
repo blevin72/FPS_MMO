@@ -13,4 +13,3 @@ public class SettingsData : MonoBehaviour
     public string subtitles;
     public string ui_sound_fx;
 }
-

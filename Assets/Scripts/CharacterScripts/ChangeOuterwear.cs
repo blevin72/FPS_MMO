@@ -6,7 +6,7 @@ public class ChangeOuterwear : MonoBehaviour
     public Renderer sweater;
     public Renderer windbreaker;
     public Renderer openShirt;
-    private int activeOuterwearType = 0;
+    internal int activeOuterwearType = 0;
     public ChangeShirt changeShirt; //reference the ChangeShirt class (needed for ChangeOuterwearType()
 
     public void Start()
@@ -33,10 +33,6 @@ public class ChangeOuterwear : MonoBehaviour
                 else if(changeShirt.activeShirtType == 2)
                 {
                     changeShirt.tanktop.enabled = true;
-                }
-                else
-                {
-                    Debug.Log("No shirt is currently equipped");
                 }
                 break;
             case 1:

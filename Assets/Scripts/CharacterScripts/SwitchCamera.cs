@@ -8,6 +8,7 @@ public class SwitchCamera : MonoBehaviour
     public Slider modelRotate;
     public Button blendFaceOptions;
     public Button backButton;
+    public Button confirmButton;
 
     public GameObject facePanel;
     public Slider modelFaceRotate;
@@ -30,6 +31,7 @@ public class SwitchCamera : MonoBehaviour
         modelRotate.gameObject.SetActive(false);
         characterCamera.enabled = false;
         blendFaceOptions.gameObject.SetActive(false);
+        confirmButton.gameObject.SetActive(false);
 
         facePanel.SetActive(true);
         modelFaceRotate.gameObject.SetActive(true);
@@ -49,6 +51,7 @@ public class SwitchCamera : MonoBehaviour
         modelRotate.gameObject.SetActive(true);
         characterCamera.enabled = true;
         blendFaceOptions.gameObject.SetActive(true);
+        confirmButton.gameObject.SetActive(true);
     }
 
 }
