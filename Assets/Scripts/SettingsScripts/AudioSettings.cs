@@ -1,8 +1,8 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class AudioSettings : MonoBehaviour
@@ -19,11 +19,9 @@ public class AudioSettings : MonoBehaviour
     public Button saveSettings;
     public Button resetDefault;
 
-
-    void Start()
-
+    private void Start()
     {
-        SetAudioSettingsDefault();
+        StartCoroutine(GetPlayerSettings());
     }
 
     public void SetAudioSettingsDefault()
@@ -37,9 +35,11 @@ public class AudioSettings : MonoBehaviour
         uiSoundFX.isOn = true;
     }
 
-
     private string settingsURL = "http://localhost:8888/sqlconnect/settings.php?action=update"; // Replace with your actual registration URL.
                                                                                                 // Pathway to the settings.php file
+
+    private string getSettingsURL = "http://localhost:8888/sqlconnect/settings.php?action=get_settings"; // URL for retrieving current values in settings
+
 
     public void SaveSettingsButton()
     {
@@ -93,6 +93,64 @@ public class AudioSettings : MonoBehaviour
         else
         {
             Debug.LogError("Network error: " + www.error);
+        }
+    }
+
+    private IEnumerator GetPlayerSettings()
+    {
+        string getRequestURL = getSettingsURL + "&accountID=" + DB_Manager.accountID;
+
+        UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            string responseText = www.downloadHandler.text;
+
+            Debug.Log("Raw JSON response: " + responseText);
+
+            // Deserialize JSON to a dictionary
+            Dictionary<string, string> settingsDictionary = JsonUtility.FromJson<Dictionary<string, string>>(responseText);
+
+            // Create a new SettingsData instance and manually convert values
+            SettingsData settingsData = new SettingsData();
+            
+            if (settingsDictionary.TryGetValue("master_volume", out string masterVolumeStr))
+                settingsData.master_volume = int.Parse(masterVolumeStr);
+
+            if (settingsDictionary.TryGetValue("music_volume", out string musicVolumeStr))
+                settingsData.music_volume = int.Parse(musicVolumeStr);
+
+            if (settingsDictionary.TryGetValue("sound_effects", out string soundEffectsStr))
+                settingsData.sound_effects = int.Parse(soundEffectsStr);
+
+            if (settingsDictionary.TryGetValue("dialog_voice", out string dialogVoiceStr))
+                settingsData.dialog_voice = int.Parse(dialogVoiceStr);
+
+            if (settingsDictionary.TryGetValue("proximity_chat", out string proximityChatStr))
+                settingsData.proximity_chat = proximityChatStr;
+
+            if (settingsDictionary.TryGetValue("subtitles", out string subtitlesStr))
+                settingsData.subtitles = subtitlesStr;
+
+            if (settingsDictionary.TryGetValue("ui_sound_fx", out string uiSoundFxStr))
+                settingsData.ui_sound_fx = uiSoundFxStr;
+            
+
+            // Now you can use the settingsData instance as before
+            masterVolume.value = settingsData.master_volume;
+            musicVolume.value = settingsData.music_volume;
+            soundEffects.value = settingsData.sound_effects;
+            dialogVoice.value = settingsData.dialog_voice;
+            proximityChat.isOn = settingsData.proximity_chat == "1";
+            subtitles.isOn = settingsData.subtitles == "1";
+            uiSoundFX.isOn = settingsData.ui_sound_fx == "1";
+
+            Debug.Log("Settings retrieved successfully");
+        }
+        else
+        {
+            Debug.LogError("Error retrieving settings: " + www.error);
         }
     }
 }

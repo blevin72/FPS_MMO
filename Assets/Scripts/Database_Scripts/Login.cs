@@ -42,17 +42,22 @@ public class Login : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            if (responseText.StartsWith("0:"))
+            if (responseText[0] == '0')
             {
-                string[] responseData = responseText.Split(':');
-                if (responseData.Length == 2 && int.TryParse(responseData[1], out int accountID))
+                // Split the response to get accountID
+                string[] responseParts = responseText.Split(':');
+                if (responseParts.Length == 2 && int.TryParse(responseParts[1], out int accountID))
                 {
+                    DB_Manager.accountID = accountID;
                     DB_Manager.email = emailField.text;
+
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+                    Debug.Log("User logged in. Email: " + DB_Manager.email + ", AccountID: " + DB_Manager.accountID);
                 }
-
-
-                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
-                Debug.Log("User logged in. Email: " + DB_Manager.email);
+                else
+                {
+                    Debug.LogError("Error parsing accountID from response: " + responseText);
+                }
             }
             else if (responseText.StartsWith("6:"))
             {
