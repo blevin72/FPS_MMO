@@ -114,7 +114,6 @@ public class AudioSettings : MonoBehaviour
 
             // Create a new SettingsData instance and manually convert values
             SettingsData settingsData = new SettingsData();
-            
             if (settingsDictionary.TryGetValue("master_volume", out string masterVolumeStr))
                 settingsData.master_volume = int.Parse(masterVolumeStr);
 
@@ -135,7 +134,6 @@ public class AudioSettings : MonoBehaviour
 
             if (settingsDictionary.TryGetValue("ui_sound_fx", out string uiSoundFxStr))
                 settingsData.ui_sound_fx = uiSoundFxStr;
-            
 
             // Now you can use the settingsData instance as before
             masterVolume.value = settingsData.master_volume;
