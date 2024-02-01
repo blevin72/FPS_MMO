@@ -8,6 +8,8 @@ public class ChangeShirt : MonoBehaviour
     internal int activeShirtType = 0; /*internal meaning I can access it in a different class (ChangeOuterwear script) but it does
                                        not appear 'publicly' in the inspector like a public variable would*/
 
+    public ChangeOuterwear changeOuterwear; //reference the CHangeOuterwear class (needed for ChangeShirtType()
+
     public void Start()
     {
         shirt.enabled = false;
@@ -26,14 +28,30 @@ public class ChangeShirt : MonoBehaviour
                 break;
             case 1:
                 activeShirtType = 1;
-                shirt.enabled = true;
-                tanktop.enabled = false;
+                if (changeOuterwear.sweater.enabled == true || changeOuterwear.windbreaker.enabled == true)
+                {
+                    shirt.enabled = false;
+                    tanktop.enabled = false;
+                }
+                else
+                {
+                    shirt.enabled = true;
+                    tanktop.enabled = false;
+                }
                 SelectShirtType();
                 break;
             case 2:
                 activeShirtType = 2;
-                shirt.enabled = false;
-                tanktop.enabled = true;
+                if (changeOuterwear.sweater.enabled == true || changeOuterwear.windbreaker.enabled == true)
+                {
+                    shirt.enabled = false;
+                    tanktop.enabled = false;
+                }
+                else
+                {
+                    shirt.enabled = false;
+                    tanktop.enabled = true;
+                }                
                 SelectShirtType();
                 break;
             default:
