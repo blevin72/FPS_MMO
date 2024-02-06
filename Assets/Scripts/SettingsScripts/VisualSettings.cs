@@ -5,6 +5,7 @@ using System.Collections;
 using Newtonsoft.Json;
 using TMPro;
 using System.Collections.Generic;
+using System.Linq;
 
 public class VisualSettings : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class VisualSettings : MonoBehaviour
     public TMP_Dropdown graphics;
     public TMP_Dropdown textures;
     public TMP_Dropdown shaders;
-    public TMP_Dropdown screenSize;
+    public TMP_Dropdown screen;
     public TMP_Dropdown aspectRatios;
 
     public Slider contrast;
@@ -38,7 +39,7 @@ public class VisualSettings : MonoBehaviour
         graphics.value = 1;
         textures.value = 1;
         shaders.value = 1;
-        screenSize.value = 0;
+        screen.value = 0;
         aspectRatios.value = 0;
 
         contrast.value = 50;
@@ -69,7 +70,7 @@ public class VisualSettings : MonoBehaviour
         form.AddField("graphics", graphics.options[graphics.value].text);
         form.AddField("textures", textures.options[textures.value].text);
         form.AddField("shaders", shaders.options[shaders.value].text);
-        form.AddField("screen_size", screenSize.options[screenSize.value].text);
+        form.AddField("screen_size", screen.options[screen.value].text);
         form.AddField("aspect_ratios", aspectRatios.options[aspectRatios.value].text); //use this syntax for sliders
         form.AddField("contrast", contrast.value.ToString());
         form.AddField("brightness", brightness.value.ToString());
@@ -126,7 +127,7 @@ private IEnumerator GetVisualSettings()
             SetDropdownValue(graphics, settingsData.graphics);
             SetDropdownValue(textures, settingsData.textures);
             SetDropdownValue(shaders, settingsData.shaders);
-            SetDropdownValue(screenSize, settingsData.screen_size);
+            SetDropdownValue(screen, settingsData.screen);
             SetDropdownValue(aspectRatios, settingsData.aspect_ratios);
 
             // Now convert string values to appropriate types
@@ -146,6 +147,8 @@ private IEnumerator GetVisualSettings()
 
     private void SetDropdownValue(TMP_Dropdown dropdown, string value)
     {
+        Debug.Log($"{dropdown.name} dropdown options: {string.Join(", ", dropdown.options.Select(option => option.text))}");
+
         int index = System.Array.FindIndex(dropdown.options.ToArray(), option => option.text == value);
         if (index != -1)
         {
@@ -187,7 +190,7 @@ private IEnumerator GetVisualSettings()
             new TMP_Dropdown.OptionData("High"),
         });
 
-        screenSize.AddOptions(new List<TMP_Dropdown.OptionData>
+        screen.AddOptions(new List<TMP_Dropdown.OptionData>
         {
             new TMP_Dropdown.OptionData("Full Screen"),
             new TMP_Dropdown.OptionData("Windowed"),
