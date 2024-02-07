@@ -5,8 +5,6 @@ using System.Collections;
 using Newtonsoft.Json;
 using TMPro;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using UnityEngine.Device;
 using System.Linq;
 
 public class SocialSettings : MonoBehaviour
@@ -94,8 +92,6 @@ public class SocialSettings : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            Debug.Log("Raw JSON response: " + responseText);
-
             // Deserialize JSON to SettingsData
             SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
 
@@ -111,7 +107,7 @@ public class SocialSettings : MonoBehaviour
 
     private void SetDropdownValue(TMP_Dropdown dropdown, string value)
     {
-        Debug.Log($"{dropdown.name} dropdown options: {string.Join(", ", dropdown.options.Select(option => option.text))}");
+        //Debug.Log($"{dropdown.name} dropdown options: {string.Join(", ", dropdown.options.Select(option => option.text))}");
 
         int index = System.Array.FindIndex(dropdown.options.ToArray(), option => option.text == value);
         if (index != -1)

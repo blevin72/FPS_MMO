@@ -71,8 +71,8 @@ public class VisualSettings : MonoBehaviour
         form.AddField("textures", textures.options[textures.value].text);
         form.AddField("shaders", shaders.options[shaders.value].text);
         form.AddField("screen_size", screen.options[screen.value].text);
-        form.AddField("aspect_ratios", aspectRatios.options[aspectRatios.value].text); //use this syntax for sliders
-        form.AddField("contrast", contrast.value.ToString());
+        form.AddField("aspect_ratios", aspectRatios.options[aspectRatios.value].text);
+        form.AddField("contrast", contrast.value.ToString());  //use this syntax for sliders
         form.AddField("brightness", brightness.value.ToString());
         form.AddField("shadows", shadows.isOn ? "1" : "0"); //use this syntax for toggles
         form.AddField("anti_aliasing", antiAliasing.isOn ? "1" : "0");
@@ -117,8 +117,6 @@ private IEnumerator GetVisualSettings()
         {
             string responseText = www.downloadHandler.text;
 
-            Debug.Log("Raw JSON response: " + responseText);
-
             // Deserialize JSON to SettingsData
             SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
 
@@ -147,8 +145,6 @@ private IEnumerator GetVisualSettings()
 
     private void SetDropdownValue(TMP_Dropdown dropdown, string value)
     {
-        Debug.Log($"{dropdown.name} dropdown options: {string.Join(", ", dropdown.options.Select(option => option.text))}");
-
         int index = System.Array.FindIndex(dropdown.options.ToArray(), option => option.text == value);
         if (index != -1)
         {

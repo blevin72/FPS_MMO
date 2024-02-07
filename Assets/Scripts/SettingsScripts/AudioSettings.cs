@@ -97,7 +97,7 @@ public class AudioSettings : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            Debug.Log("Raw JSON response: " + responseText);
+            //Debug.Log("Raw JSON response: " + responseText);
 
             // Deserialize JSON to SettingsData
             SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);

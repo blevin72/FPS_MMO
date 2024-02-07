@@ -3,6 +3,7 @@ using System;
 
 [Serializable]
 
+//variables need to match column name in database
 public class SettingsData : MonoBehaviour
 {
     //Audio Setting Script
@@ -33,4 +34,17 @@ public class SettingsData : MonoBehaviour
     public string party_chat;
     public string notifications;
     public string online_status;
+
+    //Preferences Settings Script
+    public string the_division;
+    public string HUD_theme;
+    public string HUD_location;
+    public string languages;
+    //public string server; SERVER NOT SET UP IN UI YET
+    public string camera_sensitivity;
+    public string camera_sway;
+    public string HUD_transparency;
+    public string gamertags;
+    public string goreViolence;
+    public string gameTips;
 }
