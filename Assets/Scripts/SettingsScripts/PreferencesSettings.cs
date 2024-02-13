@@ -5,9 +5,6 @@ using System.Collections;
 using Newtonsoft.Json;
 using TMPro;
 using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics.Contracts;
-using UnityEngine.Device;
 
 public class PreferencesSettings : MonoBehaviour
 {
@@ -137,8 +134,8 @@ public class PreferencesSettings : MonoBehaviour
                 hudTransparency.value = parsedHUDTransparency;
 
             gamertags.isOn = settingsData.gamertags == "1";
-            goreViolence.isOn = settingsData.goreViolence == "1";
-            gameTips.isOn = settingsData.gameTips == "1";
+            goreViolence.isOn = settingsData.gore == "1";
+            gameTips.isOn = settingsData.game_tips == "1";
         }
     }
 

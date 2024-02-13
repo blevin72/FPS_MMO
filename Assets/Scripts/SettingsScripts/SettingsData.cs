@@ -45,6 +45,18 @@ public class SettingsData : MonoBehaviour
     public string camera_sway;
     public string HUD_transparency;
     public string gamertags;
-    public string goreViolence;
-    public string gameTips;
+    public string gore;
+    public string game_tips;
+
+    //Account Settings Script
+    public string friend_requests;
+    public string outpost_requests;
+    public string assistance_requests;
+    public string messages_everyone;
+    public string messages_friends;
+    public string messages_outpost;
+    public string emails_all;
+    public string emails_seasonEvents;
+    public string emails_specialEvents;
+    public string emails_newsletters;
 }
