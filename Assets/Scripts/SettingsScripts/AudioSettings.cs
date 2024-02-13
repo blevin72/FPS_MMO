@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
-using System.Collections.Generic;
-
+using Newtonsoft.Json;
 
 public class AudioSettings : MonoBehaviour
 {
@@ -35,11 +34,8 @@ public class AudioSettings : MonoBehaviour
         uiSoundFX.isOn = true;
     }
 
-    private string settingsURL = "http://localhost:8888/sqlconnect/settings.php?action=update"; // Replace with your actual registration URL.
-                                                                                                // Pathway to the settings.php file
-
-    private string getSettingsURL = "http://localhost:8888/sqlconnect/settings.php?action=get_settings"; // URL for retrieving current values in settings
-
+    private string settingsURL = "http://localhost:8888/sqlconnect/settings.php?action=update";
+    private string getSettingsURL = "http://localhost:8888/sqlconnect/settings.php?action=get_settings";
 
     public void SaveSettingsButton()
     {
@@ -49,21 +45,16 @@ public class AudioSettings : MonoBehaviour
 
     private IEnumerator SavePlayerSettings()
     {
-
-        Debug.Log("SavePlayerSettings() was called");
-
-
         // Create a WWWForm to send data to the PHP script
         WWWForm form = new WWWForm();
 
         // Add player settings to the form
-        // String values match columns name in database
         form.AddField("accountID", DB_Manager.accountID);
-        form.AddField("master_volume", (int)masterVolume.value);
-        form.AddField("music_volume", (int)musicVolume.value);
-        form.AddField("sound_effects", (int)soundEffects.value);
-        form.AddField("dialog_voice", (int)dialogVoice.value);
-        form.AddField("proximity_chat", proximityChat.isOn ? "1" : "0"); // Convert boolean to 1 or 0
+        form.AddField("master_volume", masterVolume.value.ToString());
+        form.AddField("music_volume", musicVolume.value.ToString());
+        form.AddField("sound_effects", soundEffects.value.ToString());
+        form.AddField("dialog_voice", dialogVoice.value.ToString());
+        form.AddField("proximity_chat", proximityChat.isOn ? "1" : "0");
         form.AddField("subtitles", subtitles.isOn ? "1" : "0");
         form.AddField("ui_sound_fx", uiSoundFX.isOn ? "1" : "0");
 
@@ -78,7 +69,6 @@ public class AudioSettings : MonoBehaviour
 
         if (www.result == UnityWebRequest.Result.Success)
         {
-            // Check the response from the PHP script
             string response = www.downloadHandler.text;
 
             if (response.StartsWith("0"))
@@ -107,39 +97,26 @@ public class AudioSettings : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            Debug.Log("Raw JSON response: " + responseText);
+            //Debug.Log("Raw JSON response: " + responseText);
 
-            // Deserialize JSON to a dictionary
-            Dictionary<string, string> settingsDictionary = JsonUtility.FromJson<Dictionary<string, string>>(responseText);
+            // Deserialize JSON to SettingsData
+            SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
 
-            // Create a new SettingsData instance and manually convert values
-            SettingsData settingsData = new SettingsData();
-            if (settingsDictionary.TryGetValue("master_volume", out string masterVolumeStr))
-                settingsData.master_volume = int.Parse(masterVolumeStr);
+            // Now convert string values to appropriate types
+            float parsedMasterVolume, parsedMusicVolume, parsedSoundEffects, parsedDialogVoice;
 
-            if (settingsDictionary.TryGetValue("music_volume", out string musicVolumeStr))
-                settingsData.music_volume = int.Parse(musicVolumeStr);
+            if (float.TryParse(settingsData.master_volume, out parsedMasterVolume))
+                masterVolume.value = parsedMasterVolume;
 
-            if (settingsDictionary.TryGetValue("sound_effects", out string soundEffectsStr))
-                settingsData.sound_effects = int.Parse(soundEffectsStr);
+            if (float.TryParse(settingsData.music_volume, out parsedMusicVolume))
+                musicVolume.value = parsedMusicVolume;
 
-            if (settingsDictionary.TryGetValue("dialog_voice", out string dialogVoiceStr))
-                settingsData.dialog_voice = int.Parse(dialogVoiceStr);
+            if (float.TryParse(settingsData.sound_effects, out parsedSoundEffects))
+                soundEffects.value = parsedSoundEffects;
 
-            if (settingsDictionary.TryGetValue("proximity_chat", out string proximityChatStr))
-                settingsData.proximity_chat = proximityChatStr;
+            if (float.TryParse(settingsData.dialog_voice, out parsedDialogVoice))
+                dialogVoice.value = parsedDialogVoice;
 
-            if (settingsDictionary.TryGetValue("subtitles", out string subtitlesStr))
-                settingsData.subtitles = subtitlesStr;
-
-            if (settingsDictionary.TryGetValue("ui_sound_fx", out string uiSoundFxStr))
-                settingsData.ui_sound_fx = uiSoundFxStr;
-
-            // Now you can use the settingsData instance as before
-            masterVolume.value = settingsData.master_volume;
-            musicVolume.value = settingsData.music_volume;
-            soundEffects.value = settingsData.sound_effects;
-            dialogVoice.value = settingsData.dialog_voice;
             proximityChat.isOn = settingsData.proximity_chat == "1";
             subtitles.isOn = settingsData.subtitles == "1";
             uiSoundFX.isOn = settingsData.ui_sound_fx == "1";
