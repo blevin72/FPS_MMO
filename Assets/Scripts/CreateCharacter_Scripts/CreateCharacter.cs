@@ -1,67 +1,70 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+using UnityEngine.Networking;
+using System.Collections;
 
 public class CreateCharacter : MonoBehaviour
 {
-    public Canvas selectCharacterCanvas;
-    public Canvas nameCharacterCanvas;
-    public Canvas characterCustomizationCanvas;
-    public GameObject characterUIs;
-    public Button createCharacter;
-    public Button characterPanel_1;
-    public Button characterPanel_2;
-    public Button characterPanel_3;
-    public Button characterPanel_4;
-    public Image highlighter_1;
-    public Image highlighter_2;
-    public Image highlighter_3;
-    public Image highlighter_4;
-    private Image chosenHighlighter;
-    public SaveCharacter saveCharacter; //referencing SaveCharacter class
+    public TMP_InputField characterName;
+    public TMP_Dropdown chooseClass;
+    private int classID;
 
-    private void Start()
-    {
-        nameCharacterCanvas.enabled = false;
-        characterCustomizationCanvas.enabled = false;
-        createCharacter.interactable = false;
-        highlighter_1.enabled = false;
-        highlighter_2.enabled = false;
-        highlighter_3.enabled = false;
-        highlighter_4.enabled = false;
-    }
+    private string createCharacterURL = "http://localhost:8888/sqlconnect/createCharacter.php?action=update";
 
-    public void CreateCharacterButton()
+    internal IEnumerator SaveCharacterDetails()
     {
-        selectCharacterCanvas.enabled = false;
-        nameCharacterCanvas.enabled = true;
-        characterCustomizationCanvas.enabled = false;
-        characterUIs.gameObject.SetActive(false);
-    }
+        GetClassID();
 
-    public void AssignHighligther(Image highlighter)
-    {
-        chosenHighlighter = highlighter;
-    }
+        // Create a WWWForm to send data to the PHP script
+        WWWForm form = new WWWForm();
 
-    public void AssignCharacterSlot()
-    {
-        if(createCharacter.interactable == false)
+        // Add to the form
+        form.AddField("accountID", DB_Manager.accountID);
+        form.AddField("character_name", characterName.text); //taking the text input from the characterName Input Field
+        form.AddField("classID", classID); //taking the class chosen from the chooseClass Dropdown
+
+        // Create a UnityWebRequest to send the form data to the PHP script
+        UnityWebRequest www = UnityWebRequest.Post(createCharacterURL, form);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ProtocolError)
         {
-            createCharacter.interactable = true;
-            chosenHighlighter.enabled = true;
+            Debug.Log("Character creation failed. Error: " + www.error);
         }
         else
         {
-            createCharacter.interactable = false;
-            chosenHighlighter.enabled = false;
+            string responseText = www.downloadHandler.text;
+            if (responseText == "0")
+            {
+                Debug.Log("Character created successfully");
+            }
+            else
+            {
+                Debug.Log("Character creation failed. Error #" + responseText);
+            }
         }
     }
 
-    public void ConfirmNameButton()
+    /*convert text value of chooseClass dropdown into an int that matches the Class ID's in the database
+     i.e. Scout = ID 1; Medic = ID 2; Fighter = ID 3; Engineer = ID 4*/
+    private void GetClassID()
     {
-        nameCharacterCanvas.enabled = false;
-        characterCustomizationCanvas.enabled = true;
-        characterUIs.SetActive(true);
-        StartCoroutine(saveCharacter.SaveCharacterDetails());
+        string classID_text = chooseClass.options[chooseClass.value].text;
+
+        switch (classID_text)
+        {
+            case "Scout":
+                classID = 1;
+                break;
+            case "Medic":
+                classID = 2;
+                break;
+            case "Fighter":
+                classID = 3;
+                break;
+            case "Engineer":
+                classID = 4;
+                break;
+        }
     }
 }
