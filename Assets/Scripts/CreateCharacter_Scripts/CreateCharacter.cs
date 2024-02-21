@@ -34,13 +34,25 @@ public class CreateCharacter : MonoBehaviour
         else
         {
             string responseText = www.downloadHandler.text;
-            if (responseText == "0")
+
+            // Check if the response starts with '0', indicating success
+            if (responseText.StartsWith("0"))
             {
-                Debug.Log("Character created successfully");
+                // Remove the first character ('0') and parse the remaining string as characterID
+                string characterIDStr = responseText.Substring(1);
+                if (int.TryParse(characterIDStr, out int characterID))
+                {
+                    DB_Manager.characterID = characterID;
+                    Debug.Log("Character created successfully. CharacterID: " + characterID);
+                }
+                else
+                {
+                    Debug.LogError("Error parsing characterID from response: " + responseText);
+                }
             }
             else
             {
-                Debug.Log("Character creation failed. Error #" + responseText);
+                Debug.LogError("Character creation failed. Error: " + responseText);
             }
         }
     }

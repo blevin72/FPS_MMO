@@ -29,11 +29,11 @@ public class CharacterDesign : MonoBehaviour
 
     private IEnumerator SaveCharacterDesign()
     {
-        Debug.Log("CharacterDesign Co-Routine Started");
         // Create a WWWForm to send data to the PHP script
         WWWForm form = new WWWForm();
 
         //Add to the form
+        form.AddField("characterID", DB_Manager.characterID);
         form.AddField("skin_type", skin.options[skin.value].text);
         form.AddField("hair_type", hair.options[hair.value].text);
         form.AddField("beard_type", beard.options[beard.value].text);
@@ -43,7 +43,6 @@ public class CharacterDesign : MonoBehaviour
         form.AddField("pants_type", pants.options[pants.value].text);
         form.AddField("shoes_type", shoes.options[shoes.value].text);
         form.AddField("glasses", glasses.options[glasses.value].text);
-        form.AddField("backpack_color", changeBackpack.backpack.material.name);
         CheckHairType(form);
         CheckBeardType(form);
         CheckHatType(form);
@@ -52,6 +51,7 @@ public class CharacterDesign : MonoBehaviour
         CheckPantsType(form);
         CheckShoesType(form);
         CheckGlasses(form);
+        ChangeBackpack(form);
 
         UnityWebRequest www = UnityWebRequest.Post(characterDesignURL, form);
         yield return www.SendWebRequest();
@@ -63,13 +63,13 @@ public class CharacterDesign : MonoBehaviour
         else
         {
             string responseText = www.downloadHandler.text;
-            if (responseText == "0")
+            if (responseText.StartsWith("0"))
             {
                 Debug.Log("Character Design saved successfully");
             }
             else
             {
-                Debug.Log("Character Design save failed. Error #" + responseText);
+                Debug.Log("Character Design save failed. Error: " + responseText);
             }
         }
     }
@@ -111,18 +111,28 @@ public class CharacterDesign : MonoBehaviour
 
     private void CheckBeardType(WWWForm form)
     {
-        //Check which beard type is active and add the corresponding field
+        // Check which beard type is active and add the corresponding field
         if (changeBeard.mustache.enabled)
         {
-            form.AddField("beard_color", changeBeard.mustache.material.name);
+            string beardColor = changeBeard.mustache.material.name;
+            // Remove the "(Instance)" part
+            beardColor = beardColor.Replace(" (Instance)", "");
+            Debug.Log("Beard Color: " + beardColor);
+            form.AddField("beard_color", beardColor);
         }
         else if (changeBeard.goatee.enabled)
         {
-            form.AddField("beard_color", changeBeard.goatee.material.name);
+            string beardColor = changeBeard.goatee.material.name;
+            beardColor = beardColor.Replace(" (Instance)", "");
+            Debug.Log("Beard Color: " + beardColor);
+            form.AddField("beard_color", beardColor);
         }
         else if (changeBeard.beard.enabled)
         {
-            form.AddField("beard_color", changeBeard.beard.material.name);
+            string beardColor = changeBeard.beard.material.name;
+            beardColor = beardColor.Replace(" (Instance)", "");
+            Debug.Log("Beard Color: " + beardColor);
+            form.AddField("beard_color", beardColor);
         }
         else
         {
@@ -135,15 +145,24 @@ public class CharacterDesign : MonoBehaviour
         //Check which hat type is active and add the corresponding field
         if (changeHat.baseballCap.enabled)
         {
-            form.AddField("hat_color", changeHat.baseballCap.material.name);
+            string hatColor = changeHat.baseballCap.material.name;
+            hatColor = hatColor.Replace(" (Instance)", "");
+            Debug.Log("Hat Color: " + hatColor);
+            form.AddField("hat_color", hatColor);
         }
         else if (changeHat.beanie.enabled)
         {
-            form.AddField("hat_color", changeHat.beanie.material.name);
+            string beanieColor = changeHat.beanie.material.name;
+            beanieColor = beanieColor.Replace(" (Instance)", "");
+            Debug.Log("Beanie Color: " + beanieColor);
+            form.AddField("hat_color", beanieColor);
         }
         else if (changeHat.cowboyHat.enabled)
         {
-            form.AddField("hat_color", changeHat.cowboyHat.material.name);
+            string cowboyHatColor = changeHat.cowboyHat.material.name;
+            cowboyHatColor = cowboyHatColor.Replace(" (Instance)", "");
+            Debug.Log("Cowboy Hat Color: " + cowboyHatColor);
+            form.AddField("hat_color", cowboyHatColor);
         }
         else
         {
@@ -155,11 +174,17 @@ public class CharacterDesign : MonoBehaviour
     {
         if (changeShirt.shirt.enabled)
         {
-            form.AddField("shirt_color", changeShirt.shirt.material.name);
+            string shirtColor = changeShirt.shirt.material.name;
+            shirtColor = shirtColor.Replace(" (Instance)", "");
+            Debug.Log("Shirt Color: " + shirtColor);
+            form.AddField("shirt_color", shirtColor);
         }
         else if (changeShirt.tanktop.enabled)
         {
-            form.AddField("shirt_color", changeShirt.tanktop.material.name);
+            string tanktopColor = changeShirt.tanktop.material.name;
+            tanktopColor = tanktopColor.Replace(" (Instance)", "");
+            Debug.Log("Tanktop Color: " + tanktopColor);
+            form.AddField("shirt_color", tanktopColor);
         }
         else
         {
@@ -171,15 +196,24 @@ public class CharacterDesign : MonoBehaviour
     {
         if (changeOuterwear.sweater.enabled)
         {
-            form.AddField("outerwear_color", changeOuterwear.sweater.material.name);
+            string sweaterColor = changeOuterwear.sweater.material.name;
+            sweaterColor = sweaterColor.Replace(" (Instance)", "");
+            Debug.Log("Sweater Color: " + sweaterColor);
+            form.AddField("outerwear_color", sweaterColor);
         }
         else if (changeOuterwear.windbreaker.enabled)
         {
-            form.AddField("outerwear_color", changeOuterwear.windbreaker.material.name);
+            string windbreakerColor = changeOuterwear.windbreaker.material.name;
+            windbreakerColor = windbreakerColor.Replace(" (Instance)", "");
+            Debug.Log("Windbreaker Color: " + windbreakerColor);
+            form.AddField("outerwear_color", windbreakerColor);
         }
         else if (changeOuterwear.openShirt.enabled)
         {
-            form.AddField("outerwear_color", changeOuterwear.openShirt.material.name);
+            string openShirtColor = changeOuterwear.openShirt.material.name;
+            openShirtColor = openShirtColor.Replace(" (Instance)", "");
+            Debug.Log("Open Shirt Color: " + openShirtColor);
+            form.AddField("outerwear_color", openShirtColor);
         }
         else
         {
@@ -191,15 +225,24 @@ public class CharacterDesign : MonoBehaviour
     {
         if (changePants.dressPants.enabled)
         {
-            form.AddField("pants_color", changePants.dressPants.material.name);
+            string pantsColor = changePants.dressPants.material.name;
+            pantsColor = pantsColor.Replace(" (Instance)", "");
+            Debug.Log("Pants Color: " + pantsColor);
+            form.AddField("pants_color", pantsColor);
         }
         else if (changePants.shorts.enabled)
         {
-            form.AddField("pants_color", changePants.shorts.material.name);
+            string shortsColor = changePants.shorts.material.name;
+            shortsColor = shortsColor.Replace(" (Instance)", "");
+            Debug.Log("Shorts Color: " + shortsColor);
+            form.AddField("pants_color", shortsColor);
         }
         else if (changePants.joggers.enabled)
         {
-            form.AddField("pants_color", changePants.joggers.material.name);
+            string joggersColor = changePants.joggers.material.name;
+            joggersColor = joggersColor.Replace(" (Instance)", "");
+            Debug.Log("Joggers Color: " + joggersColor);
+            form.AddField("pants_color", joggersColor);
         }
         else
         {
@@ -211,11 +254,17 @@ public class CharacterDesign : MonoBehaviour
     {
         if (changeShoes.boots.enabled)
         {
-            form.AddField("shoes_color", changeShoes.boots.material.name);
+            string bootsColor = changeShoes.boots.material.name;
+            bootsColor = bootsColor.Replace(" (Instance)", "");
+            Debug.Log("Boots Color: " + bootsColor);
+            form.AddField("shoes_color", bootsColor);
         }
         else if (changeShoes.sneakers.enabled)
         {
-            form.AddField("shoes_color", changeShoes.sneakers.material.name);
+            string sneakersColor = changeShoes.sneakers.material.name;
+            sneakersColor = sneakersColor.Replace(" (Instance)", "");
+            Debug.Log("Sneakers Color: " + sneakersColor);
+            form.AddField("shoes_color", sneakersColor);
         }
         else
         {
@@ -227,11 +276,22 @@ public class CharacterDesign : MonoBehaviour
     {
         if (equipGlasses.glasses.enabled)
         {
-            form.AddField("glasses_color", equipGlasses.glasses.material.name);
+            string glassesColor = equipGlasses.glasses.material.name;
+            glassesColor = glassesColor.Replace(" (Instance)", "");
+            Debug.Log("Glasses Color: " + glassesColor);
+            form.AddField("glasses_color", glassesColor);
         }
         else
         {
             Debug.Log("No active glasses found");
         }
+    }
+
+    private void ChangeBackpack(WWWForm form)
+    {
+        string backpackColor = changeBackpack.backpack.material.name;
+        backpackColor = backpackColor.Replace(" (Instance)", "");
+        Debug.Log("BackpackColor " + backpackColor);
+        form.AddField("backpack_color", changeBackpack.backpack.material.name);
     }
 }

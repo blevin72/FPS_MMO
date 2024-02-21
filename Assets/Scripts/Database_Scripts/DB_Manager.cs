@@ -8,6 +8,8 @@ public static class DB_Manager
 
     public static int accountID;
 
+    public static int characterID;
+
     public static bool LoggedIn { get { return email != null; } }
 
     public static void LogOut()
