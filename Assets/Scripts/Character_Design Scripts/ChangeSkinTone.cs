@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class ChangeSkinTone : MonoBehaviour
 {
@@ -7,43 +8,103 @@ public class ChangeSkinTone : MonoBehaviour
     public Renderer wholeBody;
     public Material[] cleanSkin;
     public Material[] dirtySkin;
+    private Material[] selectedSkinType = null;
     private int cleanSkinIndex = 0;
+    private int dirtySkinIndex = 0;
+    private int activeSkinType = 0;
+    private int selectedSkinColorIndex = 0;
+
+
+    private void Start()
+    {
+        selectedSkinType = cleanSkin;
+    }
+
+    public void ChangeSkinTypes(TMP_Dropdown change)
+    {
+        switch (change.value)
+        {
+            case 0:
+                activeSkinType = 0;
+                cleanSkinIndex = dirtySkinIndex;
+                headColorIndex = dirtySkinIndex;
+                SelectSkinType();
+                ChangeSkins();
+                break;
+            case 1:
+                activeSkinType = 1;
+                dirtySkinIndex = cleanSkinIndex;
+                headColorIndex = cleanSkinIndex;
+                SelectSkinType();
+                ChangeSkins();
+                break;
+        }
+    }
+
+    private void SelectSkinType() 
+    {
+        switch (activeSkinType)
+        {
+            case 0:
+                selectedSkinType = cleanSkin;
+                break;
+            case 1:
+                selectedSkinType = dirtySkin;
+                break;
+        }
+    }
 
     public void ChangeSkins()
     {
-        if(cleanSkinIndex < cleanSkin.Length - 1)
+        if (selectedSkinType != null && selectedSkinType.Length > 0)
         {
-            cleanSkinIndex++;
-        }
-        else
-        {
-            cleanSkinIndex = 0; //Reset to the first material
-        }
-        if(cleanSkin.Length > 0)
-        {
-            wholeBody.material = cleanSkin[cleanSkinIndex];
-            Debug.Log("Skin Tone:" + cleanSkinIndex);
-
-            ChangeHeadColor();
+            switch (activeSkinType)
+            {
+                case 0:
+                    cleanSkinIndex = (cleanSkinIndex + 1) % selectedSkinType.Length;
+                    wholeBody.material = selectedSkinType[cleanSkinIndex];
+                    selectedSkinColorIndex = cleanSkinIndex;
+                    Debug.Log("Skin Tone: " + cleanSkinIndex);
+                    ChangeHeadColor();
+                    break;
+                case 1:
+                    dirtySkinIndex = (dirtySkinIndex + 1) % selectedSkinType.Length;
+                    wholeBody.material = selectedSkinType[dirtySkinIndex];
+                    selectedSkinColorIndex = dirtySkinIndex;
+                    Debug.Log("Skin Tone: " + dirtySkinIndex);
+                    ChangeHeadColor();
+                    break;
+                default:
+                    Debug.LogError("Invalid skin type");
+                    break;
+            }
         }
     }
 
     public void ChangeSkinsReverse()
     {
-        if (cleanSkinIndex < cleanSkin.Length - 1 && cleanSkinIndex != 0)
+        if (selectedSkinType != null && selectedSkinType.Length > 0 && selectedSkinColorIndex != 0)
         {
-            cleanSkinIndex--;
-        }
-        else
-        {
-            cleanSkinIndex = 0; //Reset to the first material
-        }
-        if (cleanSkin.Length > 0)
-        {
-            wholeBody.material = cleanSkin[cleanSkinIndex];
-            Debug.Log("Skin Tone:" + cleanSkinIndex);
-
-            ChangeHeadColorReverse();
+            switch (activeSkinType)
+            {
+                case 0:
+                    cleanSkinIndex = (cleanSkinIndex - 1) % selectedSkinType.Length;
+                    wholeBody.material = selectedSkinType[cleanSkinIndex];
+                    selectedSkinColorIndex = cleanSkinIndex;
+                    Debug.Log("Skin Tone: " + cleanSkinIndex);
+                    ChangeHeadColorReverse();
+                    break;
+                case 1:
+                    dirtySkinIndex = (dirtySkinIndex - 1) % selectedSkinType.Length;
+                    wholeBody.material = selectedSkinType[dirtySkinIndex];
+                    selectedSkinColorIndex = dirtySkinIndex;
+                    Debug.Log("Skin Tone: " + dirtySkinIndex);
+                    ChangeHeadColorReverse();
+                    break;
+                default:
+                    Debug.LogError("Invalid skin type");
+                    break;
+            }
         }
     }
     #endregion
@@ -85,9 +146,11 @@ public class ChangeSkinTone : MonoBehaviour
         }
     }
 
+    //selectedSkinType != null && selectedSkinType.Length > 0 && selectedSkinColorIndex != 0
+
     private void ChangeHeadColorReverse()
     {
-        if (headColorIndex < headColor.Length - 1 && headColorIndex != 0)
+        if (headColorIndex < headColor.Length - 1 && headColorIndex > 0 && headColorIndex != 0)
         {
             headColorIndex--;
         }

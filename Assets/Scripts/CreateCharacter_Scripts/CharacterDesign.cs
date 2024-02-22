@@ -15,6 +15,7 @@ public class CharacterDesign : MonoBehaviour
     public TMP_Dropdown pants;
     public TMP_Dropdown shoes;
     public TMP_Dropdown glasses;
+    public ChangeSkinTone changeSkinTone; //reference to ChangeSkinTone script
     public ChangeHair changeHair; //reference to ChangeHair script
     public ChangeBeard changeBeard; //reference to ChangeBeard script
     public ChangeHat changeHat; //reference to ChangeHat script
@@ -24,6 +25,7 @@ public class CharacterDesign : MonoBehaviour
     public ChangeShoes changeShoes; //reference to ChangeShoes script
     public EquipGlasses equipGlasses; //reference to EquipGlasses script
     public ChangeBackpack changeBackpack; //reference to ChangeBackpack script
+    public CharacterBlendshapes characterBlendshapes; //reference to CharacterBlendshapes script
 
     private string characterDesignURL = "http://localhost:8888/sqlconnect/characterDesign.php?action=update";
 
@@ -43,6 +45,7 @@ public class CharacterDesign : MonoBehaviour
         form.AddField("pants_type", pants.options[pants.value].text);
         form.AddField("shoes_type", shoes.options[shoes.value].text);
         form.AddField("glasses", glasses.options[glasses.value].text);
+        ChangeSkinType(form);
         CheckHairType(form);
         CheckBeardType(form);
         CheckHatType(form);
@@ -77,6 +80,17 @@ public class CharacterDesign : MonoBehaviour
     public void ConfirmCharacterDesignButton()
     {
         StartCoroutine(SaveCharacterDesign());
+        StartCoroutine(characterBlendshapes.SaveBlendShapes());
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+    }
+
+    private void ChangeSkinType(WWWForm form)
+    {
+        string skinTone = changeSkinTone.wholeBody.material.name;
+        skinTone = skinTone.Replace(" (Instance)", "");
+        Debug.Log("Skin Tone " + skinTone);
+        form.AddField("skin_tone", skinTone);
     }
 
     private void CheckHairType(WWWForm form)
@@ -84,23 +98,33 @@ public class CharacterDesign : MonoBehaviour
         // Check which hair type is active and add the corresponding field
         if (changeHair.shortHair.enabled)
         {
-            form.AddField("hair_color", changeHair.shortHair.material.name);
+            string hairColor = changeHair.shortHair.material.name;
+            hairColor = hairColor.Replace(" (Instance)", "");
+            form.AddField("hair_color", hairColor);
         }
         else if (changeHair.mediumHair.enabled)
         {
-            form.AddField("hair_color", changeHair.mediumHair.material.name);
+            string hairColor = changeHair.mediumHair.material.name;
+            hairColor = hairColor.Replace(" (Instance)", "");
+            form.AddField("hair_color", hairColor);
         }
         else if (changeHair.longHair.enabled)
         {
-            form.AddField("hair_color", changeHair.longHair.material.name);
+            string hairColor = changeHair.longHair.material.name;
+            hairColor = hairColor.Replace(" (Instance)", "");
+            form.AddField("hair_color", hairColor);
         }
         else if (changeHair.mediumHairForHats.enabled)
         {
-            form.AddField("hair_color", changeHair.mediumHairForHats.material.name);
+            string hairColor = changeHair.mediumHairForHats.material.name;
+            hairColor = hairColor.Replace(" (Instance)", "");
+            form.AddField("hair_color", hairColor);
         }
         else if (changeHair.longHairForHats.enabled)
         {
-            form.AddField("hair_color", changeHair.longHairForHats.material.name);
+            string hairColor = changeHair.longHairForHats.material.name;
+            hairColor = hairColor.Replace(" (Instance)", "");
+            form.AddField("hair_color", hairColor);
         }
         else
         {
@@ -292,6 +316,6 @@ public class CharacterDesign : MonoBehaviour
         string backpackColor = changeBackpack.backpack.material.name;
         backpackColor = backpackColor.Replace(" (Instance)", "");
         Debug.Log("BackpackColor " + backpackColor);
-        form.AddField("backpack_color", changeBackpack.backpack.material.name);
+        form.AddField("backpack_color", backpackColor);
     }
 }
