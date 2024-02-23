@@ -46,8 +46,8 @@ public class Registration : MonoBehaviour
     IEnumerator Register()
     {
         WWWForm form = new WWWForm();
-        form.AddField("name", usernameField.text); //the "text" is accessing the text component of the Input Field Game Object
-        form.AddField("password", passwordField.text); // Make sure the field name matches the one in your PHP script.
+        form.AddField("username", usernameField.text); // Use "username" instead of "name"
+        form.AddField("password", passwordField.text);
         form.AddField("email", emailField.text);
 
         UnityWebRequest www = UnityWebRequest.Post(registrationURL, form);
@@ -73,7 +73,7 @@ public class Registration : MonoBehaviour
         }
     }
 
-    public void VerifyInputs()
+public void VerifyInputs()
     {
         // Password requirements regex
         string passwordPattern = @"^(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$";
