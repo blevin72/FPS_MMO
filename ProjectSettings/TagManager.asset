@@ -6,6 +6,8 @@ TagManager:
   tags:
   - UI Audio
   - Zombie
+  - Ground
+  - Explosion
   layers:
   - Default
   - TransparentFX
