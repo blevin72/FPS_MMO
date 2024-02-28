@@ -17,9 +17,16 @@ public class CreateScene_Manager : MonoBehaviour
     public Image highlighter_3;
     public Image highlighter_4;
     private Image chosenHighlighter;
-    public CreateCharacter createCharacter; //referencing SaveCharacter class
+    public CreateCharacter createCharacter; //referencing CreateCharacter class for SaveCharacterDetials() in ConfirmNameButton()
+    public SavedCharacters savedCharacters; //referencing SavedCharacter class for RetrieveSavedCharacter() in Start()
 
     private void Start()
+    {
+        SetUI();
+        StartCoroutine(savedCharacters.RetrieveSavedCharacters());
+    }
+
+    private void SetUI()
     {
         nameCharacterCanvas.enabled = false;
         characterCustomizationCanvas.enabled = false;
@@ -43,9 +50,14 @@ public class CreateScene_Manager : MonoBehaviour
         chosenHighlighter = highlighter;
     }
 
-    public void AssignCharacterSlot()
+    internal int characterSlot; //1-4 which panel the character is being assigned to when created/loaded
+
+    public void AssignCharacterSlot(int slot)
     {
-        if(createCharacterButton.interactable == false)
+        characterSlot = slot;
+        Debug.Log("Chracter Slot assigned: " + slot);
+
+        if (createCharacterButton.interactable == false)
         {
             createCharacterButton.interactable = true;
             chosenHighlighter.enabled = true;
