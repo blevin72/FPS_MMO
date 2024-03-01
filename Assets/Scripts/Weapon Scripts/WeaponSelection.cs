@@ -8,10 +8,35 @@ public class WeaponSelection : MonoBehaviour
 
     private void Start()
     {
-        SelectWeapon();
+
     }
 
     private void Update()
+    {
+        WeaponSelectLogic();
+        SelectWeapon();
+    }
+
+    void SelectWeapon()
+    {
+        int i = 0;
+        foreach (Transform weapon in Camera.main.transform)
+        {
+            if (i == selectedWeapon)
+            {
+                weapon.gameObject.SetActive(true);
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+                weapon.GetComponent<Gun_Controller>().Deactivation();
+            }
+
+            i++;
+        }
+    }
+
+    void WeaponSelectLogic()
     {
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -38,22 +63,4 @@ public class WeaponSelection : MonoBehaviour
         }
     }
 
-    void SelectWeapon()
-    {
-        int i = 0;
-        foreach (Transform weapon in Camera.main.transform)
-        {
-            if (i == selectedWeapon)
-            {
-                weapon.gameObject.SetActive(true);
-            }
-            else
-            {
-                weapon.gameObject.SetActive(false);
-                weapon.GetComponent<Gun_Controller>().Deactivation();
-            }
-
-            i++;
-        }
-    }
 }

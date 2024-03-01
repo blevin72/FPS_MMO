@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 7681263626952823849}
   - component: {fileID: -5850682673753755535}
   - component: {fileID: -2594933082296127147}
-  - component: {fileID: 502067394419449916}
   - component: {fileID: 1703386478212178361}
   - component: {fileID: 3027648982797752076}
   - component: {fileID: 2082754995751144169}
@@ -211,17 +210,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  weapon:
-    name: Pistol
-    damage: 10
-    range: 100
+  handGunAudioPrefab: {fileID: 4372046643244750761, guid: 98abe0228319d4b2bb5a1a4f9a09f2bc, type: 3}
   attackDamage: 30
   soundIntensity: 5
   spherecastSpawn: {fileID: 4171703540192385250}
   zombieLayer:
     serializedVersion: 2
     m_Bits: 2049
-  cam: {fileID: 3912447959983304099}
 --- !u!114 &349940774956824275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,143 +508,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &502067394419449916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3509103683353609571}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d121855c5191747829cbb05b69fa99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  AmmoQuantity: 16
-  AmmoReserve: 0
-  damage: 10
-  range: 100
-  zoom: 0
-  normalFOV: 0
-  zoomSmooth: 0
-  animatedCamera: {fileID: 3912447959983304099}
-  Player: {fileID: 2082754995751144169}
-  mainCamera: {fileID: 0}
-  Impact: {fileID: 0}
-  bulletHoles: []
-  impactForce: 25
-  aimSpeed: 0
-  WeaponPosition: {x: 0, y: 0, z: 0}
-  WeaponAimPosition: {x: 0, y: 0, z: 0}
-  animatedCameraPosition: {x: 0, y: 0, z: 0}
-  animatedCameraAimPosition: {x: 0, y: 0, z: 0}
-  HasAlternateFireMode: 0
-  singleFireWeapon: 0
-  IsShotgun: 0
-  isUnarmed: 0
-  mystyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  MuzzleFlash1: {fileID: 0}
-  MuzzleFlash2: {fileID: 0}
-  MuzzleFlashLight: {fileID: 0}
-  Smoke: {fileID: 0}
-  ShellEjecting: {fileID: 0}
-  Crosshair: {fileID: 7900656712164852132}
-  Collimator: {fileID: 0}
-  Grenade: {fileID: 0}
-  GrenadeSlot: {fileID: 0}
-  Projectile: {fileID: 0}
-  AmmoIcon1: {fileID: 0}
-  AmmoIcon2: {fileID: 0}
-  FireSound: {fileID: -2594933082296127147}
-  DryFireSound: {fileID: 0}
-  ReloadPart1Sound: {fileID: 0}
-  ReloadPart2Sound: {fileID: 0}
-  ReloadPart3Sound: {fileID: 0}
-  ReloadPart4Sound: {fileID: 0}
-  ReloadPart5Sound: {fileID: 0}
-  ReloadPart6Sound: {fileID: 0}
-  ReloadPart7Sound: {fileID: 0}
-  ReloadPart8Sound: {fileID: 0}
-  CockSound: {fileID: 0}
-  RetrieveSound: {fileID: 0}
-  PutawaySound: {fileID: 0}
-  ZoomSound: {fileID: 0}
-  MeleeSound: {fileID: 0}
-  SwitchSound: {fileID: 0}
-  BoltPart1Sound: {fileID: 0}
-  BoltPart2Sound: {fileID: 0}
-  FlapPart1Sound: {fileID: 0}
-  FlapPart2Sound: {fileID: 0}
-  SlideSound: {fileID: 0}
-  RemovingSafetyPin: {fileID: 0}
-  Throw: {fileID: 0}
 --- !u!114 &1703386478212178361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,7 +552,7 @@ MonoBehaviour:
   sprintSpeed: 15
   crouchSpeed: 3
   lookSpeed: 2
-  jumpHeight: 5
+  jumpForce: 5
   maxStamina: 100
   staminaRegenRate: 10
   concreteSurface: []
@@ -1252,6 +1110,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4634167413990572, guid: ec650e53092f58842851a9c1438bc685, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95376233596949976, guid: ec650e53092f58842851a9c1438bc685, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 03d1fe4e93c9d4445b3a611df2ee5713, type: 2}
+    - target: {fileID: 95376233596949976, guid: ec650e53092f58842851a9c1438bc685, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 137964117084383358, guid: ec650e53092f58842851a9c1438bc685, type: 3}
