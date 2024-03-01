@@ -46,6 +46,7 @@ public class PlayerShoot : NetworkBehaviour
         GameObject audioObject = Instantiate(handGunAudioPrefab, transform.position, Quaternion.identity);
         handGunAudioSource = audioObject.GetComponent<AudioSource>();
         handGunAudioSource.Play();
+        HandGunAudioCheck();
 
         if (!isLocalPlayer)
             return;
@@ -70,5 +71,18 @@ public class PlayerShoot : NetworkBehaviour
     void GetReferences()
     {
         handGunAudioSource = handGunAudioPrefab.GetComponent<AudioSource>();
+    }
+
+    void HandGunAudioCheck()
+    {
+        if (handGunAudioSource != null)
+        {
+            handGunAudioSource.Play();
+        }
+        else
+        {
+            Debug.LogError("Handgun audio source is not assigned.");
+            return;
+        }
     }
 }
