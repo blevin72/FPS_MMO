@@ -35,26 +35,7 @@ public class CharacterDesign : MonoBehaviour
         WWWForm form = new WWWForm();
 
         //Add to the form
-        form.AddField("characterID", DB_Manager.characterID);
-        form.AddField("skin_type", skin.options[skin.value].text);
-        form.AddField("hair_type", hair.options[hair.value].text);
-        form.AddField("beard_type", beard.options[beard.value].text);
-        form.AddField("hat_type", hat.options[hat.value].text);
-        form.AddField("shirt_type", shirt.options[shirt.value].text);
-        form.AddField("outerwear_type", outerwear.options[outerwear.value].text);
-        form.AddField("pants_type", pants.options[pants.value].text);
-        form.AddField("shoes_type", shoes.options[shoes.value].text);
-        form.AddField("glasses", glasses.options[glasses.value].text);
-        ChangeSkinType(form);
-        CheckHairType(form);
-        CheckBeardType(form);
-        CheckHatType(form);
-        CheckShirtType(form);
-        CheckOuterwearType(form);
-        CheckPantsType(form);
-        CheckShoesType(form);
-        CheckGlasses(form);
-        ChangeBackpack(form);
+        AddFields(form);
 
         UnityWebRequest www = UnityWebRequest.Post(characterDesignURL, form);
         yield return www.SendWebRequest();
@@ -83,6 +64,30 @@ public class CharacterDesign : MonoBehaviour
         StartCoroutine(characterBlendshapes.SaveBlendShapes());
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+    }
+
+    private void AddFields(WWWForm form)
+    {
+        form.AddField("characterID", DB_Manager.characterID);
+        form.AddField("skin_type", skin.options[skin.value].text);
+        form.AddField("hair_type", hair.options[hair.value].text);
+        form.AddField("beard_type", beard.options[beard.value].text);
+        form.AddField("hat_type", hat.options[hat.value].text);
+        form.AddField("shirt_type", shirt.options[shirt.value].text);
+        form.AddField("outerwear_type", outerwear.options[outerwear.value].text);
+        form.AddField("pants_type", pants.options[pants.value].text);
+        form.AddField("shoes_type", shoes.options[shoes.value].text);
+        form.AddField("glasses", glasses.options[glasses.value].text);
+        ChangeSkinType(form);
+        CheckHairType(form);
+        CheckBeardType(form);
+        CheckHatType(form);
+        CheckShirtType(form);
+        CheckOuterwearType(form);
+        CheckPantsType(form);
+        CheckShoesType(form);
+        CheckGlasses(form);
+        ChangeBackpack(form);
     }
 
     private void ChangeSkinType(WWWForm form)

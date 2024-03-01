@@ -8,8 +8,8 @@ public class CreateCharacter : MonoBehaviour
     public TMP_InputField characterName;
     public TMP_Dropdown chooseClass;
     private int classID;
-
     private string createCharacterURL = "http://localhost:8888/sqlconnect/createCharacter.php?action=update";
+    public CreateScene_Manager createScene_Manager; //reference to CreateScene_Manager Script
 
     internal IEnumerator SaveCharacterDetails()
     {
@@ -22,6 +22,7 @@ public class CreateCharacter : MonoBehaviour
         form.AddField("accountID", DB_Manager.accountID);
         form.AddField("character_name", characterName.text); //taking the text input from the characterName Input Field
         form.AddField("classID", classID); //taking the class chosen from the chooseClass Dropdown
+        form.AddField("character_slot", createScene_Manager.characterSlot);
 
         // Create a UnityWebRequest to send the form data to the PHP script
         UnityWebRequest www = UnityWebRequest.Post(createCharacterURL, form);
@@ -59,7 +60,7 @@ public class CreateCharacter : MonoBehaviour
 
     /*convert text value of chooseClass dropdown into an int that matches the Class ID's in the database
      i.e. Scout = ID 1; Medic = ID 2; Fighter = ID 3; Engineer = ID 4*/
-    private void GetClassID()
+    internal void GetClassID()
     {
         string classID_text = chooseClass.options[chooseClass.value].text;
 
