@@ -48,17 +48,17 @@ public class SavedCharacters : MonoBehaviour
 
                     // Update TextMeshProUGUI elements with the retrieved data
                     characterName[i].text = characterData[0];
-                    characterOutpost[i].text = characterData[1];
-                    characterLevel[i].text = characterData[2];
+                    UpdateOutpost(i, characterData);
+                    UpdateLevel(i, characterData);
                     UpdateClass(i, characterData);
                 }
 
                 Debug.Log("Character retrieval successful");
             }
-            else
-            {
-                Debug.Log("No characters found for the given accountID");
-            }
+            //else
+            //{
+            //    Debug.Log("No characters found for the given accountID");
+            //}
         }
     }
 
@@ -66,41 +66,74 @@ public class SavedCharacters : MonoBehaviour
     {
         form.AddField("accountID", DB_Manager.accountID);
 
-        foreach (TextMeshProUGUI names in characterName)
+        for (int i = 0; i < characterName.Length; i++)
         {
-            form.AddField("character_name", names.text);
+            form.AddField("character_name_" + i, characterName[i].text);
+            form.AddField("outpost_name_" + i, characterOutpost[i].text);
+            form.AddField("level_" + i, characterLevel[i].text);
+            form.AddField("classID_" + i, characterClass[i].text);
         }
-        foreach (TextMeshProUGUI outposts in characterOutpost)
+    }
+
+    private void UpdateOutpost(int i, string[] characterData)
+    {
+        if (characterData.Length > 1) // Check if characterData has at least 2 elements
         {
-            form.AddField("outpost_name", outposts.text);
+            if (string.IsNullOrEmpty(characterData[1]))
+            {
+                characterOutpost[i].text = "Join an Outpost!";
+            }
+            else
+            {
+                characterOutpost[i].text = characterData[1];
+            }
         }
-        foreach (TextMeshProUGUI levels in characterLevel)
+        else
         {
-            form.AddField("level", levels.text);
+            // Handle the case where characterData doesn't have enough elements
+            characterOutpost[i].text = null;
         }
-        foreach (TextMeshProUGUI classes in characterClass)
+    }
+
+    private void UpdateLevel(int i, string[] characterData)
+    {
+        if (characterData.Length > 2)
         {
-            form.AddField("classID", classes.text);
+            characterLevel[i].text = characterData[2];
+        }
+        else
+        {
+            characterLevel[i].text = null;
         }
     }
 
     private void UpdateClass(int i, string[] characterData)
     {
-        if (characterData[3] == "1")
+        if (characterData.Length > 3) // Check if characterData is not empty
         {
-            characterClass[i].text = "Scout";
+            if (characterData.Length >= 4)
+            {
+                if (characterData[3] == "1")
+                {
+                    characterClass[i].text = "Scout";
+                }
+                else if (characterData[3] == "2")
+                {
+                    characterClass[i].text = "Medic";
+                }
+                else if (characterData[3] == "3")
+                {
+                    characterClass[i].text = "Fighter";
+                }
+                else if (characterData[3] == "4")
+                {
+                    characterClass[i].text = "Engineer";
+                }
+            }
         }
-        else if (characterData[3] == "2")
+        else
         {
-            characterClass[i].text = "Medic";
-        }
-        else if (characterData[3] == "3")
-        {
-            characterClass[i].text = "Fighter";
-        }
-        else if (characterData[3] == "4")
-        {
-            characterClass[i].text = "Engineer";
+            characterClass[i].text = null;
         }
     }
 }
