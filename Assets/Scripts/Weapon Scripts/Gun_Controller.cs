@@ -530,7 +530,7 @@ else
 {
 Crosshair.SetActive(true);
 animatedCamera.fieldOfView = Mathf.Lerp(animatedCamera.fieldOfView, normalFOV, Time.deltaTime * zoomSmooth);
-Weapon.transform.localPosition = Vector3.Lerp(transform.localPosition, WeaponPosition, aimSpeed * Time.deltaTime);
+//Weapon.transform.localPosition = Vector3.Lerp(transform.localPosition, WeaponPosition, aimSpeed * Time.deltaTime);
 animatedCamera.transform.localPosition = animatedCameraPosition;
 ZoomIdle = false;
 ZoomMove = false;
