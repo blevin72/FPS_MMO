@@ -5350,6 +5350,7 @@ MonoBehaviour:
   characterCustomizationCanvas: {fileID: 23749847}
   characterUIs: {fileID: 1679957287}
   createCharacterButton: {fileID: 457711281}
+  loadCharacterButton: {fileID: 1390444589}
   characterPanel_1: {fileID: 344219677}
   characterPanel_2: {fileID: 2027102047}
   characterPanel_3: {fileID: 1382018800}
@@ -5416,7 +5417,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 182809584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e946678aa1b491e8445a1ad0eac045, type: 3}
+  m_Script: {fileID: 11500000, guid: 05b70d8e4bb4c428e9b24c3a6298b72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &200877248
@@ -7061,7 +7062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.00632283, y: 0}
   m_AnchorMax: {x: 0.99353546, y: 0.25634587}
-  m_AnchoredPosition: {x: -0.64611816, y: -0.19999695}
+  m_AnchoredPosition: {x: -0.64611816, y: -0.19998169}
   m_SizeDelta: {x: -1.2922, y: -0.70570374}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295097545
@@ -7570,7 +7571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.10845393}
   m_AnchorMax: {x: 1, y: 0.16485016}
-  m_AnchoredPosition: {x: 2.2869873, y: 2.400116}
+  m_AnchoredPosition: {x: 2.2869873, y: 2.400238}
   m_SizeDelta: {x: 0.4000244, y: -3.9823914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321720835
@@ -22963,7 +22964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.00632283, y: 0}
   m_AnchorMax: {x: 0.99353546, y: 0.25634587}
-  m_AnchoredPosition: {x: -0.64611816, y: -0.19999695}
+  m_AnchoredPosition: {x: -0.64611816, y: -0.19998169}
   m_SizeDelta: {x: -1.2922, y: -0.70570374}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1035792512
@@ -26287,7 +26288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.00632283, y: 0}
   m_AnchorMax: {x: 0.99353546, y: 0.25634587}
-  m_AnchoredPosition: {x: -0.64611816, y: -0.19999695}
+  m_AnchoredPosition: {x: -0.64611816, y: -0.19998169}
   m_SizeDelta: {x: -1.2922, y: -0.70570374}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1225666204
@@ -29166,7 +29167,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1390444590}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 182809589}
+        m_TargetAssemblyTypeName: CreateScene_Manager, Assembly-CSharp
+        m_MethodName: LoadCharacterButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1390444590
 MonoBehaviour:
   m_ObjectHideFlags: 0

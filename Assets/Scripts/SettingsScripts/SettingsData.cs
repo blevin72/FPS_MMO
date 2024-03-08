@@ -59,4 +59,9 @@ public class SettingsData : MonoBehaviour
     public string emails_seasonEvents;
     public string emails_specialEvents;
     public string emails_newsletters;
+
+    //Survivor Ranking Script
+    public string level;
+    public string exp;
+    //public string outpost_ranking; OUTPOSTS NOT SET UP YET
 }
