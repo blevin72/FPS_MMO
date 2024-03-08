@@ -28,18 +28,6 @@ public class CreateScene_Manager : MonoBehaviour
         StartCoroutine(savedCharacters.RetrieveSavedCharacters());
     }
 
-    private void SetUI()
-    {
-        nameCharacterCanvas.enabled = false;
-        characterCustomizationCanvas.enabled = false;
-        createCharacterButton.interactable = false;
-        loadCharacterButton.interactable = false;
-        highlighter_1.enabled = false;
-        highlighter_2.enabled = false;
-        highlighter_3.enabled = false;
-        highlighter_4.enabled = false;
-    }
-
     //Button methods
     #region
     public void CreateCharacterButton()
@@ -52,6 +40,7 @@ public class CreateScene_Manager : MonoBehaviour
 
     public void LoadCharacterButton()
     {
+        AssignCharacterID();
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
@@ -66,6 +55,18 @@ public class CreateScene_Manager : MonoBehaviour
 
     //UI methods
     #region
+    private void SetUI()
+    {
+        nameCharacterCanvas.enabled = false;
+        characterCustomizationCanvas.enabled = false;
+        createCharacterButton.interactable = false;
+        loadCharacterButton.interactable = false;
+        highlighter_1.enabled = false;
+        highlighter_2.enabled = false;
+        highlighter_3.enabled = false;
+        highlighter_4.enabled = false;
+    }
+
     public void AssignHighligther(Image highlighter)
     {
         chosenHighlighter = highlighter;
@@ -99,8 +100,10 @@ public class CreateScene_Manager : MonoBehaviour
     }
     #endregion
 
-    //private void AssignCharacterID(TextMeshProUGUI characterName)
-    //{
+    internal int characterID;
 
-    //}
+    private void AssignCharacterID()
+    {
+        characterID = characterSlot;
+    }
 }

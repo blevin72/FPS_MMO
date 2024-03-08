@@ -9,13 +9,14 @@ public class SurvivorRanking : MonoBehaviour
     public TextMeshProUGUI survivorLevel;
     public TextMeshProUGUI outpostRanking; //not currently in use
     public TextMeshProUGUI experience;
+    public CreateScene_Manager createScene_Manager;
 
     private string loadSurvivorRankingsURL = "http://localhost:8888/sqlconnect/survivorRankings.php?action=get_settings";
 
     //called in UI_MainMenu Script --> Region: Main Menu --> OnSurvivorButtonClick()
     internal IEnumerator LoadSurvivorRankings()
     {
-        string getRequestURL = loadSurvivorRankingsURL + "&characterID=" + DB_Manager.characterID;
+        string getRequestURL = loadSurvivorRankingsURL + "&characterID=" + createScene_Manager.characterID;
         Debug.Log("Character ID: " + DB_Manager.characterID);
         UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
         yield return www.SendWebRequest();
