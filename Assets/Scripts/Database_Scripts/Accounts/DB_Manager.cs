@@ -10,6 +10,8 @@ public static class DB_Manager
 
     public static int characterID;
 
+    public static int characterSlot;
+
     public static bool LoggedIn { get { return email != null; } }
 
     public static void LogOut()

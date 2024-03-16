@@ -3,9 +3,15 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _GameManager;
+
     public static GameManager instance;
 
-    public MatchSettings matchSettings;
+    internal MatchSettings matchSettings;
+
+    internal int loadedCharacter; /*assigned a value in the CharacterScene_Manager script --> Load Character Button --> value = the slot
+                                   (1-4) the player chooses from the Select Character Canvas*/
 
     private void Awake()
     {
@@ -16,6 +22,7 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(_GameManager);
         }
     }
 
