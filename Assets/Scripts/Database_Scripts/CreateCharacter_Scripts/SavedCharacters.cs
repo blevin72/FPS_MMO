@@ -9,6 +9,7 @@ public class SavedCharacters : MonoBehaviour
     public TextMeshProUGUI[] characterOutpost;
     public TextMeshProUGUI[] characterLevel;
     public TextMeshProUGUI[] characterClass;
+    public TextMeshProUGUI[] characterID;
     //public TextMeshProUGUI[] outpostRanking;
     //public TextMeshProUGUI[] outpostReputation;
     //public TextMeshProUGUI[] divisionProgress;
@@ -51,14 +52,15 @@ public class SavedCharacters : MonoBehaviour
                     UpdateOutpost(i, characterData);
                     UpdateLevel(i, characterData);
                     UpdateClass(i, characterData);
+                    UpdateCharacterID(i, characterData);       
                 }
 
                 Debug.Log("Character retrieval successful");
             }
-            //else
-            //{
-            //    Debug.Log("No characters found for the given accountID");
-            //}
+            else
+            {
+                Debug.Log("No characters found for the given accountID");
+            }
         }
     }
 
@@ -68,10 +70,11 @@ public class SavedCharacters : MonoBehaviour
 
         for (int i = 0; i < characterName.Length; i++)
         {
-            form.AddField("character_name_" + i, characterName[i].text);
-            form.AddField("outpost_name_" + i, characterOutpost[i].text);
-            form.AddField("level_" + i, characterLevel[i].text);
-            form.AddField("classID_" + i, characterClass[i].text);
+            form.AddField("character_name" + i, characterName[i].text);
+            form.AddField("outpost_name" + i, characterOutpost[i].text);
+            form.AddField("level" + i, characterLevel[i].text);
+            form.AddField("classID" + i, characterClass[i].text);
+            form.AddField("characterID" + i, characterID[i].text);           
         }
     }
 
@@ -134,6 +137,18 @@ public class SavedCharacters : MonoBehaviour
         else
         {
             characterClass[i].text = null;
+        }
+    }
+
+    private void UpdateCharacterID(int i, string[] characterData)
+    {
+        if(characterData.Length > 2)
+        {
+            characterID[i].text = characterData[4];
+        }
+        else
+        {
+            characterID[i].text = null;
         }
     }
 }

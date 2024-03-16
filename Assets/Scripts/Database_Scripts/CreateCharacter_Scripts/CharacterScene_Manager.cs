@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class CreateScene_Manager : MonoBehaviour
 {
@@ -21,11 +20,14 @@ public class CreateScene_Manager : MonoBehaviour
     private Image chosenHighlighter;
     public CreateCharacter createCharacter; //referencing CreateCharacter class for SaveCharacterDetials() in ConfirmNameButton()
     public SavedCharacters savedCharacters; //referencing SavedCharacter class for RetrieveSavedCharacter() in Start()
+    internal GameManager gameManager; //referencing GameManager class for the LoadCharacterButton()
+    internal int characterSlot; //1-4 which panel the character is being assigned to when created/loaded
 
     private void Start()
     {
         SetUI();
         StartCoroutine(savedCharacters.RetrieveSavedCharacters());
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     //Button methods
@@ -40,7 +42,8 @@ public class CreateScene_Manager : MonoBehaviour
 
     public void LoadCharacterButton()
     {
-        AssignCharacterID();
+        gameManager.loadedCharacter = characterSlot; /*assigning the value of characterSlot in the AssignCharacterSlot() to the variable
+                                                      loadedCharacter variable in the GameManager class*/
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
@@ -51,6 +54,7 @@ public class CreateScene_Manager : MonoBehaviour
         characterUIs.SetActive(true);
         StartCoroutine(createCharacter.SaveCharacterDetails());
     }
+
     #endregion
 
     //UI methods
@@ -72,12 +76,10 @@ public class CreateScene_Manager : MonoBehaviour
         chosenHighlighter = highlighter;
     }
 
-    internal int characterSlot; //1-4 which panel the character is being assigned to when created/loaded
-
     public void AssignCharacterSlot(int slot)
     {
         characterSlot = slot;
-        Debug.Log("Chracter Slot assigned: " + slot);
+        Debug.Log("Chracter Slot assigned: " + characterSlot);
 
         if (createCharacterButton.interactable == false)
         {
@@ -99,11 +101,4 @@ public class CreateScene_Manager : MonoBehaviour
         }
     }
     #endregion
-
-    internal int characterID;
-
-    private void AssignCharacterID()
-    {
-        characterID = characterSlot;
-    }
 }

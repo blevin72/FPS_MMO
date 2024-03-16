@@ -9,15 +9,21 @@ public class SurvivorRanking : MonoBehaviour
     public TextMeshProUGUI survivorLevel;
     public TextMeshProUGUI outpostRanking; //not currently in use
     public TextMeshProUGUI experience;
-    public CreateScene_Manager createScene_Manager;
 
-    private string loadSurvivorRankingsURL = "http://localhost:8888/sqlconnect/survivorRankings.php?action=get_settings";
+    public GameManager gameManager; //references the GameManager class
+
+    private string loadSurvivorRankingsURL = "http://localhost:8888/sqlconnect/survivorRanking.php?action=get_character";
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>(); //ensures the GameManager instance is located
+    }
 
     //called in UI_MainMenu Script --> Region: Main Menu --> OnSurvivorButtonClick()
     internal IEnumerator LoadSurvivorRankings()
     {
-        string getRequestURL = loadSurvivorRankingsURL + "&characterID=" + createScene_Manager.characterID;
-        Debug.Log("Character ID: " + DB_Manager.characterID);
+        string getRequestURL = loadSurvivorRankingsURL + "&characterID=" + gameManager.loadedCharacter;
+
         UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
         yield return www.SendWebRequest();
 
@@ -30,9 +36,14 @@ public class SurvivorRanking : MonoBehaviour
 
             //Get values from TMP values
             SetTextValue(survivorLevel, settingsData.level);
+            Debug.Log("Survivor Level is: " + settingsData.level);
             //SetTextValue(outpostRanking, settingsData.outpost_ranking); OUTPOSTS NOT CURRENTLY SET UP YET
             SetTextValue(experience, settingsData.exp);
-
+            Debug.Log("Survivor Experience is: " + settingsData.exp);
+        }
+        else
+        {
+            Debug.LogError("UnityWebRequest failed: " + www.error);
         }
     }
 

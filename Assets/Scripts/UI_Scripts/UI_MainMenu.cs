@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UIMainMenu : MonoBehaviour
 {
+    public GameManager gameManager;
 //Canvas'
     public Canvas titleMenuCanvas;
     public Canvas settingsCanvas;
@@ -49,6 +50,8 @@ public class UIMainMenu : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>(); //ensures the GameManager script persists through the scene
+
         //add false for each panel
         titleMenuCanvas.enabled = true;
         settingsCanvas.enabled = false;
@@ -90,8 +93,8 @@ public class UIMainMenu : MonoBehaviour
 
     }
 
-    //Main Menu Canvas
-    #region
+//Main Menu Canvas
+#region
     public SurvivorRanking survivorRanking; //referencing Survivor Ranking script for LoadSurvivorRanking()
 
     public void OnSettingsButtonClick()
