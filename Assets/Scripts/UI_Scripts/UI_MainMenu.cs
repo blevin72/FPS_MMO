@@ -114,7 +114,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnSurvivorButtonClick()
     {
-        StartCoroutine(survivorRanking.LoadSurvivorRankings());
+        survivorRanking.LoadSurvivorRankings();
         titleMenuCanvas.enabled = false;
         survivorCanvas.enabled = true;
         tabsPanel.active = true;
