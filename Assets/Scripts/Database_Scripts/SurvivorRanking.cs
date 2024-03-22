@@ -6,20 +6,41 @@ using Newtonsoft.Json;
 
 public class SurvivorRanking : MonoBehaviour
 {
+    //Survivor Ranking TMP Objects
     public TextMeshProUGUI survivorLevel;
-    public TextMeshProUGUI outpostRanking; //not currently in use
+    public TextMeshProUGUI outpostRanking;
     public TextMeshProUGUI experience;
+
+
+    //Survivor Stats TMP Objects
+    public TextMeshProUGUI strengthPoints;
+    public TextMeshProUGUI dexterityPoints;
+    public TextMeshProUGUI intellectPoints;
+    public TextMeshProUGUI endurancePoints;
+    public TextMeshProUGUI charmPoints;
+    public TextMeshProUGUI stealthPoints;
+    public TextMeshProUGUI maximumHealth;
+    public TextMeshProUGUI maximumStamina;
+    public TextMeshProUGUI totalProtection;
+    public TextMeshProUGUI experienceBoost;
+
 
     public GameManager gameManager; //references the GameManager class
 
-    private string loadSurvivorRankingsURL = "http://localhost:8888/sqlconnect/survivorRanking.php?action=get_character";
+
+    //PHP URL's
+    private string loadSurvivorRankingsURL = "http://localhost:8888/sqlconnect/survivorRanking.php?action=get_characterRanking";
+    private string loadSurvivorStatsURL = "http://localhost:8888/sqlconnect/survivorRanking.php?action=get_characterStas";
+
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>(); //ensures the GameManager instance is located
     }
 
-    //called in UI_MainMenu Script --> Region: Main Menu --> OnSurvivorButtonClick()
+
+    /*called in UI_MainMenu Script --> Region: Main Menu --> OnSurvivorButtonClick()
+     Loads the survivor ranking panel (top right corner of Survivor Canvas*/
     internal IEnumerator LoadSurvivorRankings()
     {
         string getRequestURL = loadSurvivorRankingsURL + "&characterID=" + gameManager.loadedCharacter;
@@ -36,10 +57,18 @@ public class SurvivorRanking : MonoBehaviour
 
             //Get values from TMP values
             SetTextValue(survivorLevel, settingsData.level);
-            Debug.Log("Survivor Level is: " + settingsData.level);
-            //SetTextValue(outpostRanking, settingsData.outpost_ranking); OUTPOSTS NOT CURRENTLY SET UP YET
+            SetTextValue(outpostRanking, settingsData.outpost_ranking);
             SetTextValue(experience, settingsData.exp);
-            Debug.Log("Survivor Experience is: " + settingsData.exp);
+            SetTextValue(strengthPoints, settingsData.strength);
+            SetTextValue(dexterityPoints, settingsData.dexterity);
+            SetTextValue(intellectPoints, settingsData.intellect);
+            SetTextValue(endurancePoints, settingsData.endurance);
+            SetTextValue(charmPoints, settingsData.charm);
+            SetTextValue(stealthPoints, settingsData.stealth);
+            SetTextValue(maximumHealth, settingsData.total_health);
+            SetTextValue(maximumStamina, settingsData.total_stamina);
+            SetTextValue(totalProtection, settingsData.total_protection);
+            SetTextValue(experienceBoost, settingsData.total_progression);
         }
         else
         {

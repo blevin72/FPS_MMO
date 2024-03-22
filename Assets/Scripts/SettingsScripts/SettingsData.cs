@@ -63,5 +63,15 @@ public class SettingsData : MonoBehaviour
     //Survivor Ranking Script
     public string level;
     public string exp;
-    //public string outpost_ranking; OUTPOSTS NOT SET UP YET
+    public string outpost_ranking;
+    public string strength;
+    public string dexterity;
+    public string intellect;
+    public string endurance;
+    public string charm;
+    public string stealth;
+    public string total_health;
+    public string total_stamina;
+    public string total_protection;
+    public string total_progression;
 }

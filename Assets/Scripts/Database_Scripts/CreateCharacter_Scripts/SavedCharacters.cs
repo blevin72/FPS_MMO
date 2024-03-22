@@ -10,6 +10,8 @@ public class SavedCharacters : MonoBehaviour
     public TextMeshProUGUI[] characterLevel;
     public TextMeshProUGUI[] characterClass;
     public TextMeshProUGUI[] characterID;
+    public TextMeshProUGUI[] divisionProgress;
+    internal string loadedCharacterID;
     //public TextMeshProUGUI[] outpostRanking;
     //public TextMeshProUGUI[] outpostReputation;
     //public TextMeshProUGUI[] divisionProgress;
@@ -112,27 +114,25 @@ public class SavedCharacters : MonoBehaviour
 
     private void UpdateClass(int i, string[] characterData)
     {
-        if (characterData.Length > 3) // Check if characterData is not empty
+        if (characterData.Length > 3)
         {
-            if (characterData.Length >= 4)
+            if (characterData[3] == "1")
             {
-                if (characterData[3] == "1")
-                {
-                    characterClass[i].text = "Scout";
-                }
-                else if (characterData[3] == "2")
-                {
-                    characterClass[i].text = "Medic";
-                }
-                else if (characterData[3] == "3")
-                {
-                    characterClass[i].text = "Fighter";
-                }
-                else if (characterData[3] == "4")
-                {
-                    characterClass[i].text = "Engineer";
-                }
+                characterClass[i].text = "Scout";
             }
+            else if (characterData[3] == "2")
+            {
+                characterClass[i].text = "Medic";
+            }
+            else if (characterData[3] == "3")
+            {
+                characterClass[i].text = "Fighter";
+            }
+            else if (characterData[3] == "4")
+            {
+                characterClass[i].text = "Engineer";
+            }
+            
         }
         else
         {
@@ -142,13 +142,35 @@ public class SavedCharacters : MonoBehaviour
 
     private void UpdateCharacterID(int i, string[] characterData)
     {
-        if(characterData.Length > 2)
+        if(characterData.Length > 4)
         {
             characterID[i].text = characterData[4];
+            loadedCharacterID = characterID[i].text;
         }
         else
         {
             characterID[i].text = null;
         }
     }
+
+    //NOT ACTIVE YET
+    //private void UpdateDivisionProgress(int i, string[] characterData)
+    //{
+    //    if (characterData.Length > 5) // Check if characterData has at least 2 elements
+    //    {
+    //        if (string.IsNullOrEmpty(characterData[1]))
+    //        {
+    //            divisionProgress[i].text = "Coming Soon";
+    //        }
+    //        else
+    //        {
+    //            divisionProgress[i].text = characterData[5];
+    //        }
+    //    }
+    //    else
+    //    {
+    //        // Handle the case where characterData doesn't have enough elements
+    //        divisionProgress[i].text = null;
+    //    }
+    //}
 }

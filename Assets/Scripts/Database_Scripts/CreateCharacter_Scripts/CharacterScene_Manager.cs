@@ -42,8 +42,16 @@ public class CreateScene_Manager : MonoBehaviour
 
     public void LoadCharacterButton()
     {
-        gameManager.loadedCharacter = characterSlot; /*assigning the value of characterSlot in the AssignCharacterSlot() to the variable
-                                                      loadedCharacter variable in the GameManager class*/
+        int loadedCharacterID;
+        if (int.TryParse(savedCharacters.loadedCharacterID, out loadedCharacterID))
+        {
+            gameManager.loadedCharacter = loadedCharacterID;
+        }
+        else
+        {
+            Debug.LogError("Failed to parse loadedCharacterID: " + savedCharacters.loadedCharacterID);
+        }
+
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
@@ -79,7 +87,6 @@ public class CreateScene_Manager : MonoBehaviour
     public void AssignCharacterSlot(int slot)
     {
         characterSlot = slot;
-        Debug.Log("Chracter Slot assigned: " + characterSlot);
 
         if (createCharacterButton.interactable == false)
         {
