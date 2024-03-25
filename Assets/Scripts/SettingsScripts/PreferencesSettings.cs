@@ -45,9 +45,8 @@ public class PreferencesSettings : MonoBehaviour
         gameTips.isOn = true;
     }
 
-    public void SaveSocialSettingsButton()
+    public void SaveSocialSettingsButton() //change this to SavePreferencesSettingsButton()
     {
-        Debug.Log("Saved all audio settings");
         StartCoroutine(SavePreferencesSettings());
     }
 

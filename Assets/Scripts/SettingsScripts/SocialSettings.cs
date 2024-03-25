@@ -34,7 +34,6 @@ public class SocialSettings : MonoBehaviour
 
     public void SaveSocialSettingsButton()
     {
-        Debug.Log("Saved all audio settings");
         StartCoroutine(SaveSocialSettings());
     }
 

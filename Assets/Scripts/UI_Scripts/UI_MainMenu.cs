@@ -95,7 +95,7 @@ public class UIMainMenu : MonoBehaviour
 
 //Main Menu Canvas
 #region
-    public SurvivorRanking survivorRanking; //referencing Survivor Ranking script for LoadSurvivorRanking()
+    public LoadSurvivor loadSurvivor; //referencing Survivor Ranking script for LoadSurvivorRanking()
 
     public void OnSettingsButtonClick()
     {
@@ -114,7 +114,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnSurvivorButtonClick()
     {
-        survivorRanking.LoadSurvivorRankings();
+        StartCoroutine(loadSurvivor.LoadSurvivorRankings());
         titleMenuCanvas.enabled = false;
         survivorCanvas.enabled = true;
         tabsPanel.active = true;
