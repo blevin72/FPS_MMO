@@ -74,4 +74,5 @@ public class SettingsData : MonoBehaviour
     public string total_stamina;
     public string total_protection;
     public string total_progression;
+    public string skill_points;
 }

@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     internal MatchSettings matchSettings;
 
-    internal int loadedCharacter; /*assigned a value in the CharacterScene_Manager script --> Load Character Button --> value = the slot
-                                   (1-4) the player chooses from the Select Character Canvas*/
+    internal int loadedCharacter; /*assigned a value in the CharacterScene_Manager script --> Load Character Button --> value = the ID #
+                                   within the character slot*/
 
     private void Awake()
     {
