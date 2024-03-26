@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CreateScene_Manager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class CreateScene_Manager : MonoBehaviour
     public SavedCharacters savedCharacters; //referencing SavedCharacter class for RetrieveSavedCharacter() in Start()
     internal GameManager gameManager; //referencing GameManager class for the LoadCharacterButton()
     internal int characterSlot; //1-4 which panel the character is being assigned to when created/loaded
+    internal int loadedCharacterID; //assigned when a player selects a Character Slot
 
     private void Start()
     {
@@ -41,16 +43,8 @@ public class CreateScene_Manager : MonoBehaviour
     }
 
     public void LoadCharacterButton()
-    {
-        int loadedCharacterID;
-        if (int.TryParse(savedCharacters.loadedCharacterID, out loadedCharacterID))
-        {
-            gameManager.loadedCharacter = loadedCharacterID;
-        }
-        else
-        {
-            Debug.LogError("Failed to parse loadedCharacterID: " + savedCharacters.loadedCharacterID);
-        }
+    {        
+        gameManager.loadedCharacter = loadedCharacterID;       
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
@@ -105,6 +99,18 @@ public class CreateScene_Manager : MonoBehaviour
         else
         {
             loadCharacterButton.interactable = false;
+        }
+    }
+
+    public void SelectedCharacterID(TextMeshProUGUI characterID)
+    {
+        if (int.TryParse(characterID.text, out int parsedCharacterID))
+        {
+            loadedCharacterID = parsedCharacterID;
+        }
+        else
+        {
+            Debug.LogError("Failed to parse characterID: " + characterID.text);
         }
     }
     #endregion

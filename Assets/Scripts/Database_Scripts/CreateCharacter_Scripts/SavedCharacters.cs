@@ -11,7 +11,7 @@ public class SavedCharacters : MonoBehaviour
     public TextMeshProUGUI[] characterClass;
     public TextMeshProUGUI[] characterID;
     public TextMeshProUGUI[] divisionProgress;
-    internal string loadedCharacterID;
+    //internal string loadedCharacterID;
     //public TextMeshProUGUI[] outpostRanking;
     //public TextMeshProUGUI[] outpostReputation;
     //public TextMeshProUGUI[] divisionProgress;
@@ -145,7 +145,6 @@ public class SavedCharacters : MonoBehaviour
         if(characterData.Length > 4)
         {
             characterID[i].text = characterData[4];
-            loadedCharacterID = characterID[i].text;
         }
         else
         {

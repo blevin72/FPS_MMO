@@ -100,7 +100,7 @@ public class LoadSurvivor : MonoBehaviour
         // Create a WWWForm to send data to the PHP script
         WWWForm form = new WWWForm();
 
-        form.AddField("characterID", DB_Manager.characterID);
+        form.AddField("characterID", gameManager.loadedCharacter);
         form.AddField("strength", int.Parse(strengthPoints.text)); //remember to convert to int (TMP is string, columns in DB are Int's)
         form.AddField("dexterity", int.Parse(dexterityPoints.text));
         form.AddField("intellect", int.Parse(intellectPoints.text));
