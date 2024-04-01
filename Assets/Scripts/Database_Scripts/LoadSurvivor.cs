@@ -140,7 +140,7 @@ public class LoadSurvivor : MonoBehaviour
         }
     }
 
-    private void SetTextValue(TextMeshProUGUI tmpComponent, string value)
+    internal void SetTextValue(TextMeshProUGUI tmpComponent, string value)
     {
         if(tmpComponent != null)
         {

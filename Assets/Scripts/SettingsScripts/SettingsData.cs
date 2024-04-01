@@ -75,4 +75,23 @@ public class SettingsData : MonoBehaviour
     public string total_protection;
     public string total_progression;
     public string skill_points;
+
+    //Item Description Script
+    public string gearName;
+    public string gearWeight;
+    public string protectionModifier;
+    public string immunityModifier;
+    public string speedModifier;
+    public string agroModifier;
+    public string staminaModifier;
+    public string meleeModifier;
+    public string craftModifier;
+    public string illuminateFOV;
+    public string batteryLifeMin;
+    public string rarity;
+    public string durability;
+    public string itemName;
+    public string itemDescription;
+    public string itemProperties_1;
+    public string itemProperties_2;
 }
