@@ -159,6 +159,14 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    //private IEnumerator SaveEquippedGear()
+    //{
+    //    // Create a WWWForm to send data to the PHP script
+    //    WWWForm form = new WWWForm();
+
+    //    form.AddField()
+    //}
+
     //reset Gear Description Panel (needed to make sure overlapping stats don't stay on the panel when switching btwn items)
     private void ResetGearDescriptionPanel()
     {

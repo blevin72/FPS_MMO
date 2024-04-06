@@ -11,7 +11,6 @@ public class LoadSurvivor : MonoBehaviour
     public TextMeshProUGUI outpostRanking;
     public TextMeshProUGUI experience;
 
-
     //Survivor Stats TMP Objects
     public TextMeshProUGUI strengthPoints;
     public TextMeshProUGUI dexterityPoints;
@@ -35,6 +34,9 @@ public class LoadSurvivor : MonoBehaviour
     public TextMeshProUGUI maximumStaminaMain;
     public TextMeshProUGUI totalProtectionMain;
     public TextMeshProUGUI experienceBoostMain;
+
+    public TextMeshProUGUI characterName;
+    public TextMeshProUGUI characterNameStatsPanel;
 
     public GameManager gameManager; //references the GameManager class
     //public SyncMainStats syncMainStats; //refernces SyncMainStats clas; needed to Match stats from Main Panel to Stats Panel
@@ -86,6 +88,7 @@ public class LoadSurvivor : MonoBehaviour
             SetTextValue(totalProtection, settingsData.total_protection);
             SetTextValue(experienceBoost, settingsData.total_progression);
             //SetTextValue(skillPoints, settingsData.skill_points); OFF for testing
+            SetTextValue(characterName, settingsData.character_name);
             MatchStats();
         }
         else
@@ -165,5 +168,6 @@ public class LoadSurvivor : MonoBehaviour
         maximumStaminaMain.text = maximumStamina.text;
         totalProtectionMain.text = totalProtection.text;
         experienceBoostMain.text = experienceBoost.text;
+        characterNameStatsPanel.text = characterName.text;
     }
 }

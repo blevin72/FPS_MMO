@@ -75,6 +75,7 @@ public class SettingsData : MonoBehaviour
     public string total_protection;
     public string total_progression;
     public string skill_points;
+    public string character_name;
 
     //Item Description Script
     public string gearName;
