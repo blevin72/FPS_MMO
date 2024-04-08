@@ -96,6 +96,7 @@ public class UIMainMenu : MonoBehaviour
 //Main Menu Canvas
 #region
     public LoadSurvivor loadSurvivor; //referencing Survivor Ranking script for LoadSurvivorRanking()
+    public EquippedGear equippedGear; //referencing Equipped Gear script for SaveEquippedGear()
 
     public void OnSettingsButtonClick()
     {
@@ -115,6 +116,7 @@ public class UIMainMenu : MonoBehaviour
     public void OnSurvivorButtonClick()
     {
         StartCoroutine(loadSurvivor.LoadSurvivorRankings());
+        StartCoroutine(equippedGear.SaveEquippedGear());
         titleMenuCanvas.enabled = false;
         survivorCanvas.enabled = true;
         tabsPanel.active = true;

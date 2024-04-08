@@ -28,8 +28,6 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public TextMeshProUGUI itemProperties_1;
     public TextMeshProUGUI itemProperties_2;
     public TextMeshProUGUI[] gearStats;
-    //public TextMeshProUGUI gearStat_5;
-    //public TextMeshProUGUI gearStat_6;
 
     public LoadSurvivor loadSurvivor; //reference to LoadSurvivor class (needed for SetTextValue())
 
@@ -158,14 +156,6 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             Debug.LogError("UnityWebRequest failed: " + www.error);
         }
     }
-
-    //private IEnumerator SaveEquippedGear()
-    //{
-    //    // Create a WWWForm to send data to the PHP script
-    //    WWWForm form = new WWWForm();
-
-    //    form.AddField()
-    //}
 
     //reset Gear Description Panel (needed to make sure overlapping stats don't stay on the panel when switching btwn items)
     private void ResetGearDescriptionPanel()
