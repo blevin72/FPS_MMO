@@ -95,4 +95,7 @@ public class SettingsData : MonoBehaviour
     public string itemDescription;
     public string itemProperties_1;
     public string itemProperties_2;
+
+    //Equipped Gear Script
+    public string totalWeight;
 }

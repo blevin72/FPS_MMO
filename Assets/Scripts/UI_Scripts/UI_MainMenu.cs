@@ -117,6 +117,7 @@ public class UIMainMenu : MonoBehaviour
     {
         StartCoroutine(loadSurvivor.LoadSurvivorRankings());
         StartCoroutine(equippedGear.SaveEquippedGear());
+        StartCoroutine(equippedGear.SetGearWeight());
         titleMenuCanvas.enabled = false;
         survivorCanvas.enabled = true;
         tabsPanel.active = true;
