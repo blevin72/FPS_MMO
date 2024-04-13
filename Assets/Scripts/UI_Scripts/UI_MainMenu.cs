@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class UIMainMenu : MonoBehaviour
 {
@@ -97,6 +98,7 @@ public class UIMainMenu : MonoBehaviour
 #region
     public LoadSurvivor loadSurvivor; //referencing Survivor Ranking script for LoadSurvivorRanking()
     public EquippedGear equippedGear; //referencing Equipped Gear script for SaveEquippedGear()
+    public GearBonuses gearBonuses; //referencing Gear Bonuses script for ApplyGearBonuses()
 
     public void OnSettingsButtonClick()
     {
@@ -115,19 +117,34 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnSurvivorButtonClick()
     {
-        StartCoroutine(loadSurvivor.LoadSurvivorRankings());
-        StartCoroutine(equippedGear.SaveEquippedGear());
-        StartCoroutine(equippedGear.SetGearWeight());
+        StartCoroutine(LoadSurvivorAndApplyGearBonuses());
         titleMenuCanvas.enabled = false;
         survivorCanvas.enabled = true;
         tabsPanel.active = true;
         survivorRankingPanel.active = true;
         survivorMainPanel.active = true;
     }
+
+    //Need this to ensure each Coroutine runs and finishes prior to the next one starting
+    private IEnumerator LoadSurvivorAndApplyGearBonuses()
+    {
+        // Load survivor rankings and wait until it's done
+        yield return StartCoroutine(loadSurvivor.LoadSurvivorRankings());
+
+        // Save equipped gear and wait until it's done
+        yield return StartCoroutine(equippedGear.SaveEquippedGear());
+
+        // Set gear weight and wait until it's done
+        yield return StartCoroutine(equippedGear.SetGearWeight());
+
+        // Apply gear bonuses
+        StartCoroutine(gearBonuses.ApplyGearBonuses());
+
+    }
     #endregion
 
-//Survivor Canvas
-#region
+    //Survivor Canvas
+    #region
     public void OnMainButtonClick()
     {
         survivorMainPanel.active = true;

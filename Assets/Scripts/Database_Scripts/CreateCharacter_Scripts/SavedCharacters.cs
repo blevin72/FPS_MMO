@@ -56,8 +56,6 @@ public class SavedCharacters : MonoBehaviour
                     UpdateClass(i, characterData);
                     UpdateCharacterID(i, characterData);       
                 }
-
-                Debug.Log("Character retrieval successful");
             }
             else
             {
