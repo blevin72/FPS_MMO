@@ -40,8 +40,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject buyPanel;
     public GameObject sellPanel;
     public GameObject barterPanel;
-    public GameObject survivorMainPanel;
-    public GameObject survivorStatsPanel;
+    public GameObject survivorPanel;
     public GameObject survivorSkillPanel;
     public GameObject missionAbilitiesPanel;
     public GameObject tabsPanel;
@@ -85,8 +84,7 @@ public class UIMainMenu : MonoBehaviour
         buyPanel.active = false;
         sellPanel.active = false;
         barterPanel.active = false;
-        survivorMainPanel.active = false;
-        survivorStatsPanel.active = false;
+        survivorPanel.active = false;
         survivorSkillPanel.active = false;
         missionAbilitiesPanel.active = false;
         tabsPanel.active = false;
@@ -122,7 +120,7 @@ public class UIMainMenu : MonoBehaviour
         survivorCanvas.enabled = true;
         tabsPanel.active = true;
         survivorRankingPanel.active = true;
-        survivorMainPanel.active = true;
+        survivorPanel.active = true;
     }
 
     //Need this to ensure each Coroutine runs and finishes prior to the next one starting
@@ -138,32 +136,29 @@ public class UIMainMenu : MonoBehaviour
         yield return StartCoroutine(equippedGear.SetGearWeight());
 
         // Apply gear bonuses
-        StartCoroutine(gearBonuses.ApplyGearBonuses());
+        gearBonuses.ApplyAllBonuses();
 
     }
     #endregion
 
-    //Survivor Canvas
-    #region
+//Survivor Canvas
+#region
     public void OnMainButtonClick()
     {
-        survivorMainPanel.active = true;
-        survivorStatsPanel.active = false;
+        survivorPanel.active = true;
         survivorSkillPanel.active = false;
     }
 
     public void OnStatsButtonClick()
     {
-        survivorStatsPanel.active = true;
-        survivorMainPanel.active = false;
+        survivorPanel.active = true;
         survivorSkillPanel.active = false;
     }
 
     public void OnSkillTreeButtonClick()
     {
         survivorSkillPanel.active = true;
-        survivorStatsPanel.active = false;
-        survivorMainPanel.active = false;
+        survivorPanel.active = false;
     }
 
     public void OnMissionAbilityButtonClick()

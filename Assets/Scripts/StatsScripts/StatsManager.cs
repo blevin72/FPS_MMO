@@ -1,96 +1,53 @@
 using UnityEngine;
-
+using TMPro;
 public class StatsManager : MonoBehaviour
 {
     public GameObject strengthStats;
-    public GameObject strengthAdvStats;
+    public GameObject advStrengthStats;
     public GameObject dexterityStats;
-    public GameObject dexterityAdvStats;
-    public GameObject intelectStats;
-    public GameObject intelectAdvStats;
+    public GameObject advDexterityStats;
+    public GameObject intellectStats;
+    public GameObject advIntellectStats;
     public GameObject enduranceStats;
-    public GameObject enduranceAdvStats;
+    public GameObject advEnduranceStats;
     public GameObject charmStats;
-    public GameObject charmAdvStats;
+    public GameObject advCharmStats;
     public GameObject stealthStats;
-    public GameObject stealthAdvStats;
+    public GameObject advStealthStats;
 
-    private Stamina_HP_Exp stamina_HP_Exp;
-    public SyncMainStats syncMainStats;
-    private SyncAdvStats syncAdvStats;
-    public DistributePoints distributePoints;
-    
-
-    //set all stats to active and all advanced stats to inactive
-    void Start()
+    public void StrengthStatsSwitch()
     {
-        SetStatsUI();
-        GetComponents();
+        strengthStats.SetActive(!strengthStats.activeSelf);
+        advStrengthStats.SetActive(!advStrengthStats.activeSelf);
     }
 
-    public void SetStatsUI()
+    public void DexterityStatsSwitch()
     {
-        strengthStats.active = true;
-        strengthAdvStats.active = false;
-        dexterityStats.active = true;
-        dexterityAdvStats.active = false;
-        intelectStats.active = true;
-        intelectAdvStats.active = false;
-        enduranceStats.active = true;
-        enduranceAdvStats.active = false;
-        charmStats.active = true;
-        charmAdvStats.active = false;
-        stealthStats.active = true;
-        stealthAdvStats.active = false;
+        dexterityStats.SetActive(!dexterityStats.activeSelf);
+        advDexterityStats.SetActive(!advDexterityStats.activeSelf);
     }
 
-    public void GetComponents()
+    public void IntellectStatsSwitch()
     {
-        stamina_HP_Exp = GetComponent<Stamina_HP_Exp>();
-        distributePoints = GetComponent<DistributePoints>();
-        syncMainStats = GetComponent<SyncMainStats>();
-        syncAdvStats = GetComponent<SyncAdvStats>();
-        stamina_HP_Exp.SetHealthStaminaExp(syncAdvStats.advEnduranceStats, syncAdvStats.advIntellectStats);
-        stamina_HP_Exp.SynchronizeAttributes();
+        intellectStats.SetActive(!intellectStats.activeSelf);
+        advIntellectStats.SetActive(!advIntellectStats.activeSelf);
     }
 
-
-    //toggle between main stats & advanced stats
-    #region
-    public void ToggleStatsVisibility(GameObject stats, GameObject advStats)
+    public void EnduranceStatsSwitch()
     {
-        stats.SetActive(!stats.activeSelf);
-        advStats.SetActive(!advStats.activeSelf);
+        enduranceStats.SetActive(!enduranceStats.activeSelf);
+        advEnduranceStats.SetActive(!advEnduranceStats.activeSelf);
     }
 
-    public void StrengthIconClick()
+    public void CharmStatsSwitch()
     {
-        ToggleStatsVisibility(strengthStats, strengthAdvStats);
+        charmStats.SetActive(!charmStats.activeSelf);
+        advCharmStats.SetActive(!advCharmStats.activeSelf);
     }
 
-    public void DexterityIconClick()
+    public void StealthStatsSwitch()
     {
-        ToggleStatsVisibility(dexterityStats, dexterityAdvStats);
+        stealthStats.SetActive(!stealthStats.activeSelf);
+        advStealthStats.SetActive(!advStealthStats.activeSelf);
     }
-
-    public void IntellectIconClick()
-    {
-        ToggleStatsVisibility(intelectStats, intelectAdvStats);
-    }
-
-    public void EnduranceIconClick()
-    {
-        ToggleStatsVisibility(enduranceStats, enduranceAdvStats);
-    }
-
-    public void CharmIconClick()
-    {
-        ToggleStatsVisibility(charmStats, charmAdvStats);
-    }
-
-    public void StealthIconClick()
-    {
-        ToggleStatsVisibility(stealthStats, stealthAdvStats);
-    }
-#endregion
 }

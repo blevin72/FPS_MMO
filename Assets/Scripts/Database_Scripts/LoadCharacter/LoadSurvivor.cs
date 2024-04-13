@@ -22,25 +22,11 @@ public class LoadSurvivor : MonoBehaviour
     public TextMeshProUGUI maximumStamina;
     public TextMeshProUGUI totalProtection;
     public TextMeshProUGUI experienceBoost;
-    public TextMeshProUGUI skillPoints;
-
-    public TextMeshProUGUI strengthPointsMain;
-    public TextMeshProUGUI dexterityPointsMain;
-    public TextMeshProUGUI intellectPointsMain;
-    public TextMeshProUGUI endurancePointsMain;
-    public TextMeshProUGUI charmPointsMain;
-    public TextMeshProUGUI stealthPointsMain;
-    public TextMeshProUGUI maximumHealthMain;
-    public TextMeshProUGUI maximumStaminaMain;
-    public TextMeshProUGUI totalProtectionMain;
-    public TextMeshProUGUI experienceBoostMain;
+    //public TextMeshProUGUI skillPoints; NEED TO READD UI SINCE DELETING SURVIVOR STATS PANEL
 
     public TextMeshProUGUI characterName;
-    public TextMeshProUGUI characterNameStatsPanel;
 
     public GameManager gameManager; //references the GameManager class
-    //public SyncMainStats syncMainStats; //refernces SyncMainStats clas; needed to Match stats from Main Panel to Stats Panel
-
 
     //PHP URL's
     private string loadSurvivorRankingsURL = "http://localhost:8888/sqlconnect/survivorRanking.php?action=get_characterStats";
@@ -89,7 +75,6 @@ public class LoadSurvivor : MonoBehaviour
             SetTextValue(experienceBoost, settingsData.total_progression);
             //SetTextValue(skillPoints, settingsData.skill_points); OFF for testing
             SetTextValue(characterName, settingsData.character_name);
-            MatchStats();
         }
         else
         {
@@ -153,21 +138,5 @@ public class LoadSurvivor : MonoBehaviour
         {
             Debug.Log("TMP component is null");
         }
-    }
-
-    //Syncs stats from Stats Panel to Main Panel within the Survivor Canvas
-    private void MatchStats()
-    {
-        strengthPointsMain.text = strengthPoints.text;
-        dexterityPointsMain.text = dexterityPoints.text;
-        intellectPointsMain.text = intellectPoints.text;
-        endurancePointsMain.text = endurancePoints.text;
-        charmPointsMain.text = charmPoints.text;
-        stealthPointsMain.text = stealthPoints.text;
-        maximumHealthMain.text = maximumHealth.text;
-        maximumStaminaMain.text = maximumStamina.text;
-        totalProtectionMain.text = totalProtection.text;
-        experienceBoostMain.text = experienceBoost.text;
-        characterNameStatsPanel.text = characterName.text;
     }
 }

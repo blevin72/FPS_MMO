@@ -101,4 +101,5 @@ public class SettingsData : MonoBehaviour
 
     //Gear Bonuses Script
     public string protection;
+    public string meleeBonus;
 }
