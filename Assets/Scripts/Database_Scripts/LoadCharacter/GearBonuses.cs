@@ -30,6 +30,11 @@ public class GearBonuses : MonoBehaviour
 
     private string protectionBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=protectionQuery";
     private string meleeBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=meleeQuery";
+    private string speedBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=speedQuery";
+    private string craftBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=craftQuery";
+    private string staminaBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=staminaQuery";
+    private string immunityBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=immunityQuery";
+    private string agroBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=agroQuery";
 
     private void Start()
     {
@@ -40,6 +45,11 @@ public class GearBonuses : MonoBehaviour
     {
         StartCoroutine(ApplyProtectionBonus());
         StartCoroutine(ApplyMeleeBonus());
+        StartCoroutine(ApplySpeedBonus());
+        StartCoroutine(ApplyCraftBonus());
+        StartCoroutine(ApplyStaminaBonus());
+        StartCoroutine(ApplyImmunityBonus());
+        StartCoroutine(ApplyAgroBonus());
     }
 
     private IEnumerator ApplyProtectionBonus()
@@ -55,14 +65,7 @@ public class GearBonuses : MonoBehaviour
             // Deserialize JSON to SettingsData
             SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
 
-            //loadSurvivor.SetTextValue(speed, settingsData.speedModifier);
-            //loadSurvivor.SetTextValue(craft, settingsData.craftModifier);
-            //loadSurvivor.SetTextValue(stamina, settingsData.staminaModifier);
-            //loadSurvivor.SetTextValue(immunity, settingsData.immunityModifier);
-            //loadSurvivor.SetTextValue(agro, settingsData.agroModifier);
             loadSurvivor.SetTextValue(protection, settingsData.protection);
-
-            Debug.Log("Protection: " + settingsData.protection);
         }
         else
         {
@@ -84,7 +87,115 @@ public class GearBonuses : MonoBehaviour
             SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
 
             loadSurvivor.SetTextValue(melee, settingsData.meleeBonus);
-            Debug.Log("Melee: " + settingsData.meleeBonus);
+        }
+        else
+        {
+            Debug.LogError("UnityWebRequest failed: " + www.error);
+        }
+    }
+
+    private IEnumerator ApplySpeedBonus()
+    {
+        string getRequestURL = speedBonusURL + "&characterID=" + gameManager.loadedCharacter;
+        UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            string responseText = www.downloadHandler.text;
+
+            // Deserialize JSON to SettingsData
+            SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
+
+            loadSurvivor.SetTextValue(speed, settingsData.speedBonus);
+        }
+        else
+        {
+            Debug.LogError("UnityWebRequest failed: " + www.error);
+        }
+    }
+
+    private IEnumerator ApplyCraftBonus()
+    {
+        string getRequestURL = craftBonusURL + "&characterID=" + gameManager.loadedCharacter;
+        UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            string responseText = www.downloadHandler.text;
+
+            // Deserialize JSON to SettingsData
+            SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
+
+            loadSurvivor.SetTextValue(craft, settingsData.craftBonus);
+        }
+        else
+        {
+            Debug.LogError("UnityWebRequest failed: " + www.error);
+        }
+    }
+
+    private IEnumerator ApplyStaminaBonus()
+    {
+        string getRequestURL = staminaBonusURL + "&characterID=" + gameManager.loadedCharacter;
+        UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            string responseText = www.downloadHandler.text;
+
+            // Deserialize JSON to SettingsData
+            SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
+
+            loadSurvivor.SetTextValue(stamina, settingsData.staminaBonus);
+        }
+        else
+        {
+            Debug.LogError("UnityWebRequest failed: " + www.error);
+        }
+    }
+
+    private IEnumerator ApplyImmunityBonus()
+    {
+        string getRequestURL = immunityBonusURL + "&characterID=" + gameManager.loadedCharacter;
+        UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            string responseText = www.downloadHandler.text;
+
+            // Deserialize JSON to SettingsData
+            SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
+
+            loadSurvivor.SetTextValue(immunity, settingsData.immunityBonus);
+        }
+        else
+        {
+            Debug.LogError("UnityWebRequest failed: " + www.error);
+        }
+    }
+
+    private IEnumerator ApplyAgroBonus()
+    {
+        string getRequestURL = agroBonusURL + "&characterID=" + gameManager.loadedCharacter;
+        UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            string responseText = www.downloadHandler.text;
+
+            // Deserialize JSON to SettingsData
+            SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
+
+            loadSurvivor.SetTextValue(agro, settingsData.agroBonus);
+        }
+        else
+        {
+            Debug.LogError("UnityWebRequest failed: " + www.error);
         }
     }
 }

@@ -102,4 +102,9 @@ public class SettingsData : MonoBehaviour
     //Gear Bonuses Script
     public string protection;
     public string meleeBonus;
+    public string speedBonus;
+    public string craftBonus;
+    public string staminaBonus;
+    public string immunityBonus;
+    public string agroBonus;
 }
