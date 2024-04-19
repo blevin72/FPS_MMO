@@ -26,6 +26,7 @@ public class LoadSurvivor : MonoBehaviour
 
     public TextMeshProUGUI characterName;
 
+    //script references
     public GameManager gameManager; //references the GameManager class
 
     //PHP URL's

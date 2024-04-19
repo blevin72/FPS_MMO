@@ -400,10 +400,46 @@ public class UIMainMenu : MonoBehaviour
         barterPanel.active = false;
         outpostCanvas.enabled = false;
     }
+
+    //Converse Panel
+    #region
+    public Chatroom_Manager chatroom_Manager;
+
+    public void OnGeneralChatButtonClick()
+    {
+        generalChatSV.active = true;
+        missionsChatSV.active = false;
+        eventsChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnMissionsChatButtonClick()
+    {
+        missionsChatSV.active = true;
+        generalChatSV.active = false;
+        eventsChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnEventsChatButtonClick()
+    {
+        eventsChatSV.active = true;
+        missionsChatSV.active = false;
+        generalChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnTradeChatButtonClick()
+    {
+        tradeChatSV.active = true;
+        generalChatSV.active = false;
+        missionsChatSV.active = false;
+        eventsChatSV.active = false;
+    }
     #endregion
 
-//Trade Canvas
-#region
+    //Trade Canvas
+    #region
     public void OnBuyButtonClick()
     {
         buyPanel.active = true;
@@ -435,44 +471,8 @@ public class UIMainMenu : MonoBehaviour
     }
     #endregion
 
-//Converse Panel
-#region
-    public void OnGeneralChatButtonClick()
-    {
-        generalChatSV.active = true;
-        missionsChatSV.active = false;
-        eventsChatSV.active = false;
-        tradeChatSV.active = false;
-    }
-
-    public void OnMissionsChatButtonClick()
-    {
-        missionsChatSV.active = true;
-        generalChatSV.active = false;
-        eventsChatSV.active = false;
-        tradeChatSV.active = false;
-    }
-
-    public void OnEventsChatButtonClick()
-    {
-        eventsChatSV.active = true;
-        missionsChatSV.active = false;
-        generalChatSV.active = false;
-        tradeChatSV.active = false;
-    }
-
-    public void OnTradeChatButtonClick()
-    {
-        tradeChatSV.active = true;
-        generalChatSV.active = true;
-        missionsChatSV.active = true;
-        eventsChatSV.active = true;
-
-    }
-    #endregion
-
-//Radio Canvas
-#region
+    //Radio Canvas
+    #region
     public void OnAllianceButtonClick()
     {
         alliancesPanel.active = true;
@@ -502,7 +502,8 @@ public class UIMainMenu : MonoBehaviour
         supportPanel.active = false;
         alliancesPanel.active = false;
     }
-#endregion
+    #endregion
+    #endregion
 }
 
 

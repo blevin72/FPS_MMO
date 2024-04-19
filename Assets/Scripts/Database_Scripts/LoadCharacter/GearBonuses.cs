@@ -23,11 +23,13 @@ public class GearBonuses : MonoBehaviour
     public TextMeshProUGUI agro;
     public TextMeshProUGUI stealth_kill;
     public TextMeshProUGUI protection;
-
     public Image[] equippedGear;
+
+    //script references
     public GameManager gameManager;
     public LoadSurvivor loadSurvivor;
 
+    //URL's for speciifc actions
     private string protectionBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=protectionQuery";
     private string meleeBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=meleeQuery";
     private string speedBonusURL = "http://localhost:8888/sqlconnect/gearBonus.php?action=speedQuery";
