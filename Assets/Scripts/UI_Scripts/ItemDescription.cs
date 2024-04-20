@@ -28,11 +28,11 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public TextMeshProUGUI itemProperties_1;
     public TextMeshProUGUI itemProperties_2;
     public TextMeshProUGUI[] gearStats;
-    //public TextMeshProUGUI gearStat_5;
-    //public TextMeshProUGUI gearStat_6;
 
     public LoadSurvivor loadSurvivor; //reference to LoadSurvivor class (needed for SetTextValue())
 
+    //Main Methods (Start/LoadGearDetails)
+    #region
     //PHP URL's
     private string loadItemDetailsURL = "http://localhost:8888/sqlconnect/gearDescription.php?action=fetch_details";
 
@@ -65,8 +65,6 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 loadSurvivor.SetTextValue(gearSpeedModifier, "Speed: +" + settingsData.speedModifier);
                 loadSurvivor.SetTextValue(gearRarity, "Rarity: " + settingsData.rarity);
                 loadSurvivor.SetTextValue(gearDurability, "Durability: " + settingsData.durability);
-
-                Debug.Log("GearName: " + gearName);
 
                 //Handle binary data separately
                 //byte[] imageData = www.downloadHandler.data;
@@ -132,6 +130,9 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 loadSurvivor.SetTextValue(gearRarity, "Rarity: " + settingsData.rarity);
                 loadSurvivor.SetTextValue(gearDurability, "Durability: " + settingsData.durability);
 
+                Debug.Log("GearName: " + gearName);
+
+
                 //Handle binary data separately
                 //byte[] imageData = www.downloadHandler.data;
                 //Texture2D texture = new Texture2D(1, 1);
@@ -158,15 +159,10 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             Debug.LogError("UnityWebRequest failed: " + www.error);
         }
     }
+    #endregion
 
-    //private IEnumerator SaveEquippedGear()
-    //{
-    //    // Create a WWWForm to send data to the PHP script
-    //    WWWForm form = new WWWForm();
-
-    //    form.AddField()
-    //}
-
+    //All UI Methods (PointerEnter/PointerExit/ResetGearDescriptionPanel
+    #region
     //reset Gear Description Panel (needed to make sure overlapping stats don't stay on the panel when switching btwn items)
     private void ResetGearDescriptionPanel()
     {
@@ -200,9 +196,6 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 // Set the gear name to the sprite name
                 DB_Manager.gearName = spriteName;
 
-                // Log the gear name for debugging
-                Debug.Log("Gear Name: " + DB_Manager.gearName);
-
                 // Activate the inventoryDescription panel
                 inventoryDescription.SetActive(true);
 
@@ -216,4 +209,5 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         inventoryDescription.active = false;
     }
+    #endregion
 }

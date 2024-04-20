@@ -77,7 +77,7 @@ public class SettingsData : MonoBehaviour
     public string skill_points;
     public string character_name;
 
-    //Item Description Script
+    //Item Description Script & Gear Bonuses Script
     public string gearName;
     public string gearWeight;
     public string protectionModifier;
@@ -95,4 +95,16 @@ public class SettingsData : MonoBehaviour
     public string itemDescription;
     public string itemProperties_1;
     public string itemProperties_2;
+
+    //Equipped Gear Script
+    public string totalWeight;
+
+    //Gear Bonuses Script
+    public string protection;
+    public string meleeBonus;
+    public string speedBonus;
+    public string craftBonus;
+    public string staminaBonus;
+    public string immunityBonus;
+    public string agroBonus;
 }

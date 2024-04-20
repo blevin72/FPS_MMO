@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class UIMainMenu : MonoBehaviour
 {
@@ -39,8 +40,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject buyPanel;
     public GameObject sellPanel;
     public GameObject barterPanel;
-    public GameObject survivorMainPanel;
-    public GameObject survivorStatsPanel;
+    public GameObject survivorPanel;
     public GameObject survivorSkillPanel;
     public GameObject missionAbilitiesPanel;
     public GameObject tabsPanel;
@@ -84,8 +84,7 @@ public class UIMainMenu : MonoBehaviour
         buyPanel.active = false;
         sellPanel.active = false;
         barterPanel.active = false;
-        survivorMainPanel.active = false;
-        survivorStatsPanel.active = false;
+        survivorPanel.active = false;
         survivorSkillPanel.active = false;
         missionAbilitiesPanel.active = false;
         tabsPanel.active = false;
@@ -96,6 +95,8 @@ public class UIMainMenu : MonoBehaviour
 //Main Menu Canvas
 #region
     public LoadSurvivor loadSurvivor; //referencing Survivor Ranking script for LoadSurvivorRanking()
+    public EquippedGear equippedGear; //referencing Equipped Gear script for SaveEquippedGear()
+    public GearBonuses gearBonuses; //referencing Gear Bonuses script for ApplyGearBonuses()
 
     public void OnSettingsButtonClick()
     {
@@ -114,12 +115,29 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnSurvivorButtonClick()
     {
-        StartCoroutine(loadSurvivor.LoadSurvivorRankings());
+        StartCoroutine(LoadSurvivorAndApplyGearBonuses());
         titleMenuCanvas.enabled = false;
         survivorCanvas.enabled = true;
         tabsPanel.active = true;
         survivorRankingPanel.active = true;
-        survivorMainPanel.active = true;
+        survivorPanel.active = true;
+    }
+
+    //Need this to ensure each Coroutine runs and finishes prior to the next one starting
+    private IEnumerator LoadSurvivorAndApplyGearBonuses()
+    {
+        // Load survivor rankings and wait until it's done
+        yield return StartCoroutine(loadSurvivor.LoadSurvivorRankings());
+
+        // Save equipped gear and wait until it's done
+        yield return StartCoroutine(equippedGear.SaveEquippedGear());
+
+        // Set gear weight and wait until it's done
+        yield return StartCoroutine(equippedGear.SetGearWeight());
+
+        // Apply gear bonuses
+        gearBonuses.ApplyAllBonuses();
+
     }
     #endregion
 
@@ -127,23 +145,20 @@ public class UIMainMenu : MonoBehaviour
 #region
     public void OnMainButtonClick()
     {
-        survivorMainPanel.active = true;
-        survivorStatsPanel.active = false;
+        survivorPanel.active = true;
         survivorSkillPanel.active = false;
     }
 
     public void OnStatsButtonClick()
     {
-        survivorStatsPanel.active = true;
-        survivorMainPanel.active = false;
+        survivorPanel.active = true;
         survivorSkillPanel.active = false;
     }
 
     public void OnSkillTreeButtonClick()
     {
         survivorSkillPanel.active = true;
-        survivorStatsPanel.active = false;
-        survivorMainPanel.active = false;
+        survivorPanel.active = false;
     }
 
     public void OnMissionAbilityButtonClick()
@@ -385,10 +400,46 @@ public class UIMainMenu : MonoBehaviour
         barterPanel.active = false;
         outpostCanvas.enabled = false;
     }
+
+    //Converse Panel
+    #region
+    public Chatroom_Manager chatroom_Manager;
+
+    public void OnGeneralChatButtonClick()
+    {
+        generalChatSV.active = true;
+        missionsChatSV.active = false;
+        eventsChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnMissionsChatButtonClick()
+    {
+        missionsChatSV.active = true;
+        generalChatSV.active = false;
+        eventsChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnEventsChatButtonClick()
+    {
+        eventsChatSV.active = true;
+        missionsChatSV.active = false;
+        generalChatSV.active = false;
+        tradeChatSV.active = false;
+    }
+
+    public void OnTradeChatButtonClick()
+    {
+        tradeChatSV.active = true;
+        generalChatSV.active = false;
+        missionsChatSV.active = false;
+        eventsChatSV.active = false;
+    }
     #endregion
 
-//Trade Canvas
-#region
+    //Trade Canvas
+    #region
     public void OnBuyButtonClick()
     {
         buyPanel.active = true;
@@ -420,44 +471,8 @@ public class UIMainMenu : MonoBehaviour
     }
     #endregion
 
-//Converse Panel
-#region
-    public void OnGeneralChatButtonClick()
-    {
-        generalChatSV.active = true;
-        missionsChatSV.active = false;
-        eventsChatSV.active = false;
-        tradeChatSV.active = false;
-    }
-
-    public void OnMissionsChatButtonClick()
-    {
-        missionsChatSV.active = true;
-        generalChatSV.active = false;
-        eventsChatSV.active = false;
-        tradeChatSV.active = false;
-    }
-
-    public void OnEventsChatButtonClick()
-    {
-        eventsChatSV.active = true;
-        missionsChatSV.active = false;
-        generalChatSV.active = false;
-        tradeChatSV.active = false;
-    }
-
-    public void OnTradeChatButtonClick()
-    {
-        tradeChatSV.active = true;
-        generalChatSV.active = true;
-        missionsChatSV.active = true;
-        eventsChatSV.active = true;
-
-    }
-    #endregion
-
-//Radio Canvas
-#region
+    //Radio Canvas
+    #region
     public void OnAllianceButtonClick()
     {
         alliancesPanel.active = true;
@@ -487,7 +502,8 @@ public class UIMainMenu : MonoBehaviour
         supportPanel.active = false;
         alliancesPanel.active = false;
     }
-#endregion
+    #endregion
+    #endregion
 }
 
 
