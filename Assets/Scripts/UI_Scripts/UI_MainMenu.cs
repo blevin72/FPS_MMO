@@ -333,6 +333,8 @@ public class UIMainMenu : MonoBehaviour
 
 //Outpost Canvas
 #region
+    public Chatroom_Manager chatroom_Manager; //reference Chatroom Manager script for RetrieveChats()
+
     public void OnStorageButtonClick()
     {
         storagePanel.active = true;
@@ -357,13 +359,16 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnConverseButtonClick()
     {
+        StartCoroutine(chatroom_Manager.RetrieveChats()); //retrieve historical chats
+
         conversePanel.active = true;
-        //panels within the converse panel
+        //chat panels
         generalChatSV.active = true;
         missionsChatSV.active = false;
         eventsChatSV.active = false;
         tradeChatSV.active = false;
 
+        //deactivate other Outpost Panels
         votePanel.active = false;
         storagePanel.active = false;
         territoryPanel.active = false;
@@ -403,8 +408,6 @@ public class UIMainMenu : MonoBehaviour
 
     //Converse Panel
     #region
-    public Chatroom_Manager chatroom_Manager;
-
     public void OnGeneralChatButtonClick()
     {
         generalChatSV.active = true;

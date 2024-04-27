@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 
@@ -107,4 +108,7 @@ public class SettingsData : MonoBehaviour
     public string staminaBonus;
     public string immunityBonus;
     public string agroBonus;
+
+    //Chatroom Manager Script
+    public string messages;
 }
