@@ -359,7 +359,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnConverseButtonClick()
     {
-        StartCoroutine(chatroom_Manager.RetrieveChats()); //retrieve historical chats
+        StartCoroutine(chatroom_Manager.RetrieveChats()); //retrieve historical chats (general panel by default)
 
         conversePanel.active = true;
         //chat panels
@@ -414,6 +414,7 @@ public class UIMainMenu : MonoBehaviour
         missionsChatSV.active = false;
         eventsChatSV.active = false;
         tradeChatSV.active = false;
+        StartCoroutine(chatroom_Manager.RetrieveChats());
     }
 
     public void OnMissionsChatButtonClick()
@@ -422,6 +423,7 @@ public class UIMainMenu : MonoBehaviour
         generalChatSV.active = false;
         eventsChatSV.active = false;
         tradeChatSV.active = false;
+        StartCoroutine(chatroom_Manager.RetrieveChats());
     }
 
     public void OnEventsChatButtonClick()
@@ -430,6 +432,7 @@ public class UIMainMenu : MonoBehaviour
         missionsChatSV.active = false;
         generalChatSV.active = false;
         tradeChatSV.active = false;
+        StartCoroutine(chatroom_Manager.RetrieveChats());
     }
 
     public void OnTradeChatButtonClick()
@@ -438,6 +441,7 @@ public class UIMainMenu : MonoBehaviour
         generalChatSV.active = false;
         missionsChatSV.active = false;
         eventsChatSV.active = false;
+        StartCoroutine(chatroom_Manager.RetrieveChats());
     }
     #endregion
 

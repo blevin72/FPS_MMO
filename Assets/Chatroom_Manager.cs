@@ -62,6 +62,8 @@ public class Chatroom_Manager : MonoBehaviour
 
         // Reset input field after submission
         inputField.text = "";
+
+        StartCoroutine(RetrieveChats());
     }
 
     public IEnumerator RetrieveChats()
@@ -84,23 +86,39 @@ public class Chatroom_Manager : MonoBehaviour
             // Deserialize JSON array to a List of strings
             List<string> messages = JsonConvert.DeserializeObject<List<string>>(responseText);
 
+            //Clear existing messages from all chat panels
+            ClearChatPanels();
+
             // Assuming chatrooms[0] is the reference to your ScrollView object
-            GameObject conversePanel = chatrooms[0];
+            GameObject generalPanel = chatrooms[0];
+            GameObject missionPanel = chatrooms[1];
+            GameObject eventPanel = chatrooms[2];
+            GameObject tradePanel = chatrooms[3];
 
             // Find the Content object within the hierarchy of chatroom[0]
-            Transform contentTransform = conversePanel.transform.Find("Viewport/Content");
+            Transform generalContentTransform = generalPanel.transform.Find("Viewport/Content");
+            Transform missionContentTransform = missionPanel.transform.Find("Viewport/Content");
+            Transform eventContentTransform = eventPanel.transform.Find("Viewport/Content");
+            Transform tradeContentTransform = tradePanel.transform.Find("Viewport/Content");
 
             // Check if the Content object is found
-            if (contentTransform != null)
+            if (generalContentTransform != null)
             {
                 // Iterate over the list of messages
                 foreach (var message in messages)
                 {
                     // Instantiate the new message object with Content as the parent
-                    GameObject newMessageObject = Instantiate(messagePrefab, contentTransform);
+                    GameObject newGeneralMessage = Instantiate(messagePrefab, generalContentTransform);
+                    GameObject newMissionMessage = Instantiate(messagePrefab, missionContentTransform);
+                    GameObject newEventMessage = Instantiate(messagePrefab, eventContentTransform);
+                    GameObject newTradeMessage = Instantiate(messagePrefab, tradeContentTransform);
+
 
                     // Set the text value of the new message object
-                    loadSurvivor.SetTextValue(newMessageObject.GetComponent<TextMeshProUGUI>(), message);
+                    loadSurvivor.SetTextValue(newGeneralMessage.GetComponent<TextMeshProUGUI>(), message);
+                    loadSurvivor.SetTextValue(newMissionMessage.GetComponent<TextMeshProUGUI>(), message);
+                    loadSurvivor.SetTextValue(newEventMessage.GetComponent<TextMeshProUGUI>(), message);
+                    loadSurvivor.SetTextValue(newTradeMessage.GetComponent<TextMeshProUGUI>(), message);
                 }
             }
         }
@@ -110,6 +128,22 @@ public class Chatroom_Manager : MonoBehaviour
         }
     }
 
+    //clear chats when switching from one panel to the next
+    private void ClearChatPanels()
+    {
+        // Clear existing messages in each panel
+        foreach (GameObject panel in chatrooms)
+        {
+            Transform contentTransform = panel.transform.Find("Viewport/Content");
+            if (contentTransform != null)
+            {
+                foreach (Transform child in contentTransform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+        }
+    }
 
     private string chatType = "general";
 

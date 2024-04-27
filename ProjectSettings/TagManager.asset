@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Explosion
   - Gear
+  - Message
   layers:
   - Default
   - TransparentFX
