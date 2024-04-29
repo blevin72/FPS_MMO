@@ -22,10 +22,14 @@ public class Chatroom_Manager : MonoBehaviour
     private string chatroomsURL = "http://localhost:8888/sqlconnect/outpostChatrooms.php?action=insert";
     private string loadChatroomsURL = "http://localhost:8888/sqlconnect/outpostChatrooms.php?action=select";
 
+
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>(); //ensures the GameManager instance is located
     }
+
+
 
     public void SubmitChat()
     {
@@ -33,6 +37,8 @@ public class Chatroom_Manager : MonoBehaviour
         StartCoroutine(SendChats());
         inputField.text = ""; //reset input field
     }
+
+
 
     private IEnumerator SendChats()
     {
@@ -65,6 +71,9 @@ public class Chatroom_Manager : MonoBehaviour
 
         StartCoroutine(RetrieveChats());
     }
+
+
+
 
     public IEnumerator RetrieveChats()
     {
@@ -128,6 +137,9 @@ public class Chatroom_Manager : MonoBehaviour
         }
     }
 
+
+
+
     //clear chats when switching from one panel to the next
     private void ClearChatPanels()
     {
@@ -144,6 +156,9 @@ public class Chatroom_Manager : MonoBehaviour
             }
         }
     }
+
+
+
 
     private string chatType = "general";
 
@@ -166,5 +181,23 @@ public class Chatroom_Manager : MonoBehaviour
         {
             chatType = "event";
         }
+    }
+
+
+
+
+    private int characterLimit = 1000;
+    public TextMeshProUGUI characterCounter;
+
+    public void MessageCharacterCounter()
+    {
+        // Clamp the length of the text to the maximum character limit
+        if (inputField.text.Length > characterLimit)
+        {
+            inputField.text = inputField.text.Substring(0, characterLimit);
+        }
+
+        // Update the character count text
+        characterCounter.text = inputField.text.Length + " / " + characterLimit;
     }
 }
