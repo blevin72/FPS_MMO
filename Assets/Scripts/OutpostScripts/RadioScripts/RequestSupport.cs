@@ -27,6 +27,7 @@ public class RequestSupport : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>(); //ensures the GameManager instance is located
+        DefaultInputFields();
     }
 
     public void AcceptButton()
@@ -75,5 +76,20 @@ public class RequestSupport : MonoBehaviour
         {
             Debug.LogError("Network error: " + www.error);
         }
+    }
+
+    /*needed to set Default Text values for input fields or else if the user did not input a value (wanted to leave it as default 0) 
+     * it would be read as an empty string when the value in the database is an Integer*/
+    private void DefaultInputFields()
+    {
+        rations.text = "0";
+        bandages.text = "0";
+        lockpick.text = "0";
+        medkits.text = "0";
+        water.text = "0";
+        ammoBox_1.text = "0";
+        ammoBox_2.text = "0";
+        ammoBox_3.text = "0";
+        message.text = "Send Help!";
     }
 }
