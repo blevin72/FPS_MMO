@@ -110,5 +110,8 @@ public class SettingsData : MonoBehaviour
     public string agroBonus;
 
     //Chatroom Manager Script
-    public string messages;
+    //public string messages;
+
+    //Request Support Script
+    public string OP_Name;
 }

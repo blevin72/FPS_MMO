@@ -90,8 +90,6 @@ public class Chatroom_Manager : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            Debug.Log("Response Text:" + responseText);
-
             // Deserialize JSON array to a List of strings
             List<string> messages = JsonConvert.DeserializeObject<List<string>>(responseText);
 
@@ -111,7 +109,7 @@ public class Chatroom_Manager : MonoBehaviour
             Transform tradeContentTransform = tradePanel.transform.Find("Viewport/Content");
 
             // Check if the Content object is found
-            if (generalContentTransform != null)
+            if (generalContentTransform != null) //can probably remove this if statement and keep the foreach statement inside
             {
                 // Iterate over the list of messages
                 foreach (var message in messages)

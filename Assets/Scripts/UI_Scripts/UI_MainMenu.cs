@@ -480,6 +480,8 @@ public class UIMainMenu : MonoBehaviour
 
     //Radio Canvas
     #region
+    public RequestSupport requestSupport; //refernce Request Support script for RetrieveAllDistressCalls()
+
     public void OnAllianceButtonClick()
     {
         alliancesPanel.active = true;
@@ -488,6 +490,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnSupportButtonClick()
     {
+        StartCoroutine(requestSupport.RetrieveAllDistressCalls());
         supportPanel.active = true;
         alliancesPanel.active = false;
     }

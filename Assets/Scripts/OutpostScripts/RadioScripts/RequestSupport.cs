@@ -2,10 +2,14 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.Networking;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 public class RequestSupport : MonoBehaviour
 {
     public GameManager gameManager;
+    public LoadSurvivor loadSurvivor;
+    public GameObject distressCallPrefab;
 
     public TMP_Dropdown missionType;
     public TMP_Dropdown commencement;
@@ -23,6 +27,7 @@ public class RequestSupport : MonoBehaviour
     public TMP_InputField message;
 
     private string requestSupportURL = "http://localhost:8888/sqlconnect/requestSupport.php?action=insert";
+    private string retrieveDistressCallsURL = "http://localhost:8888/sqlconnect/requestSupport.php?action=select";
 
     private void Start()
     {
@@ -75,6 +80,57 @@ public class RequestSupport : MonoBehaviour
         else
         {
             Debug.LogError("Network error: " + www.error);
+        }
+    }
+
+    //private TextMeshProUGUI OP_Name;
+    //private TextMeshProUGUI OP_Rank;
+    //private TextMeshProUGUI missionName;
+    //private TextMeshProUGUI compensation;
+    //private TextMeshProUGUI waitingTime;
+    public GameObject openDistressCall_SV = null;
+
+    //eventually this will need to be on a per server basis in the database
+    internal IEnumerator RetrieveAllDistressCalls()
+    {
+        string getRequestURL = retrieveDistressCallsURL;
+
+        UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            string responseText = www.downloadHandler.text;
+
+            // Deserialize JSON array to a List of strings
+            List<string> distressCalls= JsonConvert.DeserializeObject<List<string>>(responseText);
+
+            // Find the Content object
+            Transform openDistressCallsContentTransform = openDistressCall_SV.transform.Find("Viewport/Content");
+
+            foreach (var distressCall in distressCalls)
+            {
+                /*Splitting the response from the database into an array of strings since the distressCall prefab has multiple TMP objects
+                 as children*/
+                string[] distressCallData = distressCall.Split(',');
+
+                // Instantiate the new message object with Content as the parent
+                GameObject newDistressCall = Instantiate(distressCallPrefab, openDistressCallsContentTransform);
+
+                // Get TextMeshProUGUI components of the instantiated prefab
+                TextMeshProUGUI OP_Name = newDistressCall.transform.Find("OP_Name").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI OP_Rank = newDistressCall.transform.Find("OP_Rank").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI missionName = newDistressCall.transform.Find("MissionName").GetComponent<TextMeshProUGUI>();
+                //TextMeshProUGUI compensation = newDistressCall.transform.Find("Compensation").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI waitingTime = newDistressCall.transform.Find("WaitingTime").GetComponent<TextMeshProUGUI>();
+
+                // Set text values based on distress call data
+                OP_Name.text = distressCallData[0];
+                OP_Rank.text = distressCallData[1];
+                missionName.text = distressCallData[2];
+                //compensation.text = distressCallData[3];
+                waitingTime.text = distressCallData[4];
+            }
         }
     }
 
