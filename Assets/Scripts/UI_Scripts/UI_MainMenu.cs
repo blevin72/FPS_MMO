@@ -37,6 +37,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject alliancesPanel;
     public GameObject supportPanel;
     public GameObject requestPanel;
+    public GameObject compensationPanel;
     public GameObject buyPanel;
     public GameObject sellPanel;
     public GameObject barterPanel;
@@ -395,6 +396,7 @@ public class UIMainMenu : MonoBehaviour
         alliancesPanel.active = true;
         requestsPanel.active = false;
         supportPanel.active = false;
+        compensationPanel.active = false;
     }
 
     public void OnTradeButtonClick()
@@ -498,6 +500,11 @@ public class UIMainMenu : MonoBehaviour
     public void OnRequestButtonClick()
     {
         requestPanel.active = true;
+    }
+
+    public void OnCompensationButtonClick()
+    {
+        compensationPanel.active = true;
     }
 
     public void OnRequestToRadioButtonClick()

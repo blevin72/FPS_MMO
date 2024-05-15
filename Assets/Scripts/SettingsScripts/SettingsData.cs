@@ -113,5 +113,7 @@ public class SettingsData : MonoBehaviour
     //public string messages;
 
     //Request Support Script
-    public string OP_Name;
+    public string outpost_name;
+    public string mission_type;
+    public string commencement;
 }

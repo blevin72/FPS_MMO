@@ -83,11 +83,11 @@ public class RequestSupport : MonoBehaviour
         }
     }
 
-    //private TextMeshProUGUI OP_Name;
-    //private TextMeshProUGUI OP_Rank;
-    //private TextMeshProUGUI missionName;
+    private TextMeshProUGUI OP_Name;
+    private TextMeshProUGUI OP_Rank;
+    private TextMeshProUGUI missionName;
     //private TextMeshProUGUI compensation;
-    //private TextMeshProUGUI waitingTime;
+    private TextMeshProUGUI waitingTime;
     public GameObject openDistressCall_SV = null;
 
     //eventually this will need to be on a per server basis in the database
@@ -102,35 +102,70 @@ public class RequestSupport : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
+            Debug.Log("Reponse Text: " + responseText);
+
             // Deserialize JSON array to a List of strings
-            List<string> distressCalls= JsonConvert.DeserializeObject<List<string>>(responseText);
+            List<SettingsData> distressCalls= JsonConvert.DeserializeObject<List<SettingsData>>(responseText);
 
             // Find the Content object
             Transform openDistressCallsContentTransform = openDistressCall_SV.transform.Find("Viewport/Content");
 
-            foreach (var distressCall in distressCalls)
+            foreach (var settingsData in distressCalls)
             {
-                /*Splitting the response from the database into an array of strings since the distressCall prefab has multiple TMP objects
-                 as children*/
-                string[] distressCallData = distressCall.Split(',');
-
-                // Instantiate the new message object with Content as the parent
+                // Instantiate the new distress call object with Content as the parent
                 GameObject newDistressCall = Instantiate(distressCallPrefab, openDistressCallsContentTransform);
 
                 // Get TextMeshProUGUI components of the instantiated prefab
                 TextMeshProUGUI OP_Name = newDistressCall.transform.Find("OP_Name").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI OP_Rank = newDistressCall.transform.Find("OP_Rank").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI missionName = newDistressCall.transform.Find("MissionName").GetComponent<TextMeshProUGUI>();
-                //TextMeshProUGUI compensation = newDistressCall.transform.Find("Compensation").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI waitingTime = newDistressCall.transform.Find("WaitingTime").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI missionName = newDistressCall.transform.Find("Mission_Name").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI waitingTime = newDistressCall.transform.Find("Waiting_Time").GetComponent<TextMeshProUGUI>();
 
-                // Set text values based on distress call data
-                OP_Name.text = distressCallData[0];
-                OP_Rank.text = distressCallData[1];
-                missionName.text = distressCallData[2];
-                //compensation.text = distressCallData[3];
-                waitingTime.text = distressCallData[4];
+                //Get values from TMP values
+                loadSurvivor.SetTextValue(OP_Name, settingsData.outpost_name);
+                loadSurvivor.SetTextValue(OP_Rank, settingsData.outpost_ranking);
+                loadSurvivor.SetTextValue(missionName, settingsData.mission_type);
+                loadSurvivor.SetTextValue(waitingTime, settingsData.commencement);
+            
+
+                ///*Splitting the response from the database into an array of strings since the distressCall prefab has multiple TMP objects
+                // as children*/
+                //string[] distressCallData = distressCall.Split(',');
+
+                //// Instantiate the new message object with Content as the parent
+                //GameObject newDistressCall = Instantiate(distressCallPrefab, openDistressCallsContentTransform);
+
+                //// Get TextMeshProUGUI components of the instantiated prefab
+                //OP_Name = newDistressCall.transform.Find("OP_Name").GetComponent<TextMeshProUGUI>();
+                //OP_Rank = newDistressCall.transform.Find("OP_Rank").GetComponent<TextMeshProUGUI>();
+                //missionName = newDistressCall.transform.Find("MissionName").GetComponent<TextMeshProUGUI>();
+                ////TextMeshProUGUI compensation = newDistressCall.transform.Find("Compensation").GetComponent<TextMeshProUGUI>();
+                //waitingTime = newDistressCall.transform.Find("WaitingTime").GetComponent<TextMeshProUGUI>();
+
+                //// Set text values based on distress call data
+                ////OP_Name.text = distressCallData[0];
+                ////OP_Rank.text = distressCallData[1];
+                ////missionName.text = distressCallData[2];
+                //////compensation.text = distressCallData[3];
+                ////waitingTime.text = distressCallData[4];
+
+                //// Set the text value of the new message object
+                //loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[0]);
+                //loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[1]);
+                //loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[2]);
+                ////loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[3]);
+                //loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[4]);
+
+                //OP_Name.text = distressCallData[0];
+                //OP_Rank.text = distressCallData[1];
+                //missionName.text = distressCallData[2];
+                ////compensation.text = distressCallData[3];
+                //waitingTime.text = distressCallData[4];
             }
+        }
+        else
+        {
+            Debug.LogError("UnityWebRequest failed: " + www.error);
         }
     }
 
