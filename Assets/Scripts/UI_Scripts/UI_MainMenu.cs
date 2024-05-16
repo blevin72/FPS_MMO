@@ -507,6 +507,11 @@ public class UIMainMenu : MonoBehaviour
         compensationPanel.active = true;
     }
 
+    public void OnCompensationBackButtonClick()
+    {
+        compensationPanel.active = false;
+    }
+
     public void OnRequestToRadioButtonClick()
     {
         requestPanel.active = false;
