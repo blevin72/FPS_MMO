@@ -140,24 +140,6 @@ public class RequestSupport : MonoBehaviour
         }
     }
 
-    //private IEnumerator DistressCallDetails()
-    //{
-    //    string getRequestURL = distressCallDetailsURL;
-
-    //    UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
-    //    yield return www.SendWebRequest();
-
-    //    if (www.result == UnityWebRequest.Result.Success)
-    //    {
-    //        string responseText = www.downloadHandler.text;
-
-    //        // Deserialize JSON to SettingsData
-    //        SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
-
-            
-    //    }
-    //}
-
     /*needed to set Default Text values for input fields or else if the user did not input a value (wanted to leave it as default 0) 
      * it would be read as an empty string when the value in the database is an Integer*/
     private void DefaultInputFields()

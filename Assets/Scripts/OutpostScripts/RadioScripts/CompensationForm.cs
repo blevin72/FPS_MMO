@@ -41,37 +41,8 @@ public class CompensationForm : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            Debug.Log("Response Text:" + responseText);
-
             // Deserialize JSON to SettingsData
             SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
-
-            Debug.Log("Settings Data:" + settingsData);
-
-            //TextMeshProUGUI rationsAmountText = rations.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI bandagesAmountText = bandages.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI lockpicksAmountText = lockpicks.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI medkitsAmountText = medkits.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI waterAmountText = water.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI ammoOneAmountText = ammo_1.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI ammoOneTypeText = ammo_1.transform.Find("Item_Type").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI ammoTwoAmountText = ammo_2.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI ammoTwoTypeText = ammo_2.transform.Find("Item_Type").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI ammoThreeAmountText = ammo_3.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI ammoThreeTypeText = ammo_3.transform.Find("Item_Type").GetComponent<TextMeshProUGUI>();
-
-            //loadSurvivor.SetTextValue(rationsAmount, settingsData.rations);
-            //loadSurvivor.SetTextValue(bandagesAmount, settingsData.bandages);
-            //loadSurvivor.SetTextValue(lockpicksAmount, settingsData.lock_picks);
-            //loadSurvivor.SetTextValue(medkitsAmount, settingsData.med_kits);
-            //loadSurvivor.SetTextValue(waterAmount, settingsData.water);
-            //loadSurvivor.SetTextValue(ammoOneAmount, settingsData.ammo_boxes_one);
-            //loadSurvivor.SetTextValue(ammoOneType, settingsData.ammo_type_one);
-            //loadSurvivor.SetTextValue(ammoTwoAmount, settingsData.ammo_boxes_two);
-            //loadSurvivor.SetTextValue(ammoTwoType, settingsData.ammo_type_two);
-            //loadSurvivor.SetTextValue(ammoThreeAmount, settingsData.ammo_boxes_three);
-            //loadSurvivor.SetTextValue(ammoThreeType, settingsData.ammo_type_three);
-
 
             rationsAmount.SetText(settingsData.rations);
             bandagesAmount.SetText(settingsData.bandages);

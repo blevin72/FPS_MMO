@@ -73,7 +73,7 @@ public class Registration : MonoBehaviour
         }
     }
 
-public void VerifyInputs()
+    public void VerifyInputs()
     {
         // Password requirements regex
         string passwordPattern = @"^(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$";
@@ -81,7 +81,11 @@ public void VerifyInputs()
 
         bool isPasswordValid = regex.IsMatch(passwordField.text);
 
+        bool doPasswordsMatch = passwordField.text == confirmPasswordField.text;
+
+        bool usernameNotEmpty = usernameField.text != null;
+
         // Disable the register button if the username and password do not meet the requirements.
-        registerButton.interactable = (emailField.text.Contains("@") && isPasswordValid);
+        registerButton.interactable = (emailField.text.Contains("@") && isPasswordValid && doPasswordsMatch && usernameNotEmpty);
     }
 }

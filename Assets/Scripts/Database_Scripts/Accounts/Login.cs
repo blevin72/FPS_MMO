@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 public class Login : MonoBehaviour
 {
@@ -74,10 +75,19 @@ public class Login : MonoBehaviour
 
     public void VerifyInputs()
     {
-        // Disable the register button if the username and password do not meet the minimum length requirements.
-        signInButton.interactable = (emailField.text.Contains("@") && passwordField.text.Length >= 8);
+        // Define the regex patterns for email and password validation
+        string emailPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"; //email must include @
+        string passwordPattern = @"^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$"; //PW must be 8 characters, capital letter, special character
 
-        //I need to change the password requirements to more complex security
+        // Create regex objects with the patterns
+        Regex emailRegex = new Regex(emailPattern);
+        Regex passwordRegex = new Regex(passwordPattern);
+
+        // Check if the email and password meet the minimum requirements and match the regex patterns
+        bool isEmailValid = emailRegex.IsMatch(emailField.text);
+        bool isPasswordValid = passwordRegex.IsMatch(passwordField.text);
+
+        signInButton.interactable = isEmailValid && isPasswordValid;
     }
 
     //tab feature (update)
