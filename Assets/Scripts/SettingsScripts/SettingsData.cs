@@ -116,4 +116,19 @@ public class SettingsData : MonoBehaviour
     public string outpost_name;
     public string mission_type;
     public string commencement;
+    public string distressCall_ID;
+
+    //Compensation Form Script
+    public string rations;
+    public string bandages;
+    public string lock_picks;
+    public string med_kits;
+    public string water;
+    public string ammo_boxes_one;
+    public string ammo_boxes_two;
+    public string ammo_boxes_three;
+    public string ammo_type_one;
+    public string ammo_type_two;
+    public string ammo_type_three;
+    public string request_message;
 }

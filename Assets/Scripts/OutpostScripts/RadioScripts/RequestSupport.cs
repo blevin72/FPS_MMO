@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class RequestSupport : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class RequestSupport : MonoBehaviour
     public LoadSurvivor loadSurvivor;
     public GameObject distressCallPrefab;
 
+    private TextMeshProUGUI DistressCall_ID;
     public TMP_Dropdown missionType;
     public TMP_Dropdown commencement;
     public TMP_InputField rations;
@@ -83,12 +85,9 @@ public class RequestSupport : MonoBehaviour
         }
     }
 
-    private TextMeshProUGUI OP_Name;
-    private TextMeshProUGUI OP_Rank;
-    private TextMeshProUGUI missionName;
-    //private TextMeshProUGUI compensation;
-    private TextMeshProUGUI waitingTime;
     public GameObject openDistressCall_SV = null;
+    private GameObject newDistressCall;
+    //internal int distressCallID;
 
     //eventually this will need to be on a per server basis in the database
     internal IEnumerator RetrieveAllDistressCalls()
@@ -102,8 +101,6 @@ public class RequestSupport : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            Debug.Log("Reponse Text: " + responseText);
-
             // Deserialize JSON array to a List of strings
             List<SettingsData> distressCalls= JsonConvert.DeserializeObject<List<SettingsData>>(responseText);
 
@@ -113,54 +110,28 @@ public class RequestSupport : MonoBehaviour
             foreach (var settingsData in distressCalls)
             {
                 // Instantiate the new distress call object with Content as the parent
-                GameObject newDistressCall = Instantiate(distressCallPrefab, openDistressCallsContentTransform);
+                newDistressCall = Instantiate(distressCallPrefab, openDistressCallsContentTransform);
+
+                // Get the DistressCall_ID value for the current settingsData
+                int distressCallID = int.Parse(settingsData.distressCall_ID);
+
+                // Add an OnClickListener to each instantiated DistressCall prefab
+                Button distressCallButton = newDistressCall.GetComponent<Button>();
+                distressCallButton.onClick.AddListener(() => OnDistressCallClicked(distressCallID));
 
                 // Get TextMeshProUGUI components of the instantiated prefab
+                DistressCall_ID = newDistressCall.transform.Find("DistressCall_ID").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI OP_Name = newDistressCall.transform.Find("OP_Name").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI OP_Rank = newDistressCall.transform.Find("OP_Rank").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI missionName = newDistressCall.transform.Find("Mission_Name").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI waitingTime = newDistressCall.transform.Find("Waiting_Time").GetComponent<TextMeshProUGUI>();
 
                 //Get values from TMP values
+                loadSurvivor.SetTextValue(DistressCall_ID, settingsData.distressCall_ID);
                 loadSurvivor.SetTextValue(OP_Name, settingsData.outpost_name);
                 loadSurvivor.SetTextValue(OP_Rank, settingsData.outpost_ranking);
                 loadSurvivor.SetTextValue(missionName, settingsData.mission_type);
                 loadSurvivor.SetTextValue(waitingTime, settingsData.commencement);
-            
-
-                ///*Splitting the response from the database into an array of strings since the distressCall prefab has multiple TMP objects
-                // as children*/
-                //string[] distressCallData = distressCall.Split(',');
-
-                //// Instantiate the new message object with Content as the parent
-                //GameObject newDistressCall = Instantiate(distressCallPrefab, openDistressCallsContentTransform);
-
-                //// Get TextMeshProUGUI components of the instantiated prefab
-                //OP_Name = newDistressCall.transform.Find("OP_Name").GetComponent<TextMeshProUGUI>();
-                //OP_Rank = newDistressCall.transform.Find("OP_Rank").GetComponent<TextMeshProUGUI>();
-                //missionName = newDistressCall.transform.Find("MissionName").GetComponent<TextMeshProUGUI>();
-                ////TextMeshProUGUI compensation = newDistressCall.transform.Find("Compensation").GetComponent<TextMeshProUGUI>();
-                //waitingTime = newDistressCall.transform.Find("WaitingTime").GetComponent<TextMeshProUGUI>();
-
-                //// Set text values based on distress call data
-                ////OP_Name.text = distressCallData[0];
-                ////OP_Rank.text = distressCallData[1];
-                ////missionName.text = distressCallData[2];
-                //////compensation.text = distressCallData[3];
-                ////waitingTime.text = distressCallData[4];
-
-                //// Set the text value of the new message object
-                //loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[0]);
-                //loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[1]);
-                //loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[2]);
-                ////loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[3]);
-                //loadSurvivor.SetTextValue(newDistressCall.GetComponent<TextMeshProUGUI>(), distressCallData[4]);
-
-                //OP_Name.text = distressCallData[0];
-                //OP_Rank.text = distressCallData[1];
-                //missionName.text = distressCallData[2];
-                ////compensation.text = distressCallData[3];
-                //waitingTime.text = distressCallData[4];
             }
         }
         else
@@ -168,6 +139,24 @@ public class RequestSupport : MonoBehaviour
             Debug.LogError("UnityWebRequest failed: " + www.error);
         }
     }
+
+    //private IEnumerator DistressCallDetails()
+    //{
+    //    string getRequestURL = distressCallDetailsURL;
+
+    //    UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
+    //    yield return www.SendWebRequest();
+
+    //    if (www.result == UnityWebRequest.Result.Success)
+    //    {
+    //        string responseText = www.downloadHandler.text;
+
+    //        // Deserialize JSON to SettingsData
+    //        SettingsData settingsData = JsonConvert.DeserializeObject<SettingsData>(responseText);
+
+            
+    //    }
+    //}
 
     /*needed to set Default Text values for input fields or else if the user did not input a value (wanted to leave it as default 0) 
      * it would be read as an empty string when the value in the database is an Integer*/
@@ -182,5 +171,13 @@ public class RequestSupport : MonoBehaviour
         ammoBox_2.text = "0";
         ammoBox_3.text = "0";
         message.text = "Send Help!";
+    }
+
+    private void OnDistressCallClicked(int distressCallID)
+    {
+        gameManager.distressCallID = distressCallID;
+
+        // Use the DistressCall_ID value passed as a parameter
+        Debug.Log("DistressCall_ID Value: " + distressCallID);
     }
 }

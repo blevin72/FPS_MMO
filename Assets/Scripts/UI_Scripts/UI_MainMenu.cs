@@ -483,6 +483,7 @@ public class UIMainMenu : MonoBehaviour
     //Radio Canvas
     #region
     public RequestSupport requestSupport; //refernce Request Support script for RetrieveAllDistressCalls()
+    public CompensationForm compensationForm; //refernce Compensation Form script for FillCompensationForm()
 
     public void OnAllianceButtonClick()
     {
@@ -502,8 +503,9 @@ public class UIMainMenu : MonoBehaviour
         requestPanel.active = true;
     }
 
-    public void OnCompensationButtonClick()
+    public void OnDetailsButtonClick()
     {
+        StartCoroutine(compensationForm.FillCompensationForm());
         compensationPanel.active = true;
     }
 
