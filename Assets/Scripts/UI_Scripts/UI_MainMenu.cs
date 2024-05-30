@@ -37,6 +37,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject alliancesPanel;
     public GameObject supportPanel;
     public GameObject requestPanel;
+    public GameObject compensationPanel;
     public GameObject buyPanel;
     public GameObject sellPanel;
     public GameObject barterPanel;
@@ -395,6 +396,7 @@ public class UIMainMenu : MonoBehaviour
         alliancesPanel.active = true;
         requestsPanel.active = false;
         supportPanel.active = false;
+        compensationPanel.active = false;
     }
 
     public void OnTradeButtonClick()
@@ -480,6 +482,9 @@ public class UIMainMenu : MonoBehaviour
 
     //Radio Canvas
     #region
+    public RequestSupport requestSupport; //refernce Request Support script for RetrieveAllDistressCalls()
+    public CompensationForm compensationForm; //refernce Compensation Form script for FillCompensationForm()
+
     public void OnAllianceButtonClick()
     {
         alliancesPanel.active = true;
@@ -488,6 +493,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnSupportButtonClick()
     {
+        StartCoroutine(requestSupport.RetrieveAllDistressCalls());
         supportPanel.active = true;
         alliancesPanel.active = false;
     }
@@ -495,6 +501,17 @@ public class UIMainMenu : MonoBehaviour
     public void OnRequestButtonClick()
     {
         requestPanel.active = true;
+    }
+
+    public void OnDetailsButtonClick()
+    {
+        StartCoroutine(compensationForm.FillCompensationForm());
+        compensationPanel.active = true;
+    }
+
+    public void OnCompensationBackButtonClick()
+    {
+        compensationPanel.active = false;
     }
 
     public void OnRequestToRadioButtonClick()

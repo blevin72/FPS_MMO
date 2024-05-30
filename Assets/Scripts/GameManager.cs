@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     internal int loadedCharacter; /*assigned a value in the CharacterScene_Manager script --> Load Character Button --> value = the ID #
                                    within the character slot*/
 
+    internal int distressCallID;
+
     private void Awake()
     {
         if(instance != null)

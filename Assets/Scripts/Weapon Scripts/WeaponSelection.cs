@@ -20,7 +20,7 @@ public class WeaponSelection : MonoBehaviour
     void SelectWeapon()
     {
         int i = 0;
-        foreach (Transform weapon in Camera.main.transform)
+        foreach (Transform weapon in transform)
         {
             if (i == selectedWeapon)
             {
@@ -29,7 +29,11 @@ public class WeaponSelection : MonoBehaviour
             else
             {
                 weapon.gameObject.SetActive(false);
-                weapon.GetComponent<Gun_Controller>().Deactivation();
+                Gun_Controller gunController = weapon.GetComponentInChildren<Gun_Controller>();
+                if (gunController != null)
+                {
+                    gunController.Deactivation();
+                }
             }
 
             i++;
@@ -51,7 +55,7 @@ public class WeaponSelection : MonoBehaviour
 
         for (int i = 0; i < numberOfSlots; i++)
         {
-            if ((Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) && i < Camera.main.transform.childCount && keyIsPressed == false)
+            if ((Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) && i < transform.childCount && keyIsPressed == false)
             {
                 selectedWeapon = i;
             }
