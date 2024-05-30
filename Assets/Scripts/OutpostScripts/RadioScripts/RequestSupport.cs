@@ -12,6 +12,7 @@ public class RequestSupport : MonoBehaviour
     public LoadSurvivor loadSurvivor;
     public GameObject distressCallPrefab;
 
+    private List<GameObject> distressCallPrefabs = new List<GameObject>();
     private TextMeshProUGUI DistressCall_ID;
     public TMP_Dropdown missionType;
     public TMP_Dropdown commencement;
@@ -92,6 +93,9 @@ public class RequestSupport : MonoBehaviour
     //eventually this will need to be on a per server basis in the database
     internal IEnumerator RetrieveAllDistressCalls()
     {
+        // Clear existing distress call prefabs
+        ClearDistressCalls();
+
         string getRequestURL = retrieveDistressCallsURL;
 
         UnityWebRequest www = UnityWebRequest.Get(getRequestURL);
@@ -132,6 +136,9 @@ public class RequestSupport : MonoBehaviour
                 loadSurvivor.SetTextValue(OP_Rank, settingsData.outpost_ranking);
                 loadSurvivor.SetTextValue(missionName, settingsData.mission_type);
                 loadSurvivor.SetTextValue(waitingTime, settingsData.commencement);
+
+                // Add the instantiated distress call prefab to the list
+                distressCallPrefabs.Add(newDistressCall);
             }
         }
         else
@@ -162,4 +169,18 @@ public class RequestSupport : MonoBehaviour
         // Use the DistressCall_ID value passed as a parameter
         Debug.Log("DistressCall_ID Value: " + distressCallID);
     }
+
+    //needed to ensure that if the player clicks on the support tab again it doesn't duplicate the DistressCalls prefabs over and over again
+    private void ClearDistressCalls()
+    {
+        // Destroy existing distress call prefabs
+        foreach (GameObject prefab in distressCallPrefabs)
+        {
+            Destroy(prefab);
+        }
+
+        // Clear the list
+        distressCallPrefabs.Clear();
+    }
+
 }
