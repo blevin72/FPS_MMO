@@ -183,4 +183,11 @@ public class RequestSupport : MonoBehaviour
         distressCallPrefabs.Clear();
     }
 
+    //later will need to create an AcceptDistressCall(); probably add an AcceptedBy column (insert outpostID)  to radio_requests table
+    //public void AcceptDistressCall()
+    //{
+        //add logic here
+    //}
+
+
 }
