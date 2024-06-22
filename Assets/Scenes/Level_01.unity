@@ -14,19 +14,19 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
+  m_Fog: 1
+  m_FogColor: {r: 0.8295964, g: 0.9417041, b: 1, a: 1}
+  m_FogMode: 2
+  m_FogDensity: 0.001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.70933735, g: 0.75, b: 0.75, a: 1}
+  m_AmbientEquatorColor: {r: 0.6, g: 0.5203125, b: 0.5109375, a: 1}
+  m_AmbientGroundColor: {r: 0.2, g: 0.17820264, b: 0.17, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2018646102}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.35001025, g: 0.49875045, b: 0.72201806, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -231,6 +231,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1027394019}
+  - {fileID: 984755771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438070248
@@ -250,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &438070249
 Light:
   m_ObjectHideFlags: 0
@@ -351,6 +352,571 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &668792827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 668792829}
+  - component: {fileID: 668792828}
+  m_Layer: 0
+  m_Name: Gaia Runtime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &668792828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668792827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c39bb83efacf448b1192428beb6f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &668792829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668792827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 946946957}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &696199898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 696199899}
+  - component: {fileID: 696199901}
+  - component: {fileID: 696199900}
+  m_Layer: 0
+  m_Name: Day Preset DirectionalLight(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &696199899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696199898}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.42261836, y: 0, z: 0, w: 0.90630776}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 946946957}
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &696199900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696199898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+--- !u!108 &696199901
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696199898}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.86903584, b: 0.8074487, a: 1}
+  m_Intensity: 5.5
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!1 &747090714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 747090715}
+  - component: {fileID: 747090716}
+  m_Layer: 0
+  m_Name: Session Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &747090715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747090714}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1197149955}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &747090716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747090714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd968c7c0aaf894daa18afd9eac9965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_session: {fileID: 11400000, guid: 5e9dbb1dcfe8a4e54a619d9ab643af1f, type: 2}
+  m_focusSceneView: 1
+  m_useRandomSeed: 1
+  m_randomSeed: 0
+  m_genShowRandomGenerator: 0
+  m_genShowTerrainHelper: 0
+  m_genBorderStyle: 2
+  m_genGridSize: 3
+  m_genNumStampsToGenerate: 10
+  m_genScaleWidth: 60
+  m_genScaleHeight: 15
+  m_genChanceOfHills: 0.7
+  m_genChanceOfIslands: 0
+  m_genChanceOfLakes: 0
+  m_genChanceOfMesas: 0.1
+  m_genChanceOfMountains: 0.1
+  m_genChanceOfPlains: 0
+  m_genChanceOfRivers: 0.1
+  m_genChanceOfValleys: 0
+  m_genChanceOfVillages: 0
+  m_genChanceOfWaterfalls: 0
+  m_bakedMaskCache: {fileID: 0}
+  m_lastUsedTerrainExportSettings: {fileID: 0}
+  m_copiedImageMask:
+    m_active: 1
+    m_invert: 0
+    m_hasErrors: 0
+    m_influence: 0
+    m_operation: 0
+    m_blendMode: 0
+    m_imageMaskLocation: 0
+    m_strength: 1
+    m_seaLevel: 0
+    m_maxWorldHeight: 0
+    m_minWorldHeight: 0
+    m_xOffSet: 0
+    m_zOffSet: 0
+    m_xOffSetScalar: 0
+    m_zOffSetScalar: 0
+    m_xScale: 1
+    m_zScale: 1
+    m_rotationDegrees: 0
+    m_tiling: 0
+    m_imageMaskSpace: 0
+    m_imageMaskTextureGUID: 
+    m_imageMaskFilterMode: 0
+    m_imageMaskColorSelectionColor: {r: 1, g: 1, b: 1, a: 1}
+    m_imageMaskColorSelectionAccuracy: 0.5
+    m_distanceMaskCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_strengthTransformCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_heightMaskCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_heightMaskType: 1
+    m_heightMaskUnit: 1
+    m_relativeHeightMin: 25
+    m_relativeHeightMax: 75
+    m_absoluteHeightMin: 50
+    m_absoluteHeightMax: 150
+    m_seaLevelRelativeHeightMin: -109876.55
+    m_seaLevelRelativeHeightMax: 109876.55
+    tree1active: 0
+    tree2active: 0
+    m_slopeMaskCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_slopeMin: 0
+    m_slopeMax: 0.1
+    m_distanceMaskAxes: 3
+    m_gaiaNoiseSettings:
+      m_translation: {x: 0, y: 0, z: 0}
+      m_rotation: {x: 0, y: 0, z: 0}
+      m_scale: {x: 10, y: 1, z: 10}
+      m_noiseTypeName: Perlin
+      m_noiseTypeParams: 
+      m_fractalTypeName: Fbm
+      m_fractalTypeParams: 
+      m_warpEnabled: 0
+      m_warpIterations: 0
+      m_warpStrength: 0
+      m_warpOffset: {x: 0, y: 0, z: 0, w: 0}
+    m_noiseSettings: {fileID: 0}
+    m_noiseToolSettings:
+      worldHeightRemap: {x: 0, y: 0}
+      coordSpace: 0
+      noiseAssetGUID: 
+    m_ShowNoiseTransformSettings: 0
+    m_ShowNoisePreviewTexture: 1
+    m_noisePreviewTextureLocked: 0
+    m_ShowNoiseTypeSettings: 0
+    m_scaleNoiseToTerrainSize: 0
+    m_distanceMaskSquareRoundness: 0.25
+    m_collisionMaskExpanded: 1
+    m_collisionMasks: []
+    m_erosionMaskOutput: 0
+    m_erosionSimScale: 9
+    m_erosionHydroTimeDelta: 0.05
+    m_erosionHydroIterations: 15
+    m_erosionThermalTimeDelta: 0.01
+    m_erosionThermalIterations: 80
+    m_erosionThermalReposeAngle: 80
+    m_erosionPrecipRate: 0.5
+    m_erosionEvaporationRate: 0.5
+    m_erosionFlowRate: 0.5
+    m_erosionSedimentCapacity: 0.5
+    m_erosionSedimentDepositRate: 0.8
+    m_erosionSedimentDissolveRate: 0.5
+    m_erosionRiverBankDepositRate: 7
+    m_erosionRiverBankDissolveRate: 5
+    m_erosionRiverBedDepositRate: 5
+    m_erosionRiverBedDissolveRate: 5
+    m_erosionShowAdvancedUI: 0
+    m_erosionShowThermalUI: 0
+    m_erosionShowWaterUI: 0
+    m_erosionShowSedimentUI: 0
+    m_erosionShowRiverBankUI: 0
+    m_smoothVerticality: 0
+    m_smoothBlurRadius: 1
+    m_textureMaskSpawnRuleGUID: 
+    m_concavity: 1
+    m_concavityFeatureSize: 10
+    m_foldedOut: 1
+    m_selectedWorldBiomeMaskGUID: 
+    m_growAndShrinkValue: 0
+    m_globalSpawnerMaskStackRT: {fileID: 0}
+  m_copiedSpawnRule:
+    m_name: 
+    m_guid: 874af014-1e6f-479d-ba61-35354d2186ba
+    m_useExtendedSpawn: 0
+    m_minRequiredFitness: 0.25
+    m_minInstanceRequiredFitness: 0
+    m_failureRate: 0
+    m_maxInstances: 40000000
+    m_ignoreMaxInstances: 0
+    m_minDirection: 0
+    m_maxDirection: 359.9
+    m_locationIncrementMin: 25
+    m_locationIncrementMax: 45
+    m_jitterPercent: 1
+    m_boundsCheckQuality: 25
+    m_resourceType: 0
+    m_resourceIdx: 0
+    m_imageMasks: []
+    m_visualisationColor: {r: 1, g: 0.9849656, b: 0.7688679, a: 0}
+    m_noiseMask: 0
+    m_noiseMaskSeed: 0
+    m_noiseMaskOctaves: 8
+    m_noiseMaskPersistence: 0.25
+    m_noiseMaskFrequency: 1
+    m_noiseMaskLacunarity: 1.5
+    m_noiseZoom: 50
+    m_noiseStrength: 1
+    m_noiseInvert: 0
+    m_isActive: 1
+    m_isFoldedOut: 0
+    m_currInstanceCnt: 0
+    m_activeInstanceCnt: 0
+    m_inactiveInstanceCnt: 0
+    m_resourceSettingsFoldedOut: 0
+    m_isHelpActive: 0
+    m_spawnedInstances: 0
+    m_goSpawnTargetMode: 0
+    m_goSpawnTarget: {fileID: 0}
+    m_terrainGOSpawnTargetName: Gaia Game Object Spawns
+    m_terrainDetailDensity: 15
+    m_terrainDetailMinFitness: 0.5
+    m_terrainDetailFitnessBeginFadeOut: 0.6
+    m_createdBiomeController: {fileID: 0}
+    m_visibleInSceneHierarchy: 1
+    m_usesBoxStandIn: 0
+    m_boundsCollisionCheck: 0
+    m_changesHeightmap: 0
+    m_startOffsetX: 0
+    m_startOffsetZ: 0
+    m_collisionLayersToClear:
+      serializedVersion: 2
+      m_Bits: 0
+  m_copiedSpawnRuleSpawner: {fileID: 0}
+  m_waitForSessionContinueAfterStamping: 0
+  m_massStamperSettingsList: []
+  m_massStamperSettingsIndex: 2147483647
+  m_showSceneViewPanel: 0
+  m_showTerrainOpsPanel: 0
+  m_terrainNamesFlaggedForRegeneration: []
+  m_terrainNamesFlaggedForRegenerationDeactivation: []
+  m_selectAllOperations: 1
+  m_waitForSpawningDuringTerrainCreation: 0
+  m_worldCreationRunning: 0
+--- !u!1 &918751236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 918751237}
+  - component: {fileID: 918751238}
+  m_Layer: 0
+  m_Name: Day Preset GlobalPostProcessing(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &918751237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918751236}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 946946957}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &918751238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918751236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 2bed9b01aaba14e70aa133785f617c1e, type: 2}
+--- !u!1 &946946956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 946946957}
+  m_Layer: 0
+  m_Name: Gaia Lighting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &946946957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946946956}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 696199899}
+  - {fileID: 918751237}
+  m_Father: {fileID: 668792829}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &984755767
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,12 +993,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984755767}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 494, y: 8, z: 491.6625}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 505, y: 8, z: 491.6625}
   m_LocalScale: {x: 98.721214, y: 7.71826, z: 98.77315}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 86516226}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027394018
 GameObject:
@@ -526,6 +1092,51 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!1 &1197149953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197149955}
+  - component: {fileID: 1197149954}
+  m_Layer: 0
+  m_Name: Gaia Tools
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1197149954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197149953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c39bb83efacf448b1192428beb6f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1197149955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197149953}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 747090715}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1289046958
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +1155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1289046959
 AudioListener:
   m_ObjectHideFlags: 0
@@ -642,7 +1253,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -663,6 +1274,40 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!21 &2018646102
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Day Preset Environment SkyBox(Clone)
+  m_Shader: {fileID: 4800000, guid: 90f7c8c3c6fc91b449cd7f8ac651f571, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Tex:
+        m_Texture: {fileID: 8900000, guid: 7f366e2ef5b515746af2ea5425c50daf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Exposure: 1
+    - _Rotation: 0
+    m_Colors:
+    - _Tint: {r: 0.48749977, g: 0.5558694, b: 0.65, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -670,4 +1315,5 @@ SceneRoots:
   - {fileID: 1289046961}
   - {fileID: 438070250}
   - {fileID: 86516226}
-  - {fileID: 984755771}
+  - {fileID: 668792829}
+  - {fileID: 1197149955}

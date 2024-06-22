@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/GaiaLevel_01.unity
+    guid: c001ee7bda00946fca0832420809e4f7
+  - enabled: 1
     path: Assets/Scenes/LoginScreen.unity
     guid: 489ef4c02da47432db023694bca08618
   - enabled: 1
