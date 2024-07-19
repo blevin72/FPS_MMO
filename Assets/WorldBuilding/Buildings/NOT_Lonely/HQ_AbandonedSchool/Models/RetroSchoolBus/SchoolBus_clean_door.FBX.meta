@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 440b5a9cc98177e4f885f1719f3f2359
+timeCreated: 1525773486
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: DoorMain
+    100002: DoorMain_01_arm
+    100004: DoorMain_02_armStick
+    100006: DoorMain_03_dummy
+    100008: DoorMain_04_door_R
+    100010: DoorMain_05_door_L
+    100012: DoorMain_06_dummy
+    100014: DoorMain_glass_L
+    100016: DoorMain_glass_R
+    100018: DoorMain_IK_01
+    100020: DoorMain_IK_02
+    100022: DoorMain_IK_02_parent
+    100024: DoorMain_mesh
+    100026: //RootNode
+    100028: DoorMain_mesh_LOD0
+    100030: DoorMain_mesh_LOD1
+    400000: DoorMain
+    400002: DoorMain_01_arm
+    400004: DoorMain_02_armStick
+    400006: DoorMain_03_dummy
+    400008: DoorMain_04_door_R
+    400010: DoorMain_05_door_L
+    400012: DoorMain_06_dummy
+    400014: DoorMain_glass_L
+    400016: DoorMain_glass_R
+    400018: DoorMain_IK_01
+    400020: DoorMain_IK_02
+    400022: DoorMain_IK_02_parent
+    400024: DoorMain_mesh
+    400026: //RootNode
+    400028: DoorMain_mesh_LOD0
+    400030: DoorMain_mesh_LOD1
+    2300000: DoorMain_glass_L
+    2300002: DoorMain_glass_R
+    3300000: DoorMain_glass_L
+    3300002: DoorMain_glass_R
+    4300000: DoorMain_mesh
+    4300002: DoorMain_glass_L
+    4300004: DoorMain_glass_R
+    4300006: DoorMain_mesh_LOD0
+    4300008: DoorMain_mesh_LOD1
+    7400000: DoorMain_open
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: DoorMain_mesh
+    13700002: DoorMain_mesh_LOD0
+    13700004: DoorMain_mesh_LOD1
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: DoorMain_open
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: DoorMain
+        weight: 1
+      - path: DoorMain/DoorMain_01_arm
+        weight: 1
+      - path: DoorMain/DoorMain_01_arm/DoorMain_02_armStick
+        weight: 1
+      - path: DoorMain/DoorMain_01_arm/DoorMain_02_armStick/DoorMain_03_dummy
+        weight: 1
+      - path: DoorMain/DoorMain_04_door_R
+        weight: 1
+      - path: DoorMain/DoorMain_04_door_R/DoorMain_05_door_L
+        weight: 1
+      - path: DoorMain/DoorMain_04_door_R/DoorMain_05_door_L/DoorMain_06_dummy
+        weight: 1
+      - path: DoorMain/DoorMain_04_door_R/DoorMain_05_door_L/DoorMain_glass_L
+        weight: 1
+      - path: DoorMain/DoorMain_04_door_R/DoorMain_glass_R
+        weight: 1
+      - path: DoorMain/DoorMain_04_door_R/DoorMain_IK_01
+        weight: 1
+      - path: DoorMain/DoorMain_IK_02_parent
+        weight: 1
+      - path: DoorMain/DoorMain_IK_02_parent/DoorMain_IK_02
+        weight: 1
+      - path: DoorMain_mesh
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - 0.25
+    - 0.01
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

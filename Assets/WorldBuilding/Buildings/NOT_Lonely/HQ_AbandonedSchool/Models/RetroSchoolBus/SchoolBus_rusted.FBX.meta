@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: cd1f1637031f7da47a08eb3ced00395d
+timeCreated: 1526581897
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: DoorEmergency_glass
+    100002: DoorEmergency_handle_inside_LOD0
+    100004: DoorEmergency_handle_inside_LOD1
+    100006: DoorEmergency_handle_outside_LOD0
+    100008: DoorEmergency_lock
+    100010: DoorEmergency_LOD0
+    100012: DoorEmergency_LOD1
+    100014: InteriorLights
+    100016: SchoolBus_exterior_LOD0
+    100018: SchoolBus_exterior_LOD1
+    100020: SchoolBus_glass_inside
+    100022: SchoolBus_glass_outside
+    100024: SchoolBus_interior_LOD0
+    100026: SchoolBus_interior_LOD1
+    100028: //RootNode
+    100030: SchoolBus_rusted_LOD
+    100032: SchoolBus_steeringWheel_LOD0
+    100034: SchoolBus_steeringWheel_LOD1
+    100036: Wheel_Front_L_LOD0
+    100038: Wheel_Front_L_LOD1
+    100040: Wheel_Front_L_LOD2
+    100042: Wheel_Front_R_LOD0
+    100044: Wheel_Front_R_LOD1
+    100046: Wheel_Front_R_LOD2
+    100048: Wheel_Rear_L_LOD0
+    100050: Wheel_Rear_L_LOD1
+    100052: Wheel_Rear_L_LOD2
+    100054: Wheel_Rear_R_LOD0
+    100056: Wheel_Rear_R_LOD1
+    100058: Wheel_Rear_R_LOD2
+    400000: DoorEmergency_glass
+    400002: DoorEmergency_handle_inside_LOD0
+    400004: DoorEmergency_handle_inside_LOD1
+    400006: DoorEmergency_handle_outside_LOD0
+    400008: DoorEmergency_lock
+    400010: DoorEmergency_LOD0
+    400012: DoorEmergency_LOD1
+    400014: InteriorLights
+    400016: SchoolBus_exterior_LOD0
+    400018: SchoolBus_exterior_LOD1
+    400020: SchoolBus_glass_inside
+    400022: SchoolBus_glass_outside
+    400024: SchoolBus_interior_LOD0
+    400026: SchoolBus_interior_LOD1
+    400028: //RootNode
+    400030: SchoolBus_rusted_LOD
+    400032: SchoolBus_steeringWheel_LOD0
+    400034: SchoolBus_steeringWheel_LOD1
+    400036: Wheel_Front_L_LOD0
+    400038: Wheel_Front_L_LOD1
+    400040: Wheel_Front_L_LOD2
+    400042: Wheel_Front_R_LOD0
+    400044: Wheel_Front_R_LOD1
+    400046: Wheel_Front_R_LOD2
+    400048: Wheel_Rear_L_LOD0
+    400050: Wheel_Rear_L_LOD1
+    400052: Wheel_Rear_L_LOD2
+    400054: Wheel_Rear_R_LOD0
+    400056: Wheel_Rear_R_LOD1
+    400058: Wheel_Rear_R_LOD2
+    2300000: DoorEmergency_glass
+    2300002: DoorEmergency_handle_inside_LOD0
+    2300004: DoorEmergency_handle_inside_LOD1
+    2300006: DoorEmergency_handle_outside_LOD0
+    2300008: DoorEmergency_lock
+    2300010: DoorEmergency_LOD0
+    2300012: DoorEmergency_LOD1
+    2300014: InteriorLights
+    2300016: SchoolBus_exterior_LOD0
+    2300018: SchoolBus_exterior_LOD1
+    2300020: SchoolBus_glass_inside
+    2300022: SchoolBus_glass_outside
+    2300024: SchoolBus_interior_LOD0
+    2300026: SchoolBus_interior_LOD1
+    2300028: SchoolBus_rusted_LOD
+    2300030: SchoolBus_steeringWheel_LOD0
+    2300032: SchoolBus_steeringWheel_LOD1
+    2300034: Wheel_Front_L_LOD0
+    2300036: Wheel_Front_L_LOD1
+    2300038: Wheel_Front_L_LOD2
+    2300040: Wheel_Front_R_LOD0
+    2300042: Wheel_Front_R_LOD1
+    2300044: Wheel_Front_R_LOD2
+    2300046: Wheel_Rear_L_LOD0
+    2300048: Wheel_Rear_L_LOD1
+    2300050: Wheel_Rear_L_LOD2
+    2300052: Wheel_Rear_R_LOD0
+    2300054: Wheel_Rear_R_LOD1
+    2300056: Wheel_Rear_R_LOD2
+    3300000: DoorEmergency_glass
+    3300002: DoorEmergency_handle_inside_LOD0
+    3300004: DoorEmergency_handle_inside_LOD1
+    3300006: DoorEmergency_handle_outside_LOD0
+    3300008: DoorEmergency_lock
+    3300010: DoorEmergency_LOD0
+    3300012: DoorEmergency_LOD1
+    3300014: InteriorLights
+    3300016: SchoolBus_exterior_LOD0
+    3300018: SchoolBus_exterior_LOD1
+    3300020: SchoolBus_glass_inside
+    3300022: SchoolBus_glass_outside
+    3300024: SchoolBus_interior_LOD0
+    3300026: SchoolBus_interior_LOD1
+    3300028: SchoolBus_rusted_LOD
+    3300030: SchoolBus_steeringWheel_LOD0
+    3300032: SchoolBus_steeringWheel_LOD1
+    3300034: Wheel_Front_L_LOD0
+    3300036: Wheel_Front_L_LOD1
+    3300038: Wheel_Front_L_LOD2
+    3300040: Wheel_Front_R_LOD0
+    3300042: Wheel_Front_R_LOD1
+    3300044: Wheel_Front_R_LOD2
+    3300046: Wheel_Rear_L_LOD0
+    3300048: Wheel_Rear_L_LOD1
+    3300050: Wheel_Rear_L_LOD2
+    3300052: Wheel_Rear_R_LOD0
+    3300054: Wheel_Rear_R_LOD1
+    3300056: Wheel_Rear_R_LOD2
+    4300000: SchoolBus_exterior_LOD0
+    4300002: SchoolBus_glass_inside
+    4300004: SchoolBus_interior_LOD0
+    4300006: InteriorLights
+    4300008: DoorEmergency_LOD0
+    4300010: Wheel_Rear_L_LOD0
+    4300012: Wheel_Front_L_LOD0
+    4300014: DoorEmergency_handle_inside_LOD0
+    4300016: DoorEmergency_lock
+    4300018: DoorEmergency_glass
+    4300020: DoorEmergency_handle_outside_LOD0
+    4300022: Wheel_Front_L_LOD1
+    4300024: Wheel_Front_L_LOD2
+    4300026: Wheel_Rear_L_LOD1
+    4300028: Wheel_Rear_L_LOD2
+    4300030: SchoolBus_exterior_LOD1
+    4300032: SchoolBus_interior_LOD1
+    4300034: DoorEmergency_LOD1
+    4300036: DoorEmergency_handle_inside_LOD1
+    4300038: SchoolBus_steeringWheel_LOD1
+    4300040: SchoolBus_steeringWheel_LOD0
+    4300042: SchoolBus_rusted_LOD
+    4300044: Wheel_Front_R_LOD0
+    4300046: Wheel_Front_R_LOD1
+    4300048: Wheel_Front_R_LOD2
+    4300050: Wheel_Rear_R_LOD0
+    4300052: Wheel_Rear_R_LOD1
+    4300054: Wheel_Rear_R_LOD2
+    4300056: SchoolBus_glass_outside
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.01
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
