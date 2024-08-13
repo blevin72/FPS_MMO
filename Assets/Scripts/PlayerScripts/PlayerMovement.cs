@@ -1,68 +1,160 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Camera cam;
+    private bool Sprint => Input.GetKey(KeyCode.LeftShift);
+    private bool ShouldJump => Input.GetKeyDown(KeyCode.Space) && isGrounded;
 
-    private Vector3 velocity = Vector3.zero;
-    private Vector3 rotation = Vector3.zero;
-    private float cameraRotationX = 0f;
-    private float currentCameraRotationX = 0f;
-    private Rigidbody rb;
+    [Header("Move Parameters")]
+    [SerializeField] private float walkSpeed = 8.0f;
+    [SerializeField] private float sprintSpeed = 15.0f;
+    [SerializeField] private float crouchSpeed = 3.0f;
 
-    [SerializeField]
-    private float cameraRotationLimit = 85f;
+    [Header("Mouse Parameters")]
+    [SerializeField, Range(1, 10)] private float lookSpeed = 2.0f;
 
-    void Start()
+    [Header("Jumping Parameters")]
+    [SerializeField] private float jumpForce = 5.0f;
+
+    [Header("Stamina Parameters")]
+    [SerializeField] private float maxStamina = 100f;
+    [SerializeField] private float staminaRegenRate = 10f;
+    private float currentStamina;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip[] concreteSurface;
+    [SerializeField] private AudioClip[] metalSurface;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip crouchSound;
+
+    [HideInInspector] public bool isCrouching, isJumping, isZooming, isGrounded; // Declare isGrounded here
+
+    private CharacterController characterController;
+    private AudioSource mainSound;
+    private Vector3 moveDirection;
+    private Vector2 currentInput;
+    private float gravity = -9.81f;
+    private float rotationX = 0;
+    private Camera mainCamera;
+    private Vector3 cameraStartPos;
+    private Vector3 cameraEndPos;
+    private float cameraMaxPosY = -2f;
+    private float lerpTime = 0.2f;
+    private float currentLerpTime1;
+    private float currentLerpTime2;
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        GetReferences();
     }
 
-    //Get a movement vector
-    public void Move(Vector3 _velocity)
+    private void Update()
     {
-        velocity = _velocity;
-    }
+        // Check if the player is grounded using raycast
+        isGrounded = CheckIfGrounded();
 
-    //Get a rotational vector for the camera
-    public void Rotate(Vector3 _rotation)
-    {
-        rotation = _rotation;
-    }
+        HandleMovementInput();
+        HandleMouseLook();
 
-    public void RotateCamera(float _cameraRotationX)
-    {
-        cameraRotationX = _cameraRotationX;
-    } 
-
-    void FixedUpdate()
-    {
-        PerformMovement();
-        PerformRotation();
-    }
-
-    void PerformMovement()
-    {
-        if (velocity != Vector3.zero)
+        if (!isCrouching)
         {
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            HandleJump();
+        }
+
+        ApplyFinalMovement();
+        Crouch();
+
+        // Manage stamina
+        ManageStamina();
+    }
+
+    private bool CheckIfGrounded()
+    {
+        // Cast a ray downwards to check if grounded
+        return Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f) &&
+               hit.collider != null;
+    }
+
+    private void HandleMovementInput()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        // Calculate the raw input for later use
+        Vector2 rawInput = new Vector2(horizontal, vertical);
+
+        // Normalize to ensure diagonal movement is not faster
+        Vector3 moveDirection = new Vector3(horizontal, 0.0f, vertical).normalized;
+
+        // Convert the move direction relative to the player's local space
+        moveDirection = transform.TransformDirection(moveDirection);
+
+        // Apply the movement to the character controller
+        characterController.Move(moveDirection * (Sprint ? sprintSpeed : walkSpeed) * Time.deltaTime);
+    }
+
+    private void HandleMouseLook()
+    {
+        rotationX -= Input.GetAxis("Mouse Y") * lookSpeed;
+        rotationX = Mathf.Clamp(rotationX, -80, 80);
+        mainCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+    }
+
+    private void HandleJump()
+    {
+        if (ShouldJump && isGrounded)
+        {
+            JumpAudio();
+            moveDirection.y = jumpForce; // Set the upward force for jumping
         }
     }
 
-    void PerformRotation()
+    private void ApplyFinalMovement()
     {
-        rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation)); //quaternion is used to store rotation in a 3D space
-        if(cam != null)
+        // Apply gravity
+        if (isGrounded)
         {
-            //set our rotation and clamp it
-            currentCameraRotationX -= cameraRotationX;
-            currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
-
-            //apply our rotation to the transform of our camera
-            cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+            moveDirection.y = -2f; // Keep player grounded slightly
         }
+        else
+        {
+            moveDirection.y += gravity * Time.deltaTime;
+        }
+
+        characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void Crouch()
+    {
+        // Your existing crouch logic goes here
+    }
+
+    private void ManageStamina()
+    {
+        // Your existing stamina management logic goes here
+    }
+
+    public void GetReferences()
+    {
+        characterController = GetComponent<CharacterController>();
+        mainCamera = GetComponentInChildren<Camera>();
+        cameraEndPos = mainCamera.transform.localPosition + Vector3.up * cameraMaxPosY;
+        mainSound = GetComponent<AudioSource>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Initialize stamina
+        currentStamina = maxStamina;
+    }
+
+    public void JumpAudio()
+    {
+        mainSound.PlayOneShot(jumpSound, 0.6f);
+    }
+
+    public void CrouchAudio()
+    {
+        mainSound.PlayOneShot(crouchSound, 0.6f);
     }
 }

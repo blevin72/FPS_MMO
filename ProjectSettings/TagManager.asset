@@ -13,11 +13,16 @@ TagManager:
   - PW - Nature
   - PW - Prop
   - PW - Building
+  - Target
+  - NL_LMBV
+  - PickableItem
+  - Flashlight
+  - VentilationGrid
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PlayerLayer
   - Water
   - UI
   - LocalPlayer
@@ -30,7 +35,7 @@ TagManager:
   - PW_Object_Small
   - PW_Object_Medium
   - PW_Object_Large
-  - 
+  - Ground
   - 
   - 
   - 

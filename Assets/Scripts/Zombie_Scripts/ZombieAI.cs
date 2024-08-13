@@ -23,7 +23,7 @@ public class ZombieAI : NetworkBehaviour
     private bool isDetecting = false;
     private Vector3 wanderPoint;
     private NavMeshAgent agent;
-    private Animator animator;
+    public Animator animator;
     private float loseTimer = 0;
     private int wayPointIndex = 0;
 
@@ -51,11 +51,14 @@ public class ZombieAI : NetworkBehaviour
         {
             rb.isKinematic = true;
         }
+
+        playerLayer = LayerMask.GetMask("PlayerLayer");
+
     }
 
     void Update()
     {
-        if (!isServer) return;
+        //if (!isServer) return;
 
         if (health <= 0)
         {
@@ -68,8 +71,8 @@ public class ZombieAI : NetworkBehaviour
 
     public void CmdTakeDamage(int damage)
     {
-        if (!isServer)
-            return;
+        //if (!isServer)
+        //    return;
 
         // Apply damage to the zombie
         health -= damage;
@@ -110,20 +113,35 @@ public class ZombieAI : NetworkBehaviour
 
     void SearchForPlayer()
     {
-        if (!isServer)
-            return;
+        //if (!isServer)
+        //    return;
+        //uncommented for testing purposes off-server
 
         if (fpsc != null)
         {
-            if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(fpsc.transform.position)) < fov / 2f)
+            Debug.Log("fpsc is not null");
+
+            Vector3 directionToPlayer = fpsc.transform.position - transform.position;
+            float angleToPlayer = Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(fpsc.transform.position));
+            float distanceToPlayer = Vector3.Distance(fpsc.transform.position, transform.position);
+
+            Debug.Log("Direction to player: " + directionToPlayer);
+            Debug.Log("Angle to player: " + angleToPlayer);
+            Debug.Log("Distance to player: " + distanceToPlayer);
+
+            Debug.DrawLine(transform.position, fpsc.transform.position, Color.red); // Draws a red line from the zombie to the player
+
+            if (angleToPlayer < fov / 2f)
             {
-                if (Vector3.Distance(fpsc.transform.position, transform.position) < viewDistance)
+                if (distanceToPlayer < viewDistance)
                 {
                     RaycastHit hit;
-                    if (Physics.Raycast(transform.position, fpsc.transform.position - transform.position, out hit, viewDistance, playerLayer))
+                    if (Physics.Raycast(transform.position, directionToPlayer, out hit, viewDistance, playerLayer))
                     {
+                        Debug.Log("Raycast hit: " + hit.transform.name);
                         if (hit.transform.CompareTag("Player"))
                         {
+                            Debug.Log("Zombie aware of player");
                             OnAware();
                         }
                         else
@@ -133,6 +151,7 @@ public class ZombieAI : NetworkBehaviour
                     }
                     else
                     {
+                        Debug.Log("Raycast did not hit anything.");
                         isDetecting = false;
                     }
                 }
